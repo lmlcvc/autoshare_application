@@ -4,18 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_white"
     tools:context=".view.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/default_red"
+        android:theme="@style/Theme.Autoshare.Title">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:paddingStart="-18dp"
+            android:src="@drawable/logo_banner"
+            android:contentDescription="stylised app name"
+            tools:ignore="RtlSymmetry" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="60dp"
+        android:layout_below="@id/toolbar"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -23,8 +44,10 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/mid_grey"
         app:tabGravity="fill"
+        app:tabIconTint="@color/bottom_nav_color"
+        app:tabIndicatorColor="@color/app_white"
         app:tabInlineLabel="true"
         app:tabMode="fixed" />
 
