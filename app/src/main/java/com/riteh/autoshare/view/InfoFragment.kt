@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.riteh.autoshare.R
 import com.riteh.autoshare.viewmodel.InfoViewModel
+import com.riteh.autoshare.viewmodel.SearchViewModel
 
 class InfoFragment : Fragment() {
 
@@ -24,10 +25,9 @@ class InfoFragment : Fragment() {
         return inflater.inflate(R.layout.info_fragment, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(InfoViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[InfoViewModel::class.java]
     }
 
 }

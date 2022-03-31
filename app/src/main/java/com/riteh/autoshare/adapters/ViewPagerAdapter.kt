@@ -6,22 +6,26 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 
 // TODO: deprecations
-class ViewPagerAdapter(supportFragmentManager: FragmentManager) :
+/**
+ * Manages home screen tabs.
+ *
+ * @param supportFragmentManager: FragmentManager
+ * @param fragmentList: List<Fragment> - list of fragments acting as tabs
+ */
+class ViewPagerAdapter(
+    supportFragmentManager: FragmentManager,
+    private val fragmentList: List<Fragment>
+) :
     FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    private val mFragmentList = ArrayList<Fragment>()
     override fun getCount(): Int {
-        return mFragmentList.size
+        return fragmentList.size
     }
 
 
     override fun getItem(position: Int): Fragment {
-        return mFragmentList[position]
+        return fragmentList[position]
     }
 
-
-    fun addFragment(fragment: Fragment) {
-        mFragmentList.add(fragment)
-    }
 
 }
