@@ -10,17 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Autoshare">
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserActivity"
+            android:name="com.riteh.autoshare.ui.auth.AuthActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
