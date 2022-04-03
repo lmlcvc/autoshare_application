@@ -1,4 +1,4 @@
-package com.riteh.autoshare.view
+package com.riteh.autoshare.ui.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,28 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.riteh.autoshare.R
-import com.riteh.autoshare.viewmodel.InfoViewModel
-import com.riteh.autoshare.viewmodel.SearchViewModel
-import com.riteh.autoshare.viewmodel.UserViewModel
 
-class UserFragment : Fragment() {
+class AddFragment : Fragment() {
 
     companion object {
-        fun newInstance() = UserFragment()
+        fun newInstance() = AddFragment()
     }
 
-    private lateinit var viewModel: UserViewModel
+    private lateinit var viewModel: AddViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.user_fragment, container, false)
+        return inflater.inflate(R.layout.add_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        viewModel = ViewModelProvider(this)[AddViewModel::class.java]
     }
 
 }

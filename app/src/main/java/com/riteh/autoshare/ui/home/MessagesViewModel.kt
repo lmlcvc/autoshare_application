@@ -1,7 +1,7 @@
-package com.riteh.autoshare.viewmodel
+package com.riteh.autoshare.ui.home
 
 import androidx.lifecycle.ViewModel
 
-class SearchViewModel : ViewModel() {
+class MessagesViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
