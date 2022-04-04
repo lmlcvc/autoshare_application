@@ -1,10 +1,14 @@
 package com.riteh.autoshare.ui.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.ViewPagerAdapter
+import com.riteh.autoshare.data.UserPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setUpTabs()
+
+        /*check if we have user preferences*/
+        val userPreferences = UserPreferences(this)
+        userPreferences.authToken.asLiveData().observe(this, Observer {
+            startActivity(Intent(this,MainActivity::class.java))
+        })
     }
 
     /**

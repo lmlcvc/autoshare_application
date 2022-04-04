@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/loginFragmentLogo"
+        android:src="@drawable/logo"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="100dp"
@@ -67,12 +68,22 @@
         android:layout_marginBottom="60dp"
         android:clickable="true"
         android:focusable="true"
+        android:textColor="@color/dark_red"
         android:text="Registar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginFragmentButton" />
+    
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
