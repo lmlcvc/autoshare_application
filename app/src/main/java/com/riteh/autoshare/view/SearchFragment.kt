@@ -43,10 +43,9 @@ class SearchFragment : Fragment() {
 
         viewModel = vita.with(VitaOwner.Multiple(this)).getViewModel()
 
-        viewModel.location.observe(viewLifecycleOwner, Observer {
-            // updating data in displayMsg
+        viewModel.location.observe(viewLifecycleOwner) {
             tv_location.text = it
-        })
+        }
     }
 
 
