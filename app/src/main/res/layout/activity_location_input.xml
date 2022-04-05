@@ -8,7 +8,7 @@
     tools:context=".view.LocationInputActivity">
 
     <ImageView
-        android:id="@+id/iv_close"
+        android:id="@+id/iv_back"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_margin="15dp"
@@ -16,32 +16,49 @@
         app:tint="@color/dark_red" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/place_autocomplete_fragment"
-        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_close"
-        android:layout_marginHorizontal="25dp" />
-
-    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@id/place_autocomplete_fragment"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp" />
 
+    <!--for centering location marker-->
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true" />
+
+
+    <ImageView
+        android:id="@+id/confirm_address_map_custom_marker"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_above="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_baseline_location_on_24"
+        app:tint="@color/basic_red" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/place_autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_back"
+        android:layout_marginHorizontal="25dp" />
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/map"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:text="Add this location" />
 

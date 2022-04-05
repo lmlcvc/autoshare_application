@@ -1,14 +1,10 @@
 package com.riteh.autoshare.view
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import android.location.LocationManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.androidisland.vita.VitaOwner
 import com.androidisland.vita.vita
 import com.google.android.gms.common.api.Status
@@ -26,11 +22,15 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.riteh.autoshare.R
 import com.riteh.autoshare.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_location_input.*
-import kotlinx.android.synthetic.main.search_fragment.*
+import java.io.IOException
+import java.util.*
 
 
 class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var context: LocationInputActivity
+
     private lateinit var viewModel: SearchViewModel
+    private lateinit var lastLocation: String
 
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
     private lateinit var mapFragment: SupportMapFragment
@@ -39,35 +39,64 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
     private val initialPosition = LatLng(45.37, 14.35)
     private var marker: MarkerOptions = MarkerOptions().position(initialPosition)
 
+    private lateinit var geocoder: Geocoder
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_input)
 
+        context = this
+
         viewModel = vita.with(VitaOwner.Multiple(this)).getViewModel()
+        lastLocation = viewModel.location.value.toString()
+
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+
 
         initPlacesFragment()
         initMapFragment()
+
         setUpListeners()
+    }
+
+    private fun setDefaultLoc() {
+        if (viewModel.location.value.toString() != getString(R.string.pick_a_location)) {
+            val location = geocoder.getFromLocationName(viewModel.location.value.toString(), 1)
+            marker.position(LatLng(location[0].latitude, location[0].longitude))
+        }
     }
 
     private fun setUpListeners() {
         button.setOnClickListener {
+            if (viewModel.location.value.toString() == getString(R.string.pick_a_location)) {
+                val locality = getLocalityFromLatLng(
+                    map.cameraPosition.target.latitude,
+                    map.cameraPosition.target.longitude
+                )
+
+                viewModel.setLocation(locality)
+            }
             this.finish()
         }
 
-        iv_close.setOnClickListener {
-            viewModel.setLocation("Pick a location")
+        iv_back.setOnClickListener {
+            viewModel.setLocation(lastLocation)
             this.finish()
         }
 
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
-                viewModel.setLocation(place.name!!)
-
                 map.clear()
                 marker.position(place.latLng!!)
-                map.addMarker(marker)
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15F))
+
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 12F))
+
+                button.setOnClickListener {
+                    viewModel.setLocation(place.name!!)
+                    context.finish()
+                }
+
             }
 
             override fun onError(status: Status) {
@@ -84,9 +113,48 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        map.addMarker(marker)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15F))
+        setDefaultLoc()
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 12F))
+
+        map.setOnCameraIdleListener {       // can only be set up when map is ready
+            val locality = getLocalityFromLatLng(
+                map.cameraPosition.target.latitude,
+                map.cameraPosition.target.longitude
+            )
+
+            autocompleteFragment.setText(locality)
+
+            button.setOnClickListener {
+                if (locality != "") {
+                    viewModel.setLocation(locality)
+                    context.finish()
+                } else {
+                    Toast.makeText(this, "Location invalid", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
+
+    private fun getLocalityFromLatLng(lat: Double, lng: Double): String {
+        val location: String
+        try {
+            val addressList: List<Address> = geocoder.getFromLocation(lat, lng, 1)
+
+            if (addressList.isNotEmpty()) {
+                return try {
+                    location = addressList[0].locality
+                    location
+                } catch (e: Exception) {
+                    ""
+                }
+            }
+        } catch (e: IOException) {
+            Toast.makeText(applicationContext, "Unable connect to Geocoder", Toast.LENGTH_LONG)
+                .show()
+        }
+        return ""
+    }
+
 
     private fun initPlacesFragment() {
         initPlacesClient()
