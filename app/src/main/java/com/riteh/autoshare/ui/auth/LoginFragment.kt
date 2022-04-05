@@ -25,14 +25,14 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.progressbar.visable(false)
-        binding.loginFragmentButton.enable(false)
+        binding.loginFragmentButton.enable(true)
 
-        /*viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
             binding.progressbar.visable(false)
             when(it){
                 is Resource.Success -> {
                     lifecycleScope.launch{
-                        userPreferences.saveAuthToken(it.value.access_token)
+                        userPreferences.saveAuthToken(it.value.token)
                         requireActivity().startNewActivity(MainActivity::class.java)
                     }
                 }
@@ -41,7 +41,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                     Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
                 }
             }
-        })*/
+        })
 
 
 
@@ -51,7 +51,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             val pasword = binding.loginFragmentPassword.text.toString().trim()
             binding.progressbar.visable(true)
 
-//            viewModel.login(email, pasword)
+            viewModel.login(email, pasword)
         }
     }
     override fun getViewModel() = AuthViewModel::class.java
@@ -61,7 +61,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         container: ViewGroup?
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
-    //override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
+    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 
 
 }

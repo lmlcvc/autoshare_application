@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         /*check if we have user preferences*/
         val userPreferences = UserPreferences(this)
         userPreferences.authToken.asLiveData().observe(this, Observer {
-            startActivity(Intent(this,MainActivity::class.java))
+//            startActivity(Intent(this,MainActivity::class.java))
         })
     }
 

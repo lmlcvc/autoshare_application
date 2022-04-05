@@ -15,7 +15,7 @@ import com.riteh.autoshare.repository.BaseRepository
 abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : Fragment() {
 
     protected  lateinit var binding: B
-//    protected lateinit var viewModel: VM
+    protected lateinit var viewModel: VM
     protected  val remoteDataSource = ReemoteDataSource()
     protected lateinit var userPreferences: UserPreferences
 
@@ -26,8 +26,8 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : 
     ): View? {
         userPreferences = UserPreferences(requireContext())
         binding = getFragmentBinding(inflater, container)
-//        val factory = ViewModelFactory(getFragmentRepository())
-//        viewModel = ViewModelProvider(this, factory).get(getViewModel())
+        val factory = ViewModelFactory(getFragmentRepository())
+        viewModel = ViewModelProvider(this, factory).get(getViewModel())
         return binding.root
     }
 
@@ -35,6 +35,6 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : 
 
     abstract  fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?) : B
 
-//    abstract fun getFragmentRepository() : R
+    abstract fun getFragmentRepository() : R
 
 }
