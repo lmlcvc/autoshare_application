@@ -6,6 +6,7 @@
     <string name="pick_a_location">Pick a location</string>
     <string name="today">Today</string>
     <string name="search">Search</string>
-    <string name="period">Period</string>
+    <string name="period">Select dates</string>
     <string name="illustration_of_people_driving">Illustration of people driving</string>
+    <string name="rent_the_perfect_car">Rent the perfect car</string>
 </resources>
