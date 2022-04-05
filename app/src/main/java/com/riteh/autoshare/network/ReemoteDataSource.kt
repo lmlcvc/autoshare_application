@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ReemoteDataSource {
-    /*companion object{
+    companion object{
         private  const val BASE_URL = ""
     }
 
@@ -28,6 +28,6 @@ class ReemoteDataSource {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(api)
-    }*/
+    }
 
 }
