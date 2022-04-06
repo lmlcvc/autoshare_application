@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.core.util.Pair as APair
 import com.androidisland.vita.VitaOwner
 import com.androidisland.vita.vita
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.riteh.autoshare.R
 import com.riteh.autoshare.viewmodel.SearchViewModel
@@ -16,8 +18,7 @@ import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.android.synthetic.main.search_fragment.view.*
 
 
-// TODO: date range picker initialization values and saving to viewmodel
-// TODO: date range picker design
+// TODO: date range picker design and language
 class SearchFragment : Fragment() {
 
     companion object {
@@ -56,14 +57,23 @@ class SearchFragment : Fragment() {
 
         view.tv_calendar.setOnClickListener {
             val range = APair(
-                MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                MaterialDatePicker.todayInUtcMilliseconds()
+                viewModel.startDate.value?.time,
+                viewModel.endDate.value?.time
             )
+
+            val constraints = CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now()).build()
+
             val dateRangePicker =
                 MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText("Select dates")
                     .setSelection(range)
+                    .setCalendarConstraints(constraints)
                     .build()
+
+            dateRangePicker.addOnPositiveButtonClickListener {
+                dateRangePicker.selection?.let { it1 -> viewModel.setDates(it1) }
+            }
 
             dateRangePicker.show(parentFragmentManager, "a")
         }
