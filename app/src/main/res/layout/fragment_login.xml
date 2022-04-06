@@ -66,7 +66,7 @@
         android:clickable="true"
         android:focusable="true"
         android:textColor="@color/basic_red"
-        android:text="Registar"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

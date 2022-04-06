@@ -9,14 +9,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.riteh.autoshare.data.UserPreferences
-import com.riteh.autoshare.network.ReemoteDataSource
+import com.riteh.autoshare.network.RemoteDataSource
 import com.riteh.autoshare.repository.BaseRepository
 
 abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : Fragment() {
 
     protected  lateinit var binding: B
     protected lateinit var viewModel: VM
-    protected  val remoteDataSource = ReemoteDataSource()
+    protected  val remoteDataSource = RemoteDataSource()
     protected lateinit var userPreferences: UserPreferences
 
     override fun onCreateView(

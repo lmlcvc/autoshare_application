@@ -13,7 +13,7 @@ fun<A : Activity> Activity.startNewActivity(activity: Class<A>){
 }
 
 
-fun View.visable(isVisible: Boolean){
+fun View.visible(isVisible: Boolean){
     visibility = if(isVisible) View.VISIBLE else View.GONE
 }
 

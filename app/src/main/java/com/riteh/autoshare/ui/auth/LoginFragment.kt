@@ -1,9 +1,7 @@
 package com.riteh.autoshare.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -15,10 +13,9 @@ import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.Resource
 import com.riteh.autoshare.repository.AuthRepository
 import com.riteh.autoshare.ui.base.BaseFragment
-import com.riteh.autoshare.ui.enable
 import com.riteh.autoshare.ui.home.MainActivity
 import com.riteh.autoshare.ui.startNewActivity
-import com.riteh.autoshare.ui.visable
+import com.riteh.autoshare.ui.visible
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.launch
 
@@ -26,10 +23,10 @@ import kotlinx.coroutines.launch
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.progressbar.visable(false)
+        binding.progressbar.visible(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            binding.progressbar.visable(false)
+            binding.progressbar.visible(false)
             when(it){
                 is Resource.Success -> {
                     lifecycleScope.launch{
@@ -47,7 +44,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.loginFragmentButton.setOnClickListener {
             val email = binding.loginFragmentEmail.text.toString().trim()
             val pasword = binding.loginFragmentPassword.text.toString().trim()
-            binding.progressbar.visable(true)
+            binding.progressbar.visible(true)
 
            viewModel.login(email, pasword)
         }

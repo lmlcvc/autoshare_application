@@ -39,10 +39,10 @@ class AuthViewModel(
                  email: String,
                  password: String,
                 confirmPassword: String) {
-        if(name.isEmpty() || surname.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        if(name.isEmpty() || surname.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty()){
             return
         }
-        if(password != confirmPassword){
+        if((password != confirmPassword) || password.length < 6){
             return
         }
         signUp(name, surname, email, password)
@@ -54,7 +54,7 @@ class AuthViewModel(
         email: String,
         password: String
     ) = viewModelScope.launch {
-        Log.d("registracija", "prošli su podaciiiiiiii")
+
        /*ove podatke treba spremiti u bazu*/
         _signUpResponse.value = repository.userSignUp(name, surname, email, password)
     }
