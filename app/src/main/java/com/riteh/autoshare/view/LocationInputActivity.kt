@@ -149,8 +149,7 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         } catch (e: IOException) {
-            Toast.makeText(applicationContext, "Unable connect to Geocoder", Toast.LENGTH_LONG)
-                .show()
+            return ""
         }
         return ""
     }
