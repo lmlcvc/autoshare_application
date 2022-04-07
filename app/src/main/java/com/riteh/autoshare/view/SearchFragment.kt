@@ -16,9 +16,9 @@ import com.riteh.autoshare.R
 import com.riteh.autoshare.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.android.synthetic.main.search_fragment.view.*
+import java.util.*
 
 
-// TODO: date range picker design and language
 class SearchFragment : Fragment() {
 
     companion object {
@@ -69,6 +69,7 @@ class SearchFragment : Fragment() {
                     .setTitleText("Select dates")
                     .setSelection(range)
                     .setCalendarConstraints(constraints)
+                    .setTheme(R.style.ThemeOverlay_App_DatePicker)
                     .build()
 
             dateRangePicker.addOnPositiveButtonClickListener {
