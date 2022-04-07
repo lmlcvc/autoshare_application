@@ -16,7 +16,6 @@ import com.riteh.autoshare.R
 import com.riteh.autoshare.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.android.synthetic.main.search_fragment.view.*
-import java.util.*
 
 
 class SearchFragment : Fragment() {
@@ -26,6 +25,7 @@ class SearchFragment : Fragment() {
     }
 
     private lateinit var viewModel: SearchViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +45,10 @@ class SearchFragment : Fragment() {
 
         viewModel.location.observe(viewLifecycleOwner) {
             tv_location.text = it
+        }
+
+        viewModel.dateRange.observe(viewLifecycleOwner) {
+            tv_calendar.text = it
         }
     }
 
