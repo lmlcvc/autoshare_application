@@ -1,41 +1,56 @@
 package com.riteh.autoshare.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentLoginBinding
 import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.Resource
 import com.riteh.autoshare.repository.AuthRepository
 import com.riteh.autoshare.ui.base.BaseFragment
+import com.riteh.autoshare.ui.home.MainActivity
+import com.riteh.autoshare.ui.startNewActivity
+import com.riteh.autoshare.ui.visible
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        binding.progressbar.visible(false)
 
-        /*viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+            binding.progressbar.visible(false)
             when(it){
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+                    lifecycleScope.launch{
+                         userPreferences.saveAuthToken(it.value.token)
+                        requireActivity().startNewActivity(MainActivity::class.java)
+                    }
                 }
 
                 is Resource.Failure -> {
                     Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
                 }
             }
-        })*/
+        })
 
         binding.loginFragmentButton.setOnClickListener {
             val email = binding.loginFragmentEmail.text.toString().trim()
             val pasword = binding.loginFragmentPassword.text.toString().trim()
+            binding.progressbar.visible(true)
 
-//            viewModel.login(email, pasword)
+           viewModel.login(email, pasword)
+        }
+
+        loginFragmentRegisterLink.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
     override fun getViewModel() = AuthViewModel::class.java
@@ -45,7 +60,6 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         container: ViewGroup?
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
-//    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java))
-
+    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 
 }

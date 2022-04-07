@@ -1,60 +1,60 @@
 package com.riteh.autoshare.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.riteh.autoshare.R
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import com.riteh.autoshare.databinding.FragmentRegistrationBinding
+import com.riteh.autoshare.network.AuthApi
+import com.riteh.autoshare.network.Resource
+import com.riteh.autoshare.repository.AuthRepository
+import com.riteh.autoshare.ui.base.BaseFragment
+import com.riteh.autoshare.ui.home.MainActivity
+import com.riteh.autoshare.ui.startNewActivity
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistrationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class RegistrationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBinding, AuthRepository>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false)
-    }
+        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegistrationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegistrationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+            when(it){
+                is Resource.Success -> {
+                    lifecycleScope.launch{
+                         userPreferences.saveAuthToken(it.value.token)
+                        requireActivity().startNewActivity(MainActivity::class.java)
+                    }
+                }
+
+                is Resource.Failure -> {
+                    Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
                 }
             }
+        })
+
+        binding.registerFragmentButton.setOnClickListener {
+            val name = binding.registerFragmentName.text.toString().trim()
+            val surname = binding.registerFragmentSurname.text.toString().trim()
+            val email = binding.registerFragmentEmail.text.toString().trim()
+            val password = binding.registerFragmentPassword.text.toString().trim()
+            val confirmPassword = binding.registerFragmentPasswordConfirm.text.toString().trim()
+
+            viewModel.validate(name,surname, email, password, confirmPassword)
+        }
+
+
     }
+    override fun getViewModel() = AuthViewModel::class.java
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentRegistrationBinding.inflate(inflater, container, false)
+
+    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 }

@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Autoshare</string>
     <string name="stylised_app_name">stylised app name</string>
+    <string name="name">Your name</string>
+    <string name="surname">Your surname</string>
+    <string name="prompt_email">Your email</string>
+    <string name="prompt_password">Your password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
 </resources>
