@@ -1,7 +1,7 @@
-package com.riteh.autoshare.viewmodel
+package ui.home.messages
 
 import androidx.lifecycle.ViewModel
 
-class InfoViewModel : ViewModel() {
+class MessagesViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

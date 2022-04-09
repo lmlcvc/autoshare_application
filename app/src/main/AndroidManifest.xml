@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Autoshare">
         <activity
-            android:name=".view.LocationInputActivity"
+            android:name="ui.home.search.LocationInputActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name="ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

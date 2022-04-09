@@ -1,4 +1,4 @@
-package com.riteh.autoshare.view
+package ui.home.search
 
 import android.location.Address
 import android.location.Geocoder
@@ -20,7 +20,6 @@ import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.riteh.autoshare.R
-import com.riteh.autoshare.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_location_input.*
 import java.io.IOException
 import java.util.*
@@ -36,7 +35,7 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapFragment: SupportMapFragment
 
     private lateinit var map: GoogleMap
-    private val initialPosition = LatLng(45.37, 14.35)
+    private var initialPosition = LatLng(45.37, 14.35)
     private var marker: MarkerOptions = MarkerOptions().position(initialPosition)
 
     private lateinit var geocoder: Geocoder
@@ -60,6 +59,9 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
         setUpListeners()
     }
 
+    /**
+     * If a location had already been picked (and written to viewmodel), set it as default location.
+     */
     private fun setDefaultLoc() {
         if (viewModel.location.value.toString() != getString(R.string.pick_a_location)) {
             val location = geocoder.getFromLocationName(viewModel.location.value.toString(), 1)
@@ -67,6 +69,9 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Syncing button clicks, location change via map and location change through search.
+     */
     private fun setUpListeners() {
         button.setOnClickListener {
             if (viewModel.location.value.toString() == getString(R.string.pick_a_location)) {
@@ -105,12 +110,17 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
+    /**
+     * Get the SupportMapFragment and request notification when the map is ready to be used.
+     */
     private fun initMapFragment() {
-        // Get the SupportMapFragment and request notification when the map is ready to be used.
         mapFragment = (supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment)!!
         mapFragment.getMapAsync(this)
     }
 
+    /**
+     * Map setup, setting search string to default location.
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         setDefaultLoc()
@@ -155,6 +165,9 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+    /**
+     * Places search fragment and parameters setup.
+     */
     private fun initPlacesFragment() {
         initPlacesClient()
 
@@ -172,7 +185,7 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initPlacesClient() {
-        val apiKey = getString(R.string.places_api_key)
+        val apiKey = getString(R.string.MAPS_API_KEY)
         if (!Places.isInitialized()) {
             Places.initialize(applicationContext, apiKey)
         }

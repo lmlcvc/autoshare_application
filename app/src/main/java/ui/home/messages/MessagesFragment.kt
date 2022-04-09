@@ -1,4 +1,4 @@
-package com.riteh.autoshare.view
+package ui.home.messages
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,27 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.riteh.autoshare.R
-import com.riteh.autoshare.viewmodel.InfoViewModel
-import com.riteh.autoshare.viewmodel.SearchViewModel
 
-class InfoFragment : Fragment() {
+class MessagesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = InfoFragment()
+        fun newInstance() = MessagesFragment()
     }
 
-    private lateinit var viewModel: InfoViewModel
+    private lateinit var viewModel: MessagesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.info_fragment, container, false)
+        return inflater.inflate(R.layout.messages_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[InfoViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MessagesViewModel::class.java]
     }
 
 }

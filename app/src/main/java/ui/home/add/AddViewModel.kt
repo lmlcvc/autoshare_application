@@ -1,7 +1,7 @@
-package com.riteh.autoshare.viewmodel
+package ui.home.add
 
 import androidx.lifecycle.ViewModel
 
-class UserViewModel : ViewModel() {
+class AddViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

@@ -1,4 +1,4 @@
-package com.riteh.autoshare.view
+package ui.home.search
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,6 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.riteh.autoshare.R
-import com.riteh.autoshare.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.android.synthetic.main.search_fragment.view.*
 
