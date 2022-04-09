@@ -1,4 +1,4 @@
-package ui.home.messages
+package com.riteh.autoshare.home.messages
 
 import androidx.lifecycle.ViewModel
 

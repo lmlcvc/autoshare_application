@@ -1,4 +1,4 @@
-package ui.home.add
+package com.riteh.autoshare.home.messages
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.riteh.autoshare.R
 
-class AddFragment : Fragment() {
+class MessagesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AddFragment()
+        fun newInstance() = MessagesFragment()
     }
 
-    private lateinit var viewModel: AddViewModel
+    private lateinit var viewModel: MessagesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.add_fragment, container, false)
+        return inflater.inflate(R.layout.messages_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[AddViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MessagesViewModel::class.java]
     }
 
 }

@@ -1,4 +1,4 @@
-package ui.home.user
+package com.riteh.autoshare.home.user
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

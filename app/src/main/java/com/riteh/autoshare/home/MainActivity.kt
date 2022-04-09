@@ -1,4 +1,4 @@
-package ui.home
+package com.riteh.autoshare.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +8,11 @@ import androidx.navigation.fragment.NavHostFragment
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import ui.home.add.AddFragment
-import ui.home.info.InfoFragment
-import ui.home.messages.MessagesFragment
-import ui.home.search.SearchFragment
-import ui.home.user.UserFragment
+import com.riteh.autoshare.home.add.AddFragment
+import com.riteh.autoshare.home.info.InfoFragment
+import com.riteh.autoshare.home.messages.MessagesFragment
+import com.riteh.autoshare.home.search.SearchFragment
+import com.riteh.autoshare.home.user.UserFragment
 
 class MainActivity : AppCompatActivity() {
 

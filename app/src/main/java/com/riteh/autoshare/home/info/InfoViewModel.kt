@@ -1,7 +1,7 @@
-package ui.home.add
+package com.riteh.autoshare.home.info
 
 import androidx.lifecycle.ViewModel
 
-class AddViewModel : ViewModel() {
+class InfoViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

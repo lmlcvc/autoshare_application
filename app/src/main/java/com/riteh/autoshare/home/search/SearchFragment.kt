@@ -1,4 +1,4 @@
-package ui.home.search
+package com.riteh.autoshare.home.search
 
 import android.content.Intent
 import android.os.Bundle
