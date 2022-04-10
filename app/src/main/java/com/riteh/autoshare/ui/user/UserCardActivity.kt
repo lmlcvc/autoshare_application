@@ -54,15 +54,25 @@ class UserCardActivity : AppCompatActivity() {
                 val prefsEditor: SharedPreferences.Editor = prefs.edit()
 
                 val gson = Gson()
-                val json: String? = gson.toJson(newCardUser)
-                prefsEditor.putString("UserCard", json)
+                var json: String? = prefs.getString("userCard", "")
+                val userCard: UserCard = gson.fromJson(json, UserCard::class.java)
+
+
+                if (userCard.cardsList.isNullOrEmpty()) {
+                    userCard.cardsList = mutableListOf(newCardUser)
+                } else {
+                    userCard.cardsList.add(newCardUser)
+                }
+
+                json = gson.toJson(userCard)
+                prefsEditor.putString("userCard", json)
 
                 try {
                     prefsEditor.apply()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                Log.d("myTag", newCardUser.mobileNumber + newCardUser.cardholderName)
+
                 Toast.makeText(this, "Your card has been successfully saved!", Toast.LENGTH_SHORT)
                     .show()
                 finish()

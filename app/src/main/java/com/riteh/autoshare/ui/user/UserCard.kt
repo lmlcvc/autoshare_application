@@ -12,5 +12,7 @@ class UserCard(
     var postalCode: String,
     var countryCode: String,
     var mobileNumber: String
-)
+){
+    var cardsList = mutableListOf<UserCard>()
+}
 
