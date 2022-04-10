@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Autoshare</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stylised_app_name">stylised app name</string>
+    <string name="location">Location</string>
+    <string name="pick_a_location">Pick a location</string>
+    <string name="today">Today</string>
+    <string name="search">Search</string>
+    <string name="period">Select dates</string>
+    <string name="illustration_of_people_driving">Illustration of people driving</string>
+    <string name="rent_the_perfect_car">Rent the perfect car</string>
 </resources>
