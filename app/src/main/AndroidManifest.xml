@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Autoshare">
         <activity
-            android:name="com.riteh.autoshare.home.search.LocationInputActivity"
+            android:name="com.riteh.autoshare.ui.home.search.LocationInputActivity"
             android:exported="false" />
         <activity
-            android:name="com.riteh.autoshare.home.MainActivity"
+            android:name="com.riteh.autoshare.ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

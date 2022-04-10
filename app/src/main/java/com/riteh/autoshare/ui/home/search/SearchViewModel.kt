@@ -1,4 +1,4 @@
-package com.riteh.autoshare.home.search
+package com.riteh.autoshare.ui.home.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

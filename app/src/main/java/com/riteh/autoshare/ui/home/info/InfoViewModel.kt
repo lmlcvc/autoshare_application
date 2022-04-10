@@ -1,4 +1,4 @@
-package com.riteh.autoshare.home.info
+package com.riteh.autoshare.ui.home.info
 
 import androidx.lifecycle.ViewModel
 
