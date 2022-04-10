@@ -9,4 +9,24 @@
     <string name="period">Select dates</string>
     <string name="illustration_of_people_driving">Illustration of people driving</string>
     <string name="rent_the_perfect_car">Rent the perfect car</string>
+
+    <string name="name">Your name</string>
+    <string name="surname">Your surname</string>
+    <string name="prompt_email">Your email</string>
+    <string name="prompt_password">Your password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="add_card">Add credit card</string>
+    <string name="card_info">Credit card information</string>
+
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="area">Area</string>
+    <string name="country">Country</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="billing_address">Billing address</string>
+    <string name="required_field">Required field</string>
 </resources>

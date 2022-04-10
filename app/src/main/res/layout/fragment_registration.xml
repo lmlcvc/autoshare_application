@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.auth.RegistrationFragment"
+android:background="@color/white">
+
+<ImageView
+    android:id="@+id/loginFragmentLogo"
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    android:layout_marginTop="100dp"
+    android:layout_marginBottom="100dp"
+    android:src="@drawable/logo"
+    app:layout_constraintBottom_toTopOf="@+id/registerFragmentName"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<EditText
+    android:id="@+id/registerFragmentName"
+    android:layout_width="330dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="70dp"
+    android:autofillHints="personGivenName"
+    android:textColor="@color/basic_red"
+    android:ems="10"
+    android:hint="@string/name"
+    android:textColorHint="@color/basic_grey"
+    android:inputType="textPersonName"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/loginFragmentLogo"/>
+
+
+<EditText
+    android:id="@+id/registerFragmentSurname"
+    android:layout_width="330dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="5dp"
+    android:textColor="@color/basic_red"
+    android:autofillHints="personFamilyName"
+    android:hint="@string/surname"
+    android:textColorHint="@color/basic_grey"
+    android:inputType="textPersonName"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.493"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/registerFragmentName" />
+
+<EditText
+    android:id="@+id/registerFragmentEmail"
+    android:layout_width="330dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="5dp"
+    android:textColor="@color/basic_red"
+    android:autofillHints="emailAddress"
+    android:ems="10"
+    android:hint="@string/prompt_email"
+    android:textColorHint="@color/basic_grey"
+    android:inputType="textEmailAddress"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/registerFragmentSurname" />
+
+
+
+<EditText
+    android:id="@+id/registerFragmentPassword"
+    android:layout_width="330dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="5dp"
+    android:textColor="@color/basic_red"
+    android:autofillHints="newPassword"
+    android:ems="10"
+    android:hint="@string/prompt_password"
+    android:textColorHint="@color/basic_grey"
+    android:inputType="textPassword"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/registerFragmentEmail" />
+
+
+<EditText
+    android:id="@+id/registerFragmentPasswordConfirm"
+    android:layout_width="330dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="5dp"
+    android:autofillHints="newPassword"
+    android:ems="10"
+    android:hint="@string/confirm_password"
+    android:textColorHint="@color/basic_grey"
+    android:inputType="textPassword"
+    android:textColor="@color/basic_red"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/registerFragmentPassword" />
+
+<Button
+    android:id="@+id/registerFragmentButton"
+    android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:layout_marginTop="35dp"
+    android:text="@string/sign_up"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/registerFragmentPasswordConfirm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
