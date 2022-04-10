@@ -3,12 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/activity_auth.xml" value="0.21557971014492755" />
+        <entry key="..\:/Users/Marina/AndroidStudioProjects/autoshare_application/app/src/main/res/layout/activity_main.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/Marina/AndroidStudioProjects/autoshare_application/app/src/main/res/layout/activity_user_card.xml" value="0.3211050724637681" />
+        <entry key="..\:/Users/Marina/AndroidStudioProjects/autoshare_application/app/src/main/res/layout/info_fragment.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/activity_user.xml" value="0.264" />
-        <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/fragment_login.xml" value="0.176" />
-        <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/fragment_registration.xml" value="0.264" />
-        <entry key="..\:/Users/mario/AndroidStudioProjects/Autoshare/app/src/main/res/layout/fragment_user_card.xml" value="0.264" />
       </map>
     </option>
   </component>

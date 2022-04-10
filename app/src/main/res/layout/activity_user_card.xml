@@ -4,16 +4,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/app_white"
     tools:context=".ui.user.UserCardActivity">
 
-
-    <com.braintreepayments.cardform.view.CardForm
-        android:id="@+id/card_form"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="30dp"
-        android:hapticFeedbackEnabled="true" />
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.braintreepayments.cardform.view.CardForm
+                android:id="@+id/card_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:hapticFeedbackEnabled="true" />
+
+            <TextView
+                android:id="@+id/tv_billing_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_form"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/billing_address"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_billing_address"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/user_surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_name"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/user_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_surname"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/address"
+                android:inputType="textPostalAddress"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <EditText
+                android:id="@+id/user_city"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_address"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/city"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <EditText
+                android:id="@+id/user_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_address"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_toEndOf="@id/user_city"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/area"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <EditText
+                android:id="@+id/user_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_city"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:backgroundTint="@android:color/white"
+                android:hint="@string/country"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <com.braintreepayments.cardform.view.CardForm
+                android:id="@+id/card_form_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_country"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="30dp"
+                android:hapticFeedbackEnabled="true" />
+
+
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/addCardBtn"
