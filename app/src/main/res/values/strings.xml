@@ -29,4 +29,9 @@
     <string name="last_name">Last name</string>
     <string name="billing_address">Billing address</string>
     <string name="required_field">Required field</string>
+
+    <string name="personal_information">Personal information</string>
+    <string name="card_information">Card information</string>
+    <string name="my_vehicles">My vehicles</string>
+    <string name="about_app">About App</string>
 </resources>
