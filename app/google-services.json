@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "223557508073",
+    "project_id": "autoshare-be43b",
+    "storage_bucket": "autoshare-be43b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223557508073:android:adcc2d489bb703669b8978",
+        "android_client_info": {
+          "package_name": "com.riteh.autoshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223557508073-hglf261mgghvlqb4jrt0a9gbto88ljde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJcawYOkCZ26Vto8svXg0Z6PVKmb7nhm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223557508073-hglf261mgghvlqb4jrt0a9gbto88ljde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
