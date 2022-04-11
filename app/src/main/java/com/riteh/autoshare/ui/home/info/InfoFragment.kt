@@ -33,6 +33,11 @@ class InfoFragment : Fragment() {
     }
 
     private fun setUpListeners() {
+        btn_weather.setOnClickListener {
+            val intent = Intent(requireActivity(), WeatherActivity::class.java)
+            startActivity(intent)
+        }
+
         btn_fuel.setOnClickListener {
             val intent = Intent(requireActivity(), FuelPricesActivity::class.java)
             startActivity(intent)

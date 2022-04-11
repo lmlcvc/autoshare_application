@@ -41,6 +41,8 @@
     <string name="last_name">Last name</string>
     <string name="billing_address">Billing address</string>
     <string name="required_field">Required field</string>
+    <string name="illustration_of_a_lightbulb">Illustration of a lightbulb</string>
+    <string name="roads_traffic_info"><![CDATA[Roads & traffic info]]></string>
     <string name="get_relevant_information">Get relevant information</string>
     <string name="weather_forecast">Weather forecast</string>
     <string name="roads_amp_traffic_info"><![CDATA[Roads & traffic info]]></string>
