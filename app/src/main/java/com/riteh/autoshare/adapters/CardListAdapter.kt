@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
+import com.riteh.autoshare.ui.user.CardNumbersFormat
 import com.riteh.autoshare.ui.user.UserCard
 import kotlinx.android.synthetic.main.credit_card_layout.view.*
 
@@ -24,10 +25,13 @@ class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: CardListAdapter.ViewHolder, position: Int) {
-        val formattedNumber = cards[position].cardNumber
-        holder.cardTitle.text = formattedNumber
+        val formatter = CardNumbersFormat()
 
-        holder.cardDescription.text = cards[position].expirationYear
+        val cardNumber = formatter.formatCardNumber(cards[position].cardNumber)
+        holder.cardTitle.text = cardNumber
+
+        val cardMonthYear: String =  cards[position].expirationMonth + "/" + cards[position].expirationYear
+        holder.cardDescription.text = cardMonthYear
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
