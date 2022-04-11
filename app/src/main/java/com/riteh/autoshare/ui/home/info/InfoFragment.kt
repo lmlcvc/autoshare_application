@@ -1,12 +1,14 @@
 package com.riteh.autoshare.ui.home.info
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.riteh.autoshare.R
+import kotlinx.android.synthetic.main.info_fragment.*
 
 class InfoFragment : Fragment() {
 
@@ -26,6 +28,15 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[InfoViewModel::class.java]
+
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        btn_weather.setOnClickListener {
+            val intent = Intent(requireActivity(), WeatherActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
