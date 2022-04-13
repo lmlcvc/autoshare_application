@@ -16,16 +16,25 @@
     <string name="prompt_email">Your email</string>
     <string name="prompt_password">Your password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="card_number">Card number</string>
+    <string name="due_mm_yy">Due (MM/YY)</string>
+    <string name="cvv" translatable="false">CVV</string>
     <string name="sign_up">Sign up</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="add_card">Add credit card</string>
     <string name="my_cards">My cards</string>
     <string name="card_info">Credit card information</string>
+    <string name="delete_card">Delete card</string>
+    <string name="card_deleted">Card deleted</string>
+    <string name="add_credit_card">Add new credit card</string>
+    <string name="are_you_sure">Are you sure you want to delete card </string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 
     <string name="address">Address</string>
     <string name="city">City</string>
-    <string name="area">Area</string>
+    <string name="area">Postal code</string>
     <string name="country">Country</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>

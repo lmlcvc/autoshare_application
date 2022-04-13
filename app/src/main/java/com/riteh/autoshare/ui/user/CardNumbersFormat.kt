@@ -5,11 +5,11 @@ class CardNumbersFormat {
         var formattedNumber = ""
         for(i in cardNumber.indices){
             formattedNumber +=
-                if (i > 1 && i < cardNumber.length - 4){
-                    'X'
-                } else{
-                    cardNumber[i]
-                }
+            if (i > 1 && i < cardNumber.length - 4){
+                'X'
+            } else{
+                cardNumber[i]
+            }
         }
         return formattedNumber
     }
