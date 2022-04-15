@@ -14,21 +14,30 @@
         android:theme="@style/Theme.Autoshare"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.user.UserCardActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.riteh.autoshare.ui.home.search.LocationInputActivity"
-            android:exported="false" />
-      
-        <activity
-            android:name="com.riteh.autoshare.ui.home.MainActivity"
+            android:name=".ui.auth.AuthActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.user.UserCardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.riteh.autoshare.ui.home.search.LocationInputActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.riteh.autoshare.ui.home.MainActivity"
+            android:exported="false" />
+
+        <activity android:name=".ui.home.info.WeatherActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.version"
