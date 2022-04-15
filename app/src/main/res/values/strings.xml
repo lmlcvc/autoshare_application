@@ -34,4 +34,18 @@
     <string name="illustration_of_a_lightbulb">Illustration of a lightbulb</string>
     <string name="fuel_prices">Fuel prices</string>
     <string name="roads_traffic_info"><![CDATA[Roads & traffic info]]></string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind">Wind</string>
+    <string name="_7_day_forecast">7-day forecast</string>
+    <string name="weather_conditions_illustration">Weather conditions illustration</string>
+    <string name="get_weather">Get weather</string>
+    <string name="back_arrow">Back arrow</string>
+    <string name="sun_icon">Sun icon</string>
+    <string name="moon_icon">Moon icon</string>
+    <string name="wind_icon">Wind icon</string>
+    <string name="pressure_icon">Pressure icon</string>
+    <string name="humidity_icon">Humidity icon</string>
 </resources>
