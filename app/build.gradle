@@ -34,7 +34,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
         debug {
             resValue("string", "MAPS_API_KEY", localProperties['MAPS_API_KEY'])
         }
@@ -105,6 +104,13 @@ dependencies {
 
     // Maps
     implementation "com.google.android.gms:play-services-location:19.0.1"
+
+
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+
+
 
 }
 
