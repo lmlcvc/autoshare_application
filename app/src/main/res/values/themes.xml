@@ -29,6 +29,10 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
+    <style name="CardFormCustom" parent="Theme.Autoshare">
+        <item name="colorAccent">@color/quantum_purple100</item>
+    </style>
+
     <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/basic_red</item>
         <item name="colorOnPrimary">@color/app_white</item>
