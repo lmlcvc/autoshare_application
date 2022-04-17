@@ -26,10 +26,10 @@ interface FuelPriceFetcher {
             for (j in 1 until rows.size) {
                 val data = rows[j].select("td").eachText()
 
-                if (data[0].contains("+") ||
-                    data[0].contains("plus") ||
-                    data[0].contains("max") ||
-                    data[0].contains("class")
+                if (data[0].lowercase().contains("+") ||
+                    data[0].lowercase().contains("plus") ||
+                    data[0].lowercase().contains("max") ||
+                    data[0].lowercase().contains("class")
                 ) {
                     fuelPriceList.add(FuelPriceHolder(fuelTypes[i + 5], data[1], data[2]))
                 } else {
