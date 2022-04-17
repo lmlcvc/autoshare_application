@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.riteh.autoshare.R
 import com.riteh.autoshare.ui.home.info.FuelPricesActivity
@@ -15,6 +16,17 @@ class FuelPricesExpandableListAdapter(
     private val expandableListItems: MutableMap<String, MutableList<Pair<String, String>>>
 ) : BaseExpandableListAdapter() {
 
+    // map station names to logo resources
+    private val stationNameResourceMatcher = mapOf(
+        "AdriaOil" to "ic_adriaoil",
+        "Crodux Derivati" to "ic_crodux",
+        "Ferotom (Dugo Selo)" to "ic_ferotom",
+        "INA" to "ic_ina",
+        "Lukoil" to "ic_lukoil",
+        "Mitea (Samobor)" to "ic_mitea",
+        "Petrol" to "ic_petrol",
+        "Tifon" to "ic_tifon"
+    )
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Pair<String, String> {
         return expandableListItems.getValue(expandableListItems.keys.elementAt(listPosition))
@@ -27,13 +39,13 @@ class FuelPricesExpandableListAdapter(
 
     /**
      * Initialise child views and place station names and prices.
+     * Put respective station logo to view.
      */
     override fun getChildView(
         listPosition: Int, expandedListPosition: Int,
         isLastChild: Boolean, view: View?, parent: ViewGroup
     ): View {
         var convertView = view
-
         val expandedListStation = getChild(listPosition, expandedListPosition).first
         val expandedListPrice = getChild(listPosition, expandedListPosition).second
 
@@ -45,9 +57,24 @@ class FuelPricesExpandableListAdapter(
 
         val expandedListStationView = convertView?.findViewById<View>(R.id.tv_station) as TextView
         val expandedListPriceView = convertView.findViewById<View>(R.id.tv_price) as TextView
+        val expandedListStationIcon = convertView.findViewById<View>(R.id.iv_logo) as ImageView
 
         expandedListStationView.text = expandedListStation
         expandedListPriceView.text = expandedListPrice
+
+        try {
+            val drawableResourceId: Int =
+                context.resources.getIdentifier(
+                    stationNameResourceMatcher.getValue(expandedListStation),
+                    "mipmap",
+                    context.packageName
+                )
+            expandedListStationIcon.setImageResource(drawableResourceId)
+        } catch (e: NoSuchElementException) {
+
+        }
+
+
 
         return convertView
     }
