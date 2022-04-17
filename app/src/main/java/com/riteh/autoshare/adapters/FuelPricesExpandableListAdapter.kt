@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.riteh.autoshare.R
+import com.riteh.autoshare.ui.home.info.FuelPricesActivity
 
 
 class FuelPricesExpandableListAdapter(
-    private val context: Context, private val expandableListTitle: List<String>,
-    private val expandableListDetail: HashMap<String, List<String>>
+    private val context: FuelPricesActivity,
+    private val expandableListItems: MutableMap<String, MutableList<Pair<String, String>>>
 ) : BaseExpandableListAdapter() {
 
-    override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
-        return expandableListDetail[expandableListTitle[listPosition]]
-            ?.get(expandedListPosition) ?: Int
+
+    override fun getChild(listPosition: Int, expandedListPosition: Int): Pair<String, String> {
+        return expandableListItems.getValue(expandableListItems.keys.elementAt(listPosition))
+            .elementAt(expandedListPosition)
     }
 
     override fun getChildId(listPosition: Int, expandedListPosition: Int): Long {
@@ -32,7 +34,8 @@ class FuelPricesExpandableListAdapter(
     ): View {
         var convertView = view
 
-        val expandedListText = getChild(listPosition, expandedListPosition) as String
+        val expandedListStation = getChild(listPosition, expandedListPosition).first
+        val expandedListPrice = getChild(listPosition, expandedListPosition).second
 
         if (convertView == null) {
             val layoutInflater = context
@@ -40,10 +43,11 @@ class FuelPricesExpandableListAdapter(
             convertView = layoutInflater.inflate(R.layout.elv_item, null)
         }
 
-        val expandedListStationName = convertView?.findViewById<View>(R.id.tv_station) as TextView
-        val expandedListPrice = convertView?.findViewById<View>(R.id.tv_price) as TextView
+        val expandedListStationView = convertView?.findViewById<View>(R.id.tv_station) as TextView
+        val expandedListPriceView = convertView.findViewById<View>(R.id.tv_price) as TextView
 
-        expandedListStationName.text = expandedListText
+        expandedListStationView.text = expandedListStation
+        expandedListPriceView.text = expandedListPrice
 
         return convertView
     }
@@ -73,16 +77,15 @@ class FuelPricesExpandableListAdapter(
     }
 
     override fun getChildrenCount(listPosition: Int): Int {
-        return expandableListDetail[expandableListTitle[listPosition]]
-            ?.size!!
+        return expandableListItems.values.elementAt(listPosition).size
     }
 
     override fun getGroup(listPosition: Int): Any {
-        return expandableListTitle[listPosition]
+        return expandableListItems.keys.elementAt(listPosition)
     }
 
     override fun getGroupCount(): Int {
-        return expandableListTitle.size
+        return expandableListItems.keys.size
     }
 
     override fun getGroupId(listPosition: Int): Long {
@@ -95,6 +98,6 @@ class FuelPricesExpandableListAdapter(
     }
 
     override fun isChildSelectable(listPosition: Int, expandedListPosition: Int): Boolean {
-        return true
+        return false
     }
 }
