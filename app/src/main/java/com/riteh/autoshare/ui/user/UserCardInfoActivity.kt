@@ -17,7 +17,9 @@ import android.app.AlertDialog
 class UserCardInfoActivity : AppCompatActivity() {
     lateinit var adapter: CardListAdapter
 
-
+    /**
+     * Main activity to display all user cards
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_card_info)
@@ -34,7 +36,9 @@ class UserCardInfoActivity : AppCompatActivity() {
         setUpRecyclerView()
     }
 
-
+    /**
+     * Display all cards data and reuses the view with new items if the user scrolle on screen
+     */
     private fun setUpRecyclerView() {
         val prefs = getSharedPreferences("USER_CARD_PREFERENCES", Context.MODE_PRIVATE)
         val gson = Gson()
@@ -53,7 +57,9 @@ class UserCardInfoActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(rv_cards)
     }
 
-
+    /**
+     * Dynamically create alert if the user want to delete card
+     */
     private fun callDialog(position: Int) {
         val prefs = getSharedPreferences("USER_CARD_PREFERENCES", Context.MODE_PRIVATE)
         val prefsEditor = prefs.edit()
@@ -97,7 +103,9 @@ class UserCardInfoActivity : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Enable creation alert with left slide on screen
+     */
     private var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
             return false

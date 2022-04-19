@@ -14,6 +14,9 @@ class CardNumberFormatX: TextWatcher {
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
     }
 
+    /**
+     * Put char '-' after four digits
+     */
     override fun afterTextChanged(s: Editable) {
         if (s.toString() != current) {
             val userInput = s.toString().replace(nonDigits,"")

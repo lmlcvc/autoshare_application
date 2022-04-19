@@ -14,6 +14,9 @@ class DueDateFormat: TextWatcher {
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
     }
 
+    /**
+     * Put char '/' between input month and input year
+     */
     override fun afterTextChanged(s: Editable) {
         if (s.toString() != current) {
             val userInput = s.toString().replace(nonDigits,"")

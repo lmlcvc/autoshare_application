@@ -9,11 +9,12 @@ import androidx.navigation.findNavController
 import com.riteh.autoshare.R
 import kotlinx.android.synthetic.main.fragment_login.*
 
+/**
+ * Main activity for authentication
+ */
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-
-
     }
 }

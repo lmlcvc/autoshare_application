@@ -20,17 +20,26 @@ import kotlinx.coroutines.withContext
 
 class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
 
+    /**
+     * Involves inflating a layout from XML and returning the holder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.credit_card_layout, parent, false)
 
         return ViewHolder(view)
     }
 
+    /**
+     * Sum of items in the list
+     */
     override fun getItemCount(): Int {
 
         return cards.size
     }
 
+    /**
+     * Involves populating data into the item through holder
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val formatter = CardNumbersFormat()

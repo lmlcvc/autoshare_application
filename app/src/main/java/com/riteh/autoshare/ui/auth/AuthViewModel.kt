@@ -23,6 +23,10 @@ class AuthViewModel(
     private val _loginResponse : MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val loginResponse: LiveData<Resource<LoginResponse>>
     get() = _loginResponse
+
+    /**
+     * Send variables from frontend to server to check if user have correct credential
+     */
     fun login(
         email: String,
         password: String
@@ -34,6 +38,9 @@ class AuthViewModel(
         repository.saveAuthToken(token)
     }
 
+    /**
+     * Validation inputs before sending object to server in database
+     */
     fun validate(name: String,
                  surname: String,
                  email: String,
@@ -54,8 +61,6 @@ class AuthViewModel(
         email: String,
         password: String
     ) = viewModelScope.launch {
-
-       /*ove podatke treba spremiti u bazu*/
         _signUpResponse.value = repository.userSignUp(name, surname, email, password)
     }
 }
