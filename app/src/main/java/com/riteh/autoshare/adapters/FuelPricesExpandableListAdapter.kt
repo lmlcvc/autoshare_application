@@ -24,8 +24,7 @@ class FuelPricesExpandableListAdapter(
         "INA" to "ic_ina",
         "Lukoil" to "ic_lukoil",
         "Mitea (Samobor)" to "ic_mitea",
-        "Petrol" to "ic_petrol",
-        "Tifon" to "ic_tifon"
+        "Petrol" to "ic_petrol"
     )
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Pair<String, String> {

@@ -8,7 +8,10 @@ import org.jsoup.Jsoup
 interface FuelPriceFetcher {
 
 
-    // Function that scrapes fuel prices from fuelPriceSource
+    /**
+     * Establish connection to fuel price source
+     * Fetch fuel prices
+     */
     suspend fun getFuelPrices(
         fuelPriceSource: String,
         fuelIds: List<String>,
@@ -25,6 +28,8 @@ interface FuelPriceFetcher {
 
             for (j in 1 until rows.size) {
                 val data = rows[j].select("td").eachText()
+                // Ignoring outdated data from Tifon
+                if (data[1].lowercase().contains("tifon")) continue
 
                 if (data[0].lowercase().contains("+") ||
                     data[0].lowercase().contains("plus") ||

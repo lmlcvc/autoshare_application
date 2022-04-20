@@ -76,7 +76,6 @@ class FuelPricesActivity : AppCompatActivity(), FuelPriceFetcher {
                 FuelPricesExpandableListAdapter(
                     fuelPricesActivity, expandableListItems
                 )
-            Log.i("AAAAAA", expandableListItems.toString())
             fuelPricesActivity.expandableListView.setAdapter(fuelPricesActivity.expandableListAdapter)
 
 
