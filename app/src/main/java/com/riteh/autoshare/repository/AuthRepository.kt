@@ -14,6 +14,9 @@ class AuthRepository(
         api.login(email,password)
     }
 
+    /**
+     * Save token from server to local shared preferences
+     */
     suspend fun saveAuthToken(token: String){
         preferences.saveAuthToken(token)
     }

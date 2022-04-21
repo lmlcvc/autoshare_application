@@ -66,6 +66,10 @@ class UserCardActivity : AppCompatActivity() {
                 json = gson.toJson(userCard)
                 prefsEditor.putString("userCard", json)
 
+
+                /**
+                 * Save user card information in shared preferences
+                 */
                 try {
                     prefsEditor.apply()
                 } catch (e: Exception) {
@@ -93,6 +97,9 @@ class UserCardActivity : AppCompatActivity() {
         return true
     }
 
+    /**
+     * Show error sign if user leave blank input
+     */
     private fun displayErrors() {
         if (user_name.text.toString() == "") {
             user_name.error = getString(R.string.required_field)
