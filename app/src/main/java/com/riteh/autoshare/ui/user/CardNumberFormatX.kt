@@ -15,7 +15,7 @@ class CardNumberFormatX: TextWatcher {
     }
 
     /**
-     * Put char '-' after four digits
+     * Format input string
      */
     override fun afterTextChanged(s: Editable) {
         if (s.toString() != current) {
