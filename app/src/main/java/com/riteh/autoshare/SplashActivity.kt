@@ -31,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 
+
     fun newContent(){
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             val homeIntent = Intent(this, AuthActivity::class.java)
