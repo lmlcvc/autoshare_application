@@ -41,7 +41,7 @@
             android:layout_height="180dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/rounded_corners_box_white" />
+            android:src="@drawable/rounded_corners_box_darker_white" />
 
         <TextView
             android:id="@+id/tv_location"
