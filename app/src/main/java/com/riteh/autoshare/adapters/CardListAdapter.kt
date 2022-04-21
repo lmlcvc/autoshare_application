@@ -30,7 +30,7 @@ class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Ad
     }
 
     /**
-     * Sum of items in the list
+     * Length list
      */
     override fun getItemCount(): Int {
 
