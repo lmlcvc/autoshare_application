@@ -47,7 +47,10 @@
     <string name="your_email">Your email</string>
     <string name="your_password">Your password</string>
     <string name="register">Register</string>
-    <string name="welcome_to_autoshare">Welcome to Autoshare!</string>
+    <string name="welcome_to_autoshare">Welcome to Autoshare</string>
     <string name="not_a_member_yet">Not a member yet?</string>
     <string name="register_now">Register now</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="become_a_part_of_the_autoshare_community">Become a part of the Autoshare community</string>
+    <string name="let_s_get_started">Let\'s get started</string>
 </resources>
