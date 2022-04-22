@@ -10,7 +10,7 @@
     to meet accessibility requirements and have sufficient contrast against the colors they’re
     displayed on. -->
 
-    <style name="Theme.Autoshare" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Autoshare" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#bf0000</item>
         <item name="colorPrimaryVariant">#870000</item>

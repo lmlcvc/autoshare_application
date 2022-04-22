@@ -49,6 +49,7 @@
 
             <EditText
                 android:id="@+id/loginFragmentEmail"
+                style="@style/InputTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -56,13 +57,8 @@
                 android:background="@drawable/rounded_corners_box_outline_white"
                 android:hint="@string/your_email"
                 android:inputType="textEmailAddress"
-                android:padding="14dp"
                 android:paddingStart="30dp"
-                android:paddingEnd="12dp"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/app_white"
-                android:textColorHint="@color/darker_app_white"
-                android:textSize="14sp" />
+                android:paddingEnd="14dp" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -88,6 +84,7 @@
 
             <EditText
                 android:id="@+id/loginFragmentPassword"
+                style="@style/InputTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -95,13 +92,8 @@
                 android:background="@drawable/rounded_corners_box_outline_white"
                 android:hint="@string/your_password"
                 android:inputType="textPassword"
-                android:padding="14dp"
                 android:paddingStart="30dp"
-                android:paddingEnd="12dp"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/app_white"
-                android:textColorHint="@color/darker_app_white"
-                android:textSize="14sp" />
+                android:paddingEnd="12dp" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -133,8 +125,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="50dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_baseline_visibility_off_24" />
+                android:src="@drawable/ic_baseline_visibility_off_24"
+                android:visibility="gone" />
         </RelativeLayout>
 
 
