@@ -116,6 +116,25 @@
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="18dp"
                 android:src="@drawable/ic_baseline_vpn_key_24" />
+
+            <ImageView
+                android:id="@+id/iv_show"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="50dp"
+                android:src="@drawable/ic_baseline_visibility_24" />
+
+            <ImageView
+                android:id="@+id/iv_hide"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="50dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_baseline_visibility_off_24" />
         </RelativeLayout>
 
 
@@ -127,8 +146,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="30dp"
-            android:padding="12dp"
             android:backgroundTint="@color/app_white"
+            android:padding="12dp"
             android:text="@string/login"
             android:textColor="@color/basic_red"
             android:textSize="16sp"
