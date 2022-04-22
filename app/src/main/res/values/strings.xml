@@ -20,8 +20,7 @@
     <string name="due_mm_yy">Due (MM/YY)</string>
     <string name="cvv" translatable="false">CVV</string>
     <string name="sign_up">Sign up</string>
-    <string name="register">Register</string>
-    <string name="login">Login</string>
+    <string name="login">Log in</string>
     <string name="add_card">Add credit card</string>
     <string name="my_cards">My cards</string>
     <string name="card_info">Credit card information</string>
@@ -45,4 +44,10 @@
     <string name="card_information">Card information</string>
     <string name="my_vehicles">My vehicles</string>
     <string name="about_app">About App</string>
+    <string name="your_email">Your email</string>
+    <string name="your_password">Your password</string>
+    <string name="register">Register</string>
+    <string name="welcome_to_autoshare">Welcome to Autoshare!</string>
+    <string name="not_a_member_yet">Not a member yet?</string>
+    <string name="register_now">Register now</string>
 </resources>

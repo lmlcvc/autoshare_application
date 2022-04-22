@@ -1,96 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.LoginFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_cars"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@id/container"
+        android:layout_centerHorizontal="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation_cars" />
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="80dp">
+
+
+        <TextView
+            android:id="@+id/loginFragmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/welcome_to_autoshare"
+            android:textColor="@color/app_white"
+            android:textSize="26sp" />
+
+
+        <RelativeLayout
+            android:id="@+id/container_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginFragmentText">
+
+            <EditText
+                android:id="@+id/loginFragmentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:autofillHints="username"
+                android:background="@drawable/rounded_corners_box_outline_white"
+                android:hint="@string/your_email"
+                android:inputType="textEmailAddress"
+                android:padding="14dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="12dp"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/app_white"
+                android:textColorHint="@color/darker_app_white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/rounded_corners_box_red" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="18dp"
+                android:src="@drawable/ic_baseline_mail_outline_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/container_email"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/loginFragmentPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:autofillHints="username"
+                android:background="@drawable/rounded_corners_box_outline_white"
+                android:hint="@string/your_password"
+                android:inputType="textPassword"
+                android:padding="14dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="12dp"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/app_white"
+                android:textColorHint="@color/darker_app_white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/rounded_corners_box_red" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="18dp"
+                android:src="@drawable/ic_baseline_vpn_key_24" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginFragmentButton"
+            style="@style/ActionButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/container_password"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:padding="12dp"
+            android:backgroundTint="@color/app_white"
+            android:text="@string/login"
+            android:textColor="@color/basic_red"
+            android:textSize="16sp"
+            app:cornerRadius="12sp" />
+
+
+    </RelativeLayout>
+
     <TextView
-        android:id="@+id/loginFragmentText"
-        android:text = "@string/login"
-        android:textSize = "35sp"
-        android:textColor="@color/basic_red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/loginFragmentEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_alignParentTop = "true"
-        android:layout_centerHorizontal = "true" />
-
-
-    <EditText
-        android:id="@+id/loginFragmentEmail"
-        android:layout_width="330dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="100dp"
-        android:autofillHints="username"
-        android:hint="Your email"
-        android:textColorHint="@color/basic_grey"
-        android:textColor="@color/basic_red"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragmentText" />
-
-    <EditText
-        android:id="@+id/loginFragmentPassword"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:autofillHints="password"
-        android:hint="Your password"
-        android:textColorHint="@color/basic_grey"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        android:textColor="@color/basic_red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragmentEmail" />
-
+        android:layout_above="@id/loginFragmentRegisterLink"
+        android:layout_centerHorizontal="true"
+        android:text="@string/not_a_member_yet"
+        android:textColor="@color/darker_app_white" />
 
     <TextView
         android:id="@+id/loginFragmentRegisterLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:clickable="true"
         android:focusable="true"
-        android:textColor="@color/basic_red"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragmentButton" />
-    
+        android:text="@string/register_now"
+        android:textColor="@color/app_white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/loginFragmentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragmentPassword" />
+        android:layout_centerInParent="true" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
