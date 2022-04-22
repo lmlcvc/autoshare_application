@@ -104,7 +104,7 @@ class UserCardInfoActivity : AppCompatActivity() {
 
 
     /**
-     * Enable creation alert with left slide on screen
+     * Enable alert creation
      */
     private var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
