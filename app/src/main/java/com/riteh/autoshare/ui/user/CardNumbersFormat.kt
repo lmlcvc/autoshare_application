@@ -1,10 +1,6 @@
 package com.riteh.autoshare.ui.user
 
 class CardNumbersFormat {
-
-    /**
-     * Mask card number
-     */
     fun formatCardNumber(cardNumber: String): String {
         var formattedNumber = ""
         for(i in cardNumber.indices){

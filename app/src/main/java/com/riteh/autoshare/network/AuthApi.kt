@@ -7,9 +7,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-/**
- * All API endpoints for authentication
- */
+
 interface AuthApi {
 
     @FormUrlEncoded
