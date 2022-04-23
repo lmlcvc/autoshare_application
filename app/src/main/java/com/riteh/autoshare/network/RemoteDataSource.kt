@@ -6,12 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * Create API connection with server
- */
 class RemoteDataSource {
     companion object{
-        private  const val BASE_URL = ""
+        private  const val BASE_URL = "http://46.101.208.185/api/"
     }
 
     fun<Api> buildApi(
@@ -32,4 +29,5 @@ class RemoteDataSource {
             .build()
             .create(api)
     }
+
 }

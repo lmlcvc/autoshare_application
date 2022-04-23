@@ -36,6 +36,8 @@ android {
         }
         debug {
             resValue("string", "MAPS_API_KEY", localProperties['MAPS_API_KEY'])
+            resValue("string", "WEATHER_API_KEY", localProperties['WEATHER_API_KEY'])
+            resValue("string", "AUTOSHARE_API", localProperties['AUTOSHARE_API'])
         }
     }
     compileOptions {
@@ -110,6 +112,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
 
+    // Web scraping
+    implementation("org.jsoup:jsoup:1.14.3")
 
 
 }
