@@ -1,7 +1,10 @@
 package com.riteh.autoshare.ui.auth
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -27,10 +30,10 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
             binding.progressbar.visible(false)
-            when(it){
+            when (it) {
                 is Resource.Success -> {
-                    lifecycleScope.launch{
-                         userPreferences.saveAuthToken(it.value.token)
+                    lifecycleScope.launch {
+                        userPreferences.saveAuthToken(it.value.token)
                         requireActivity().startNewActivity(MainActivity::class.java)
                     }
                 }
@@ -41,18 +44,11 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             }
         })
 
-        binding.loginFragmentButton.setOnClickListener {
-            val email = binding.loginFragmentEmail.text.toString().trim()
-            val pasword = binding.loginFragmentPassword.text.toString().trim()
-            binding.progressbar.visible(true)
+        setOnCLickListeners()
 
-           viewModel.login(email, pasword)
-        }
 
-        loginFragmentRegisterLink.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
-        }
     }
+
     override fun getViewModel() = AuthViewModel::class.java
 
     override fun getFragmentBinding(
@@ -60,6 +56,36 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         container: ViewGroup?
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
+    override fun getFragmentRepository() =
+        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 
+
+    private fun setOnCLickListeners() {
+        binding.loginFragmentButton.setOnClickListener {
+            val email = binding.loginFragmentEmail.text.toString().trim()
+            val pasword = binding.loginFragmentPassword.text.toString().trim()
+            binding.progressbar.visible(true)
+
+            viewModel.login(email, pasword)
+        }
+
+        loginFragmentRegisterLink.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
+        }
+
+        iv_show.setOnClickListener {
+            loginFragmentPassword.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+
+            iv_hide.visibility = View.VISIBLE
+            iv_show.visibility = View.GONE
+        }
+
+        iv_hide.setOnClickListener {
+            loginFragmentPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+
+            iv_show.visibility = View.VISIBLE
+            iv_hide.visibility = View.GONE
+        }
+    }
 }

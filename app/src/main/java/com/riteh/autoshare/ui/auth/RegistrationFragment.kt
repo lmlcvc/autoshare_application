@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentRegistrationBinding
 import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.Resource
@@ -13,6 +15,7 @@ import com.riteh.autoshare.repository.AuthRepository
 import com.riteh.autoshare.ui.base.BaseFragment
 import com.riteh.autoshare.ui.home.MainActivity
 import com.riteh.autoshare.ui.startNewActivity
+import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.coroutines.launch
 
 
@@ -47,6 +50,9 @@ class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBin
             viewModel.validate(name,surname, email, password, confirmPassword)
         }
 
+        tv_to_login.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+        }
 
     }
     override fun getViewModel() = AuthViewModel::class.java

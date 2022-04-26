@@ -1,7 +1,6 @@
 package com.riteh.autoshare.ui.user
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
@@ -21,7 +20,7 @@ class UserCardActivity : AppCompatActivity() {
 
         val addCardBtn: Button = findViewById(R.id.addCardBtn)
 
-        btn_clear.setOnClickListener{
+        btn_clear.setOnClickListener {
             card_number.setText("")
             card_due.setText("")
             card_cvv.setText("")
@@ -35,7 +34,7 @@ class UserCardActivity : AppCompatActivity() {
 
         addCardBtn.setOnClickListener {
             if (validateInput()) {
-                val cardNumber: String = card_number.text.toString().replace("-", "");
+                val cardNumber: String = card_number.text.toString().replace("-", "")
                 val cardDue: String = card_due.text.toString()
                 val cardCvv: String = card_cvv.text.toString()
                 val cardholderName: String = user_name.text.toString()
@@ -47,13 +46,14 @@ class UserCardActivity : AppCompatActivity() {
 
                 val newCardUser = UserCard(
                     cardNumber, cardDue, cardCvv, cardholderName, cardholderSurname, address,
-                    city, postalCode, country)
+                    city, postalCode, country
+                )
 
                 val prefs = getSharedPreferences("USER_CARD_PREFERENCES", Context.MODE_PRIVATE)
                 val prefsEditor: SharedPreferences.Editor = prefs.edit()
 
                 val gson = Gson()
-                var json: String? = prefs.getString("userCard", "")
+                var json: String? = prefs.getString("userCard", "{}")
                 val userCard: UserCard = gson.fromJson(json, UserCard::class.java)
 
 

@@ -12,6 +12,7 @@ import com.riteh.autoshare.R
 import com.riteh.autoshare.ui.user.UserCardInfoActivity
 import com.riteh.autoshare.ui.user.UserInformationActivity
 
+
 class UserFragment : Fragment() {
 
     companion object {
@@ -30,6 +31,12 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val btnCard = view.findViewById(R.id.button3) as Button
+        btnCard.setOnClickListener{
+            val intent = Intent(it.context, UserCardInfoActivity::class.java)
+            startActivity(intent)
+        }
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         val btn = view.findViewById(R.id.btn_pers_info) as Button
