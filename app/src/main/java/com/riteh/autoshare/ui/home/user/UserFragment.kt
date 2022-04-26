@@ -32,7 +32,7 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnCard = view.findViewById(R.id.button3) as Button
+        val btnCard = view.findViewById(R.id.btn_card_info) as Button
         btnCard.setOnClickListener{
             val intent = Intent(it.context, UserCardInfoActivity::class.java)
             startActivity(intent)
