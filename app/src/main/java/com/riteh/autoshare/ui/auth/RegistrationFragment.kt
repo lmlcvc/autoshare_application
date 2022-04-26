@@ -44,12 +44,7 @@ class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBin
             val password = binding.registerFragmentPassword.text.toString().trim()
             val confirmPassword = binding.registerFragmentPasswordConfirm.text.toString().trim()
 
-            if(viewModel.validate(name,surname, email, password, confirmPassword)) {
-                viewModel.login(email, password)
-
-                //TODO:
-                //val user: SignUpResponse = viewModel.signUpResponse.value?.let {}
-            }
+            viewModel.validate(name,surname, email, password, confirmPassword)
         }
 
 

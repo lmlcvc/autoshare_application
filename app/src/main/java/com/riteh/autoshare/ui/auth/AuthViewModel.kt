@@ -1,5 +1,7 @@
 package com.riteh.autoshare.ui.auth
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +10,6 @@ import com.riteh.autoshare.network.Resource
 import com.riteh.autoshare.repository.AuthRepository
 import com.riteh.autoshare.responses.LoginResponse
 import com.riteh.autoshare.responses.SignUpResponse
-import com.riteh.autoshare.responses.User
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
@@ -33,23 +34,18 @@ class AuthViewModel(
         repository.saveAuthToken(token)
     }
 
-    fun saveUserDetails(user: User) = viewModelScope.launch {
-        repository.saveUserDetails(user)
-    }
-
     fun validate(name: String,
                  surname: String,
                  email: String,
                  password: String,
-                confirmPassword: String): Boolean {
+                confirmPassword: String) {
         if(name.isEmpty() || surname.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty()){
-            return false
+            return
         }
         if((password != confirmPassword) || password.length < 6){
-            return false
+            return
         }
         signUp(name, surname, email, password)
-        return true
     }
 
     fun signUp(
