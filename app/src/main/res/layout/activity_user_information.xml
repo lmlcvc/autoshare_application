@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/app_white"
+    tools:context=".ui.user.UserCardActivity">
+
+  <LinearLayout
+      android:id="@+id/tv_title_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_marginBottom="15dp"
+      android:background="@color/basic_red">
+
+    <ImageView
+        android:id="@+id/arrow_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_baseline_arrow_back_24" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/HeadingsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/personal_information"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+  </LinearLayout>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/tv_title_container">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <ImageView
+          android:id="@+id/pfp"
+          android:layout_width="220dp"
+          android:layout_height="220dp"
+          android:layout_centerHorizontal="true"
+          android:layout_gravity="center|center_horizontal"
+          android:layout_marginStart="10dp"
+          android:src="@drawable/ic_mobile_ux_bro" />
+
+      <TextView
+          android:id="@+id/avg_renter"
+          android:layout_width="150dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/pfp"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="1dp"
+          android:ems="10"
+          android:text="Average renter:"
+          android:paddingStart="10dp"
+          android:textAlignment="viewStart"
+          android:textColor="@color/bt_light_gray" />
+
+      <TextView
+          android:id="@+id/avg_rantee"
+          android:layout_width="150dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/pfp"
+          android:layout_marginStart="-16dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="1dp"
+          android:layout_toEndOf="@+id/avg_renter"
+          android:ems="10"
+          android:text="Average rentee:"
+          android:paddingStart="10dp"
+          android:textAlignment="viewStart"
+          android:textColor="@color/bt_light_gray" />
+
+      <ImageView
+          android:id="@+id/star_renter"
+          android:layout_width="35dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/avg_renter"
+          android:layout_marginStart="60dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="20dp"
+          android:src="@drawable/ic_baseline_grade_24" />
+
+      <TextView
+          android:id="@+id/avg_grade_renter"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/avg_renter"
+          android:layout_marginStart="5dp"
+          android:layout_marginTop="4dp"
+          android:layout_toEndOf="@+id/star_renter"
+          android:textColor="@color/bt_light_gray"
+          android:textSize="30sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <ImageView
+          android:id="@+id/star_rentee"
+          android:layout_width="35dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/avg_renter"
+          android:layout_marginStart="225dp"
+          android:layout_marginTop="5dp"
+          android:src="@drawable/ic_baseline_grade_24" />
+
+      <TextView
+          android:id="@+id/avg_grade_rentee"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/avg_renter"
+          android:layout_marginStart="5dp"
+          android:layout_marginTop="4dp"
+          android:layout_toEndOf="@+id/star_rentee"
+          android:textColor="@color/bt_light_gray"
+          android:textSize="30sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/label_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/star_renter"
+          android:layout_marginStart="15dp"
+          android:text="First name:"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/name"
+          android:layout_width="250dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/star_renter"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="45dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="10dp"
+          android:layout_toEndOf="@+id/label_name"
+          android:ems="10"
+          android:paddingStart="10dp"
+          android:textAlignment="viewEnd"
+          android:textColor="@color/basic_red"
+          android:textColorHint="@color/bt_light_gray" />
+
+      <TextView
+          android:id="@+id/label_surname"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/name"
+          android:layout_marginStart="15dp"
+          android:text="Last name:"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/surname"
+          android:layout_width="250dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/name"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="42dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="10dp"
+          android:layout_toEndOf="@+id/label_surname"
+          android:ems="10"
+          android:paddingStart="10dp"
+          android:textAlignment="viewEnd"
+          android:textColor="@color/basic_red"
+          android:textColorHint="@color/bt_light_gray" />
+
+      <TextView
+          android:id="@+id/label_date_of_birth"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/surname"
+          android:layout_marginStart="15dp"
+          android:text="Date of birth:"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/date_of_birth"
+          android:layout_width="250dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/surname"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="26dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="10dp"
+          android:layout_toEndOf="@+id/label_date_of_birth"
+          android:ems="10"
+          android:paddingStart="10dp"
+          android:textAlignment="viewEnd"
+          android:textColor="@color/basic_red"
+          android:textColorHint="@color/bt_light_gray" />
+
+      <TextView
+          android:id="@+id/label_email"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/date_of_birth"
+          android:layout_marginStart="15dp"
+          android:text="Email:"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/email"
+          android:layout_width="250dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/date_of_birth"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="77dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="10dp"
+          android:layout_toEndOf="@+id/label_email"
+          android:ems="10"
+          android:paddingStart="10dp"
+          android:textAlignment="viewEnd"
+          android:textColor="@color/basic_red"
+          android:textColorHint="@color/bt_light_gray" />
+
+      <TextView
+          android:id="@+id/label_license_id"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/email"
+          android:layout_marginStart="15dp"
+          android:text="License ID:"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp"
+          app:drawableTint="@color/dark_grey" />
+
+      <TextView
+          android:id="@+id/license_id"
+          android:layout_width="250dp"
+          android:layout_height="35dp"
+          android:layout_below="@+id/email"
+          android:layout_alignParentEnd="true"
+          android:layout_marginStart="43dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginEnd="30dp"
+          android:layout_marginBottom="10dp"
+          android:layout_toEndOf="@+id/label_license_id"
+          android:ems="10"
+          android:paddingStart="10dp"
+          android:textAlignment="viewEnd"
+          android:textColor="@color/basic_red"
+          android:textColorHint="@color/bt_light_gray" />
+
+
+      <Button
+          android:id="@+id/btn_edit"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/license_id"
+          android:layout_marginLeft="40dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginRight="40dp"
+          android:layout_marginBottom="10dp"
+          android:background="@drawable/rounded_corners_box_red"
+          android:text="Update profile"
+          android:textColor="@android:color/white" />
+    </RelativeLayout>
+  </ScrollView>
+
+
+</RelativeLayout>

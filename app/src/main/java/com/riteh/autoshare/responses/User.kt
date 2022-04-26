@@ -1,11 +1,14 @@
 package com.riteh.autoshare.responses
 
+import java.util.*
+
 data class User(
-    val access_token : String,
-    val created_at: String,
-    val email: String,
-    val email_verified_at: Any,
     val id: Int,
-    val Name: String,
-    val updated_at: String
+    val email: String,
+    val name: String,
+    val surname: String,
+    val date_of_birth: Date,
+    val license_id: String,
+    val renter_avg_rating: Double,
+    val rentee_avg_rating: Double
 )

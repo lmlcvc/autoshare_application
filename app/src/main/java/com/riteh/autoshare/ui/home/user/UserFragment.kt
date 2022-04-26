@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.riteh.autoshare.R
 import com.riteh.autoshare.ui.user.UserCardInfoActivity
+import com.riteh.autoshare.ui.user.UserInformationActivity
+
 
 class UserFragment : Fragment() {
 
@@ -23,6 +25,7 @@ class UserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.user_fragment, container, false)
     }
 
@@ -35,6 +38,12 @@ class UserFragment : Fragment() {
             startActivity(intent)
         }
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+        val btn = view.findViewById(R.id.btn_pers_info) as Button
+        btn.setOnClickListener {
+            val intent = Intent(it.context, UserInformationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
