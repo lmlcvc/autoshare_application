@@ -1,5 +1,6 @@
 package com.riteh.autoshare.ui.user
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +13,6 @@ import com.google.gson.Gson
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.CardListAdapter
 import kotlinx.android.synthetic.main.activity_user_card_info.*
-import android.app.AlertDialog
 
 class UserCardInfoActivity : AppCompatActivity() {
     lateinit var adapter: CardListAdapter
@@ -38,13 +38,13 @@ class UserCardInfoActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         val prefs = getSharedPreferences("USER_CARD_PREFERENCES", Context.MODE_PRIVATE)
         val gson = Gson()
-        val json: String? = prefs.getString("userCard", "")
+        val json: String? = prefs.getString("userCard", "{}")
         val userCard: UserCard = gson.fromJson(json, UserCard::class.java)
 
         rv_cards.layoutManager = LinearLayoutManager(this)
         adapter = if (userCard.cardsList.isNullOrEmpty()) {
             CardListAdapter(mutableListOf())
-        } else  {
+        } else {
             userCard.cardsList.let { CardListAdapter(it) }
         }
         rv_cards.adapter = adapter
@@ -97,17 +97,20 @@ class UserCardInfoActivity : AppCompatActivity() {
     }
 
 
+    private var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback =
+        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
-    private var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-            return false
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                callDialog(viewHolder.layoutPosition)
+            }
         }
-
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            callDialog(viewHolder.layoutPosition)
-        }
-    }
-
 
 
 }
