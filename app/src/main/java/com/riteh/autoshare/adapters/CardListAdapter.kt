@@ -26,6 +26,9 @@ class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Ad
         return ViewHolder(view)
     }
 
+    /**
+     * Length of list
+     */
     override fun getItemCount(): Int {
 
         return cards.size

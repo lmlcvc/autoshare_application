@@ -50,5 +50,11 @@
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">12dp</item>
     </style>
+    <style name="Theme.Autoshare.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Autoshare.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Autoshare.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
