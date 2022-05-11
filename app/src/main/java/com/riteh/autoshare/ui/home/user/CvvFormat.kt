@@ -1,10 +1,10 @@
-package com.riteh.autoshare.ui.user
+package com.riteh.autoshare.ui.home.user
 
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 
-class CardNumberFormatX: TextWatcher {
+class CvvFormat: TextWatcher {
     private var current = ""
     private val nonDigits = Regex("[^\\d]")
 
@@ -16,9 +16,9 @@ class CardNumberFormatX: TextWatcher {
 
     override fun afterTextChanged(s: Editable) {
         if (s.toString() != current) {
-            val userInput = s.toString().replace(nonDigits,"")
-            if (userInput.length <= 19) {
-                current = userInput.chunked(4).joinToString("-")
+            val userInput = s.toString().replace(nonDigits, "")
+            if (userInput.length <= 4) {
+                current = userInput.chunked(4).joinToString("")
                 s.filters = arrayOfNulls<InputFilter>(0)
             }
             s.replace(0, s.length, current, 0, current.length)

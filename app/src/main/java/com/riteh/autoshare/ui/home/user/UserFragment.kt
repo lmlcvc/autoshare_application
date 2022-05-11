@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.riteh.autoshare.R
-import com.riteh.autoshare.ui.user.UserCardInfoActivity
-import com.riteh.autoshare.ui.user.UserInformationActivity
 
 
 class UserFragment : Fragment() {

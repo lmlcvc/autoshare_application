@@ -1,22 +1,14 @@
 package com.riteh.autoshare.adapters
 
-import android.content.Context
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.riteh.autoshare.R
-import com.riteh.autoshare.ui.user.CardNumbersFormat
-import com.riteh.autoshare.ui.user.UserCard
-import com.riteh.autoshare.ui.user.UserCardInfoActivity
+import com.riteh.autoshare.ui.home.user.CardNumbersFormat
+import com.riteh.autoshare.ui.home.user.UserCard
 import kotlinx.android.synthetic.main.credit_card_layout.view.*
-import kotlinx.coroutines.NonDisposableHandle.parent
-import kotlinx.coroutines.withContext
 
 class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
 
