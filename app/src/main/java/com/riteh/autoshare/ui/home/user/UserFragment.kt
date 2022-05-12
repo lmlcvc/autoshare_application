@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.riteh.autoshare.R
-import com.riteh.autoshare.ui.home.user.vehicles.VehicleListActivity
 import kotlinx.android.synthetic.main.user_fragment.*
 
 
