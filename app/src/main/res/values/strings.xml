@@ -137,7 +137,6 @@
 
     <string name="personal_information">Personal information</string>
     <string name="card_information">Card information</string>
-    <string name="my_vehicles">My vehicles</string>
     <string name="about_app">About App</string>
     <string name="your_email">Your email</string>
     <string name="your_password">Your password</string>
@@ -148,4 +147,7 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="become_a_part_of_the_autoshare_community">Become a part of the Autoshare community</string>
     <string name="let_s_get_started">Let\'s get started</string>
+    <string name="my_vehicles">My vehicles</string>
+    <string name="add_new_vehicle">Add new vehicle</string>
+    <string name="per_day">&#160;/ day</string>
 </resources>

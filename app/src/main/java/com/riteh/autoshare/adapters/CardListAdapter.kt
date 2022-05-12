@@ -10,10 +10,12 @@ import com.riteh.autoshare.ui.home.user.CardNumbersFormat
 import com.riteh.autoshare.ui.home.user.UserCard
 import kotlinx.android.synthetic.main.credit_card_layout.view.*
 
-class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
+class CardListAdapter(private var cards: MutableList<UserCard>) :
+    RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardListAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.credit_card_layout, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.credit_card_layout, parent, false)
 
         return ViewHolder(view)
     }
@@ -33,7 +35,7 @@ class CardListAdapter(private var cards: MutableList<UserCard>): RecyclerView.Ad
         val cardNumber = formatter.formatCardNumber(cards[position].cardNumber)
         holder.cardTitle.text = cardNumber
 
-        val cardMonthYear: String =  cards[position].cardDue
+        val cardMonthYear: String = cards[position].cardDue
         holder.cardDescription.text = cardMonthYear
 
     }

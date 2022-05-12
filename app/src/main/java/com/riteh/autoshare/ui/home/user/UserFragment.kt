@@ -1,14 +1,14 @@
 package com.riteh.autoshare.ui.home.user
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.riteh.autoshare.R
+import kotlinx.android.synthetic.main.user_fragment.*
 
 
 class UserFragment : Fragment() {
@@ -30,16 +30,19 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnCard = view.findViewById(R.id.btn_card_info) as Button
-        btnCard.setOnClickListener{
+        btn_card_info.setOnClickListener {
             val intent = Intent(it.context, UserCardInfoActivity::class.java)
             startActivity(intent)
         }
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        val btn = view.findViewById(R.id.btn_pers_info) as Button
-        btn.setOnClickListener {
+        btn_pers_info.setOnClickListener {
             val intent = Intent(it.context, UserInformationActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_my_vehicles.setOnClickListener {
+            val intent = Intent(it.context, VehicleListActivity::class.java)
             startActivity(intent)
         }
     }
