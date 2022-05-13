@@ -150,4 +150,13 @@
     <string name="my_vehicles">My vehicles</string>
     <string name="add_new_vehicle">Add new vehicle</string>
     <string name="per_day">&#160;/ day</string>
+    <string name="continue_to_autoshare"><u>Continue to Autoshare</u></string>
+    <string name="error_adding_vehicle_please_try_again">Error adding vehicle,\nplease try again</string>
+    <string name="vehicle_added_successfully">Vehicle added successfully</string>
+    <string name="add_vehicle_details">Add vehicle details</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="manufacturer_lowercase">manufacturer</string>
+    <string name="enter_your_vehicle_s">Enter your vehicle\'s</string>
+    <string name="model_lowercase">model</string>
+    <string name="model">Model</string>
 </resources>

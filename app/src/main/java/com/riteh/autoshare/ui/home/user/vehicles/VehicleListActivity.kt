@@ -1,5 +1,6 @@
-package com.riteh.autoshare.ui.home.user
+package com.riteh.autoshare.ui.home.user.vehicles
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,7 @@ class VehicleListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_vehicles_list)
 
         setUpRecyclerView()
+        setOnClickListeners()
     }
 
 
@@ -36,5 +38,12 @@ class VehicleListActivity : AppCompatActivity() {
 
         /*val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(rv_cards)*/
+    }
+
+    private fun setOnClickListeners() {
+        button.setOnClickListener {
+            val intent = Intent(this, VehicleAddActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
