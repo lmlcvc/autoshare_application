@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.riteh.autoshare.R
+import com.riteh.autoshare.ui.home.user.vehicles.VehicleListActivity
 import kotlinx.android.synthetic.main.user_fragment.*
 
 

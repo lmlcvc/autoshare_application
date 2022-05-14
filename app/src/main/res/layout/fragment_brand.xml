@@ -2,19 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.home.user.vehicles.ModelFragment">
+    tools:context=".ui.home.user.vehicles.BrandFragment">
 
     <data>
 
         <variable
-            name="modelFragment"
-            type="com.riteh.autoshare.ui.home.user.vehicles.ModelFragment" />
+            name="brandFragment"
+            type="com.riteh.autoshare.ui.home.user.vehicles.BrandFragment" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/app_white">
+
+        <!--TODO: close strelica-->
 
         <ImageView
             android:id="@+id/iv_back"
@@ -55,7 +57,7 @@
             android:layout_below="@id/tv_heading"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="0dp"
-            android:text="@string/model_lowercase" />
+            android:text="@string/manufacturer_lowercase" />
 
         <RelativeLayout
             android:id="@+id/rv_search"
@@ -72,7 +74,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:autofillHints="username"
                 android:background="@drawable/rounded_corners_box_outline_red"
-                android:hint="@string/model"
+                android:hint="@string/manufacturer"
                 android:inputType="textEmailAddress"
                 android:paddingStart="30dp"
                 android:paddingEnd="14dp"
@@ -96,7 +98,7 @@
         </RelativeLayout>
 
         <ScrollView
-            android:id="@+id/sv_models"
+            android:id="@+id/sv_brands"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rv_search"
@@ -108,7 +110,7 @@
                 android:layout_marginTop="5dp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_models"
+                    android:id="@+id/rv_brands"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -117,7 +119,5 @@
                     tools:listitem="@layout/brand_model_layout" />
             </RelativeLayout>
         </ScrollView>
-
     </RelativeLayout>
-
 </layout>
