@@ -30,6 +30,8 @@
     <string name="are_you_sure">Are you sure you want to delete card </string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="available_cars">Available cars</string>
+    <string name="filters">Filters</string>
 
     <string name="address">Address</string>
     <string name="city">City</string>
