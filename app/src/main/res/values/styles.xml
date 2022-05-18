@@ -37,6 +37,32 @@
         <item name="android:paddingBottom">10dp</item>
     </style>
 
+    <style name="NextButtonsStyle" parent="Theme.Autoshare">
+        <item name="background">@drawable/rounded_corners_box_white</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/app_white</item>
+        <item name="drawableTint">@color/dark_red</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+    </style>
+
+    <style name="PrevButtonsStyle" parent="Theme.Autoshare">
+        <item name="background">@drawable/rounded_corners_box_white</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/basic_grey</item>
+        <item name="backgroundTint">@color/darker_app_white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+
     <style name="HeadingsStyle" parent="Theme.Autoshare">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -44,6 +70,28 @@
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/dark_grey</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CategoryTitleStyle" parent="Theme.Autoshare">
+        <item name="android:layout_width">175dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/basic_grey</item>
+    </style>
+
+    <style name="CategoryEditTextStyle" parent="Theme.Autoshare">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="CategoryEditTextTheme" parent="Theme.Autoshare">
+        <item name="colorControlNormal">@color/basic_grey</item>
+        <item name="colorControlActivated">@color/basic_red</item>
+        <item name="colorControlHighlight">@color/basic_red</item>
     </style>
 
     <style name="InputTextStyle" parent="Theme.Autoshare">
