@@ -35,16 +35,10 @@
             android:name=".ui.home.search.LocationInputActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.info.FuelPricesActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.user.UserInformationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.UserUpdateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.MainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
