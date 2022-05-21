@@ -8,12 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
-import com.riteh.autoshare.data.dataholders.CatListItem
-import com.riteh.autoshare.ui.user.CardNumbersFormat
+import com.riteh.autoshare.data.dataholders.CarListItem
 import kotlinx.android.synthetic.main.car_layout.view.*
-import kotlinx.android.synthetic.main.credit_card_layout.view.*
 
-class CarListAdapter(private var cars: List<CatListItem>, val context: Context) :
+class CarListAdapter(private var cars: List<CarListItem>, val context: Context) :
     RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
 

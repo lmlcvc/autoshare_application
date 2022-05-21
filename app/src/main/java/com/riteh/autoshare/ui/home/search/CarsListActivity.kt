@@ -1,24 +1,16 @@
 package com.riteh.autoshare.ui.home.search
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.CarListAdapter
-import com.riteh.autoshare.adapters.CardListAdapter
-import com.riteh.autoshare.data.dataholders.CatListItem
-import com.riteh.autoshare.ui.user.UserCard
-import com.riteh.autoshare.ui.user.UserCardActivity
+import com.riteh.autoshare.data.dataholders.CarListItem
 import kotlinx.android.synthetic.main.activity_cars_list.*
-import kotlinx.android.synthetic.main.activity_location_input.*
-import kotlinx.android.synthetic.main.activity_user_card_info.*
 
 class CarsListActivity : AppCompatActivity() {
-    private var carsList = mutableListOf<CatListItem>()
+    private var carsList = mutableListOf<CarListItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
