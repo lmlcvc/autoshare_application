@@ -70,7 +70,7 @@
           android:textColor="@color/bt_light_gray" />
 
       <TextView
-          android:id="@+id/avg_rantee"
+          android:id="@+id/avg_rentee"
           android:layout_width="150dp"
           android:layout_height="35dp"
           android:layout_below="@+id/pfp"
