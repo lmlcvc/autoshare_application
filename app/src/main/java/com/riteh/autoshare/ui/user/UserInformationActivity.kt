@@ -1,5 +1,6 @@
 package com.riteh.autoshare.ui.user
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_user_information.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import java.text.SimpleDateFormat
 
 
 class UserInformationActivity : AppCompatActivity() {
@@ -50,8 +52,10 @@ class UserInformationActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private suspend fun getUserFromPreferences(context: UserInformationActivity) {
         val userPreferences = UserPreferences(context)
+        val df = SimpleDateFormat("dd/MM/yyyy")
 
         GlobalScope.launch(
             Dispatchers.IO
@@ -64,7 +68,7 @@ class UserInformationActivity : AppCompatActivity() {
 
                     name.text = it.name
                     surname.text = it.surname
-                    date_of_birth.text = it.date_of_birth.toString()
+                    date_of_birth.text = df.format(it.date_of_birth)
                     email.text = it.email
                     license_id.text = it.license_id
                     avg_grade_renter.text = it.renter_avg_rating.toString()
