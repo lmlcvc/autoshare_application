@@ -46,13 +46,25 @@ class UserPreferences(context: Context) {
         }
     }
 
+    suspend fun updateUserInfo(name: String, surname: String, email: String) {
+        dataStore.edit { preferences ->
+            preferences[EMAIL] = email
+            preferences[NAME] = name
+            preferences[SURNAME] = surname
+
+            // TODO: add DOB & license fields
+            // preferences[DATE_OF_BIRTH] = user.date_of_birth.toString()
+            // preferences[LICENSE_ID] = user.license_id.toString()
+
+        }
+    }
 
     fun getTokenFromDataStore() = dataStore.data.map { preferences ->
         preferences[KEY_AUTH] ?: ""
     }
 
 
-    fun getUserFromDataStore() : Flow<User> = dataStore.data.map { preferences ->
+    fun getUserFromDataStore(): Flow<User> = dataStore.data.map { preferences ->
         User(
             id = preferences[ID]?.toInt() ?: -1,
             email = preferences[EMAIL] ?: "",
@@ -67,7 +79,6 @@ class UserPreferences(context: Context) {
         // preferences[EMAIL]?.let { it1 -> Log.i("getuserfromdatastore", it1) }
     }
 }
-
 
 private object PreferencesKeys {
     val ID = preferencesKey<String>("id")

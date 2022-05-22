@@ -38,6 +38,18 @@ class UserInformationActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val activityContext = this
+
+        runBlocking {
+            async {
+                getUserFromPreferences(activityContext)
+            }
+        }
+    }
+
     private suspend fun getUserFromPreferences(context: UserInformationActivity) {
         val userPreferences = UserPreferences(context)
 
