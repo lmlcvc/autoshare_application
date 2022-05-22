@@ -184,4 +184,5 @@
     <string name="heated_seats">Heated seats</string>
     <string name="back_camera">Back camera</string>
     <string name="save_vehicle_details">Save vehicle details</string>
+    <string name="finish">Finish</string>
 </resources>

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.dataholders.VehicleListItem
-import kotlinx.android.synthetic.main.activity_vehicles_list.view.tv_title
+import kotlinx.android.synthetic.main.activity_vehicle_list.view.tv_title
 import kotlinx.android.synthetic.main.user_vehicle_items_layout.view.*
 
 class VehicleListAdapter(private var vehicles: List<VehicleListItem>, val context: Context) :

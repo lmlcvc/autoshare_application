@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.VehicleListAdapter
 import com.riteh.autoshare.data.dataholders.VehicleListItem
-import kotlinx.android.synthetic.main.activity_vehicles_list.*
+import com.riteh.autoshare.ui.home.MainActivity
+import kotlinx.android.synthetic.main.activity_vehicle_list.*
 
 class VehicleListActivity : AppCompatActivity() {
     private var vehiclesList = mutableListOf<VehicleListItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vehicles_list)
+        setContentView(R.layout.activity_vehicle_list)
 
         setUpRecyclerView()
         setOnClickListeners()
@@ -41,9 +42,19 @@ class VehicleListActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
+        arrow_back.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            // TODO: open user tab instead of 1st tab
+        }
+
         button.setOnClickListener {
             val intent = Intent(this, VehicleAddActivity::class.java)
             startActivity(intent)
         }
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)    }
 }

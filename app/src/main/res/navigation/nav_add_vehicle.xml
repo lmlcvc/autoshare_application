@@ -36,5 +36,22 @@
         android:id="@+id/vehicleAddingCompletedFragment"
         android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleAddingCompletedFragment"
         android:label="fragment_vehicle_adding_completed"
-        tools:layout="@layout/fragment_vehicle_adding_completed" />
+        tools:layout="@layout/fragment_vehicle_adding_completed" >
+        <action
+            android:id="@+id/action_vehicleAddingCompletedFragment_to_vehicleListActivity"
+            app:destination="@id/vehicleListActivity" />
+        <action
+            android:id="@+id/action_vehicleAddingCompletedFragment_to_vehicleExtraInfoActivity"
+            app:destination="@id/vehicleExtraInfoActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/vehicleListActivity"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleListActivity"
+        android:label="activity_vehicles_list"
+        tools:layout="@layout/activity_vehicle_list" />
+    <activity
+        android:id="@+id/vehicleExtraInfoActivity"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleExtraInfoActivity"
+        android:label="activity_vehicle_extra_info"
+        tools:layout="@layout/activity_vehicle_extra_info" />
 </navigation>

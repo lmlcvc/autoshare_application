@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.riteh.autoshare.adapters.ModelListAdapter
 import com.riteh.autoshare.databinding.FragmentModelBinding
 import kotlinx.android.synthetic.main.fragment_model.*
-import kotlinx.android.synthetic.main.fragment_model.iv_close
 
 class ModelFragment : Fragment() {
 
     private var binding: FragmentModelBinding? = null
-    private lateinit var viewModel: VehicleDetailsViewModel
+    private lateinit var viewModel: VehicleInfoViewModel
 
     private var modelsList = mutableListOf<String>()
 
@@ -45,7 +44,7 @@ class ModelFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[VehicleDetailsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[VehicleInfoViewModel::class.java]
         // TODO: Use the ViewModel
     }
 

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_details.*
 class DetailsFragment : Fragment() {
 
     private var binding: FragmentDetailsBinding? = null
-    private lateinit var viewModel: VehicleDetailsViewModel
+    private lateinit var viewModel: VehicleInfoViewModel
 
     // private val sharedViewModel: VehicleDetailsViewModel by activityViewModels()
 
@@ -46,7 +46,7 @@ class DetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[VehicleDetailsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[VehicleInfoViewModel::class.java]
         // TODO: Use the ViewModel
     }
 
