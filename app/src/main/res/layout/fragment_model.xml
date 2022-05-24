@@ -73,7 +73,7 @@
                 android:autofillHints="username"
                 android:background="@drawable/rounded_corners_box_outline_red"
                 android:hint="@string/model"
-                android:inputType="textEmailAddress"
+                android:inputType="textCapCharacters|textFilter"
                 android:paddingStart="30dp"
                 android:paddingEnd="14dp"
                 android:textColor="@color/dark_grey"

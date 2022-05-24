@@ -1,6 +1,7 @@
 package com.riteh.autoshare.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +9,18 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
+import com.riteh.autoshare.data.dataholders.ModelInfo
+import com.riteh.autoshare.ui.home.user.vehicles.VehicleInfoViewModel
 import kotlinx.android.synthetic.main.brand_model_layout.view.*
 
 class ModelListAdapter(
-    private var items: List<String>,
-    val context: Context
+    items: List<ModelInfo>,
+    val context: Context,
+    val sharedViewModel: VehicleInfoViewModel
 ) :
     RecyclerView.Adapter<ModelListAdapter.ViewHolder>() {
 
+    var models = items
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v =
@@ -24,13 +29,15 @@ class ModelListAdapter(
     }
 
     override fun getItemCount(): Int {
-        // return vehicles.size
-        return 10
+        return models.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // dummy values
-        holder.title.text = "model name"
+        holder.title.text = models[position].Model_Name
+    }
+
+    fun setItems(models: MutableList<ModelInfo>) {
+        this.models = models
     }
 
 
@@ -39,6 +46,9 @@ class ModelListAdapter(
 
         init {
             itemView.setOnClickListener { view ->
+                sharedViewModel.setModel(title.text.toString())
+                Log.v("VM value", sharedViewModel.model.value.toString())
+
                 view.findNavController().navigate(R.id.action_modelFragment_to_detailsFragment)
             }
         }
