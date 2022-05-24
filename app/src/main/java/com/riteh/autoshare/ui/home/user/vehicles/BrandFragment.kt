@@ -67,8 +67,25 @@ class BrandFragment : Fragment() {
 
 
     /**
+     * Normalise characters to English alphabet, e.g. "č" becomes "c".
+     */
+    fun String.normalize(): String {
+        val original = arrayOf("ę", "š")
+        val normalized =  arrayOf("e", "s")
+
+        return this.map { it ->
+            val index = original.indexOf(it.toString())
+            if (index >= 0) normalized[index] else it
+        }.joinToString("")
+    }
+
+
+    /**
      * Fill brands list object with BrandInfo objects to optimize key change suggestions.
+     *
+     * Formatting:
      * Sort list alphabetically for suggestions optimisation because suggestion list length is limited.
+     * Normalise non-English characters.
      */
     private fun fillBrandsList() {
         try {
@@ -91,6 +108,10 @@ class BrandFragment : Fragment() {
             val jsonString: String = byteArrayOutputStream.toString()
             brandsList = gson.fromJson(jsonString, Array<BrandInfo>::class.java).asList()
                 .sortedBy { it.Make_Name }
+
+            brandsList.forEach { brand ->
+                brand.Make_Name.normalize()
+            }
 
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
@@ -151,7 +172,8 @@ class BrandFragment : Fragment() {
         val tmpBrandsList = mutableListOf<BrandInfo>()
 
         brandsList.forEach { brand ->
-            if(brand.Make_Name.startsWith(substring)) {
+            if(brand.Make_Name.replace("\\s".toRegex(), "")
+                    .startsWith(substring.replace("\\s".toRegex(), ""))) {
                 tmpBrandsList.add(brand)
             }
 
