@@ -1,4 +1,4 @@
-package com.riteh.autoshare.data
+package com.riteh.autoshare.data.dataholders
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,7 +1,6 @@
 package com.riteh.autoshare.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
-import com.riteh.autoshare.data.BrandInfo
+import com.riteh.autoshare.data.dataholders.BrandInfo
 import com.riteh.autoshare.ui.home.user.vehicles.VehicleInfoViewModel
 import kotlinx.android.synthetic.main.brand_model_layout.view.*
 
@@ -46,7 +45,6 @@ class BrandListAdapter(
         init {
             itemView.setOnClickListener { view ->
                 sharedViewModel.setBrand(title.text.toString())
-                Log.v("shared view model", sharedViewModel.brand.value.toString())
 
                 view.findNavController().navigate(R.id.action_brandFragment_to_modelFragment)
             }

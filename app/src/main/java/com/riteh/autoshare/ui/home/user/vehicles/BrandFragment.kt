@@ -4,18 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.BrandListAdapter
-import com.riteh.autoshare.data.BrandInfo
+import com.riteh.autoshare.data.dataholders.BrandInfo
 import com.riteh.autoshare.databinding.FragmentBrandBinding
 import kotlinx.android.synthetic.main.fragment_brand.*
 import java.io.ByteArrayOutputStream
@@ -26,16 +24,12 @@ import java.io.InputStream
 class BrandFragment : Fragment() {
 
     private var binding: FragmentBrandBinding? = null
-    private lateinit var viewModel: VehicleInfoViewModel
 
     private lateinit var adapter: BrandListAdapter
     private lateinit var brandsList: List<BrandInfo>
 
     private val sharedViewModel: VehicleInfoViewModel by activityViewModels()
 
-    companion object {
-        fun newInstance() = BrandFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,21 +53,14 @@ class BrandFragment : Fragment() {
     }
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[VehicleInfoViewModel::class.java]
-        // TODO: Use the ViewModel
-    }
-
-
     /**
      * Normalise characters to English alphabet, e.g. "č" becomes "c".
      */
-    fun String.normalize(): String {
+    private fun String.normalise(): String {
         val original = arrayOf("ę", "š")
-        val normalized =  arrayOf("e", "s")
+        val normalized = arrayOf("e", "s")
 
-        return this.map { it ->
+        return this.map {
             val index = original.indexOf(it.toString())
             if (index >= 0) normalized[index] else it
         }.joinToString("")
@@ -110,7 +97,7 @@ class BrandFragment : Fragment() {
                 .sortedBy { it.Make_Name }
 
             brandsList.forEach { brand ->
-                brand.Make_Name.normalize()
+                brand.Make_Name.normalise()
             }
 
         } catch (ex: java.lang.Exception) {
@@ -150,9 +137,9 @@ class BrandFragment : Fragment() {
      */
     private fun setKeyChangeListeners() {
         et_brand.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) { }
+            override fun afterTextChanged(s: Editable) {}
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) { }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 handleDisplayedBrands(et_brand.text.toString())
@@ -172,18 +159,17 @@ class BrandFragment : Fragment() {
         val tmpBrandsList = mutableListOf<BrandInfo>()
 
         brandsList.forEach { brand ->
-            if(brand.Make_Name.replace("\\s".toRegex(), "")
-                    .startsWith(substring.replace("\\s".toRegex(), ""))) {
+            if (brand.Make_Name.replace("\\s".toRegex(), "")
+                    .startsWith(substring.replace("\\s".toRegex(), ""))
+            ) {
                 tmpBrandsList.add(brand)
             }
 
-            if(tmpBrandsList.size >= 10) {
+            if (tmpBrandsList.size >= 10) {
                 setUpRecyclerView(tmpBrandsList)
                 return
             }
         }
-
-        Log.v("tmp brands", tmpBrandsList.toString())
 
         adapter.setItems(tmpBrandsList)
         adapter.notifyDataSetChanged()
