@@ -1,18 +1,20 @@
 package com.riteh.autoshare.responses.weather.forecast
 
+import com.google.gson.annotations.SerializedName
+
 data class Current(
-    val clouds: Int,
-    val dew_point: Double,
-    val dt: Int,
-    val feels_like: Double,
-    val humidity: Int,
-    val pressure: Int,
-    val sunrise: Int,
-    val sunset: Int,
-    val temp: Double,
-    val uvi: Double,
-    val visibility: Int,
-    val weather: List<Weather>,
-    val wind_deg: Int,
-    val wind_speed: Double
+    @SerializedName("clouds") val clouds: Int,
+    @SerializedName("dew_point") val dew_point: Double,
+    @SerializedName("dt") val dt: Int,
+    @SerializedName("feels_like") val feels_like: Double,
+    @SerializedName("humidity") val humidity: Int,
+    @SerializedName("pressure") val pressure: Int,
+    @SerializedName("sunrise") val sunrise: Int,
+    @SerializedName("sunset") val sunset: Int,
+    @SerializedName("temp") val temp: Double,
+    @SerializedName("uvi") val uvi: Double,
+    @SerializedName("visibility") val visibility: Int,
+    @SerializedName("weather") val weather: List<Weather>,
+    @SerializedName("wind_deg") val wind_deg: Int,
+    @SerializedName("wind_speed") val wind_speed: Double
 )

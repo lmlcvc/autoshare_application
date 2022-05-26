@@ -3,6 +3,7 @@ package com.riteh.autoshare.ui.home.search
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidisland.vita.VitaOwner
@@ -98,6 +99,7 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 12F))
 
                 button.setOnClickListener {
+                    Log.d("Tu nisam", viewModel.setLocation(place.name!!).toString())
                     viewModel.setLocation(place.name!!)
                     context.finish()
                 }

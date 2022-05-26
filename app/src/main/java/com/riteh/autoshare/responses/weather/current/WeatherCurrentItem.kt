@@ -1,5 +1,7 @@
 package com.riteh.autoshare.responses.weather.current
 
+import com.riteh.autoshare.responses.weather.forecast.Weather
+
 data class WeatherCurrentItem(
     val base: String,
     val clouds: Clouds,

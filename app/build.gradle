@@ -125,6 +125,8 @@ dependencies {
     // Web scraping
     implementation("org.jsoup:jsoup:1.14.3")
 
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+
 
 }
 
