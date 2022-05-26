@@ -49,7 +49,7 @@ class ModelFragment : Fragment() {
         setUpRecyclerView(mutableListOf())
 
         setOnClickListeners()
-        setKeyChangeListeners()
+        setKeyChangeListeners(this)
     }
 
 
@@ -111,14 +111,14 @@ class ModelFragment : Fragment() {
      * Set listeners for changes in brand name edit text view.
      * On any key change, a list of brand suggestions is made.
      */
-    private fun setKeyChangeListeners() {
+    private fun setKeyChangeListeners(modelFragment: ModelFragment) {
         et_brand.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(!modelsList.isNullOrEmpty()) {
+                if (modelFragment::modelsList.isInitialized) {
                     handleDisplayedModels(et_brand.text.toString())
                 }
             }

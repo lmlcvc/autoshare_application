@@ -248,14 +248,35 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button"
-            style="@style/ButtonsStyle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:text="@string/save_vehicle_details" />
+            android:layout_marginVertical="5dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
 
+            <Button
+                android:id="@+id/btn_prev"
+                style="@style/PrevButtonsStyle"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:drawableLeft="@drawable/ic_baseline_chevron_left_24"
+                android:text="@string/prev"
+                android:layout_weight="1"
+                app:drawableTint="@color/basic_grey" />
+
+
+            <Button
+                android:id="@+id/btn_next"
+                style="@style/NextButtonsStyle"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/finish"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
     </RelativeLayout>
 </layout>

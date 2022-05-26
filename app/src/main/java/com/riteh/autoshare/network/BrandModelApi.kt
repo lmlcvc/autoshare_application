@@ -12,11 +12,6 @@ interface BrandModelApi {
 
     @GET("getmodelsformake/{brand}?format=json")
     suspend fun getModelsByBrand(
-        // @Query("format") format: String
         @Path("brand") brand: String?
     ): ModelByBrandResponse
-
-    /*@GET("myObjects/{id}")
-    fun myObjectById(@Path("id") id: Int?, @Query("a_param") aParam: String?): Call<MyObject>*/
-
 }
