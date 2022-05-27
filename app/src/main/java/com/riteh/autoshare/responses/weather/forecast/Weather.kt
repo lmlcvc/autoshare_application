@@ -1,7 +1,5 @@
 package com.riteh.autoshare.responses.weather.forecast
 
-import com.google.gson.annotations.SerializedName
-
 data class Weather(
     val description: String,
     val icon: String,

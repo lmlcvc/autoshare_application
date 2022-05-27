@@ -136,6 +136,19 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="personal_information">Personal information</string>
+    <string name="card_information">Card information</string>
+    <string name="my_vehicles">My vehicles</string>
+    <string name="about_app">About App</string>
+    <string name="your_email">Your email</string>
+    <string name="your_password">Your password</string>
+    <string name="register">Register</string>
+    <string name="welcome_to_autoshare">Welcome to Autoshare</string>
+    <string name="not_a_member_yet">Not a member yet?</string>
+    <string name="register_now">Register now</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="become_a_part_of_the_autoshare_community">Become a part of the Autoshare community</string>
+    <string name="let_s_get_started">Let\'s get started</string>
     <string name="fuel_prices">Fuel prices</string>
     <string name="roads_traffic_info"><![CDATA[Roads & traffic info]]></string>
     <string name="sunrise">Sunrise</string>
@@ -152,18 +165,4 @@
     <string name="wind_icon">Wind icon</string>
     <string name="pressure_icon">Pressure icon</string>
     <string name="humidity_icon">Humidity icon</string>
-
-    <string name="personal_information">Personal information</string>
-    <string name="card_information">Card information</string>
-    <string name="my_vehicles">My vehicles</string>
-    <string name="about_app">About App</string>
-    <string name="your_email">Your email</string>
-    <string name="your_password">Your password</string>
-    <string name="register">Register</string>
-    <string name="welcome_to_autoshare">Welcome to Autoshare</string>
-    <string name="not_a_member_yet">Not a member yet?</string>
-    <string name="register_now">Register now</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="become_a_part_of_the_autoshare_community">Become a part of the Autoshare community</string>
-    <string name="let_s_get_started">Let\'s get started</string>
 </resources>
