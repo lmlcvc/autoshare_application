@@ -5,17 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.WeatherForecastAdapter
 import com.riteh.autoshare.data.api.APIRequest
-import com.riteh.autoshare.responses.weather.forecast.Current
+import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
 import kotlinx.android.synthetic.main.weather_fragment.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -26,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class WeatherFragment : Fragment() {
     private lateinit var viewModel: WeatherViewModel
     private var forecastList = mutableListOf<WeatherForecastItem>()
-    private lateinit var WeatherForecastItem: WeatherForecastItem
+    lateinit var WeatherCurrentItem: WeatherCurrentItem
     var apiKey = "72a2a76b30dd2c83d3e9ca25905faa9c"
     var latitude: String = ""
     var longitude: String = ""
@@ -53,12 +57,22 @@ class WeatherFragment : Fragment() {
         //Log.d("API  ", currentWather.toString())
         makeAPIRequest()
 
+        val view: View = inflater.inflate(R.layout.weather_fragment, container, false)
+        //WeatherCurrentItem.name = view.findViewById<>()
+        //Log.d("API  ", WeatherCurrentItem.name)
+        //WeatherCurrentItem.name = (WeatherCurrentItem) view.findViewById(R.id.address)
+        //val myTextView1 = (View)findViewById(R.id.address)
+        //myTextView1.setText(WeatherCurrentItem.name)
+        Log.d("name  ", WeatherCurrentItem.name)
+        return view
 
-        return inflater.inflate(R.layout.weather_fragment, container, false)
+
+       // return inflater.inflate(R.layout.weather_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("name1  ", WeatherCurrentItem.name)
 
         viewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
 
@@ -89,16 +103,17 @@ class WeatherFragment : Fragment() {
 
 
      GlobalScope.launch(Dispatchers.IO) {
-         val call: Call<WeatherForecastItem> = api.getCurrentWeather(latitude, longitude, apiKey)
+         val call: Call<WeatherCurrentItem> = api.getCurrentWeather(latitude, longitude, apiKey)
 
-         val response: Response<WeatherForecastItem> = call.execute()
-         val current: WeatherForecastItem? = response.body()
+         val response: Response<WeatherCurrentItem> = call.execute()
+         val current: WeatherCurrentItem? = response.body()
 
          try {
              if (current != null) {
-                 WeatherForecastItem = current
+                 WeatherCurrentItem = current
+
              }
-             Log.d("currentWather ", current!!.timezone)
+             Log.d("currentWather ", WeatherCurrentItem.name)
          }catch (e: Exception) {
              println(e.toString())
          }

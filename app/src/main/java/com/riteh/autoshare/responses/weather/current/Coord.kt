@@ -1,6 +1,6 @@
 package com.riteh.autoshare.responses.weather.current
 
 data class Coord(
-    val lat: Int,
-    val lon: Int
+    val lat: Float,
+    val lon: Float
 )

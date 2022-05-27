@@ -42,9 +42,9 @@ class WeatherActivity : AppCompatActivity() {
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 button.setOnClickListener {
-                    Log.d("Tu sam", place.name!!).toString()
-                    Log.d("Tu sam", place.latLng.latitude.toString())
-                    Log.d("Tu sam", place.latLng.longitude.toString())
+                    Log.d("name: ", place.name!!).toString()
+                    Log.d("latitude: ", place.latLng.latitude.toString())
+                    Log.d("longitude: ", place.latLng.longitude.toString())
 
                     val fragment: Fragment = WeatherFragment.newInstance(place.latLng.latitude.toString(),
                                             place.latLng.longitude.toString())

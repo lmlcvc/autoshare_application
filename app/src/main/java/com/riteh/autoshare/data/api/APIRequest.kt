@@ -1,5 +1,6 @@
 package com.riteh.autoshare.data.api
 
+import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.Current
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
 import io.reactivex.Observable
@@ -21,7 +22,7 @@ interface APIRequest {
     @GET("weather")
      fun getCurrentWeather(@Query("lat") lat: String?,
                            @Query("lon") lon: String?,
-                           @Query("appid") appid: String?): Call<WeatherForecastItem>
+                           @Query("appid") appid: String?): Call<WeatherCurrentItem>
 }
 
 

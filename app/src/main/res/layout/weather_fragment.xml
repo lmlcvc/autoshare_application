@@ -42,7 +42,7 @@
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DHAKA, BD"
+
                     android:textColor="@color/app_white"
                     android:textSize="22sp" />
 
