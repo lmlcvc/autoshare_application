@@ -14,6 +14,7 @@ import com.riteh.autoshare.adapters.WeatherForecastAdapter
 import com.riteh.autoshare.data.api.APIRequest
 import com.riteh.autoshare.responses.User
 import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
+import com.riteh.autoshare.responses.weather.forecast.Daily
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
 import com.riteh.autoshare.ui.home.MainActivity
 import kotlinx.android.synthetic.main.weather_fragment.*
@@ -31,7 +32,8 @@ import kotlin.math.roundToInt
 
 class WeatherFragment : Fragment() {
     private lateinit var viewModel: WeatherViewModel
-    private var forecastList = mutableListOf<WeatherForecastItem>()
+    private var forecastList = mutableListOf<Daily>()
+    private lateinit var allForecast: WeatherForecastItem
     private lateinit var WeatherCurrentItem: WeatherCurrentItem
     var apiKey = "72a2a76b30dd2c83d3e9ca25905faa9c"
     var latitude: String = ""
@@ -65,6 +67,7 @@ class WeatherFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         makeAPIRequest()
+        makeAPIRequest_week()
     }
 
 
@@ -76,13 +79,14 @@ class WeatherFragment : Fragment() {
 }
 
     private fun setUpRecyclerView() {
-        rv_days.layoutManager = GridLayoutManager(context, 2)
+        rv_days.layoutManager = GridLayoutManager(context, 1)
         rv_days.adapter = WeatherForecastAdapter(forecastList, requireContext())
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun makeAPIRequest() {
         val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+        //val apiKey = getString(R.string.MAPS_API_KEY)
         Log.d("BASE_URL ", BASE_URL)
 
         val api: APIRequest = Retrofit.Builder()
@@ -137,6 +141,42 @@ class WeatherFragment : Fragment() {
         val date = Date(totalSecs?.times(1000L) ?:0 )
         val sdf = SimpleDateFormat("HH:mm")
         return sdf.format(date)
+    }
+
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun makeAPIRequest_week() {
+        val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+        Log.d("BASE_URL ", BASE_URL)
+
+        val api: APIRequest = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+            .create(APIRequest::class.java)
+
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val call: Call<WeatherForecastItem> = api.getCurrentWeatherWeek(latitude, longitude, apiKey, units)
+
+            val response: Response<WeatherForecastItem> = call.execute()
+            val allForecast: WeatherForecastItem? = response.body()
+
+            try {
+
+                if (allForecast != null) {
+                    for (item in allForecast.daily) {
+                        forecastList.add(item)
+                        withContext(Dispatchers.Main) {
+                            setUpRecyclerView()
+                        }
+                    }
+                }
+            }catch (e: Exception) {
+                println(e.toString())
+            }
+        }
     }
 
 }

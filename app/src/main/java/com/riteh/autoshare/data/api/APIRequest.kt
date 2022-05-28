@@ -21,11 +21,11 @@ interface APIRequest {
                            @Query("appid") appid: String?,
                             @Query("units") units: String?): Call<WeatherCurrentItem>
 
-    @GET("forecast")
-     suspend fun getCurrentWeatherWeek(@Query("lat") lat: String?,
+    @GET("onecall")
+      fun getCurrentWeatherWeek(@Query("lat") lat: String?,
                           @Query("lon") lon: String?,
                           @Query("appid") appid: String?,
-                          @Query("exclude") exclude: String?,): Call<WeatherForecastItem>
+                          @Query("units") units: String?,): Call<WeatherForecastItem>
 }
 
 

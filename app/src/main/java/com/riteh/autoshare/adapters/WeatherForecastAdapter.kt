@@ -1,17 +1,23 @@
 package com.riteh.autoshare.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.riteh.autoshare.R
-import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
+import com.riteh.autoshare.responses.weather.forecast.Daily
 import kotlinx.android.synthetic.main.weather_days_layout.view.*
+import java.time.ZonedDateTime
+import java.util.*
+import kotlin.math.roundToInt
 
-class WeatherForecastAdapter(private var forecast: List<WeatherForecastItem>, val context: Context) :
+class WeatherForecastAdapter(private var forecast: List<Daily>, val context: Context) :
     RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
 
 
@@ -22,19 +28,29 @@ class WeatherForecastAdapter(private var forecast: List<WeatherForecastItem>, va
 
     override fun getItemCount(): Int {
         return forecast.size
-        // return 7
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // dummy values
+        /*
         holder.day.text = "Mon"
         holder.date.text = "Apr 18"
         holder.max.text = "20°C"
         holder.min.text = "22°C"
+         */
 
-        /*Glide.with(holder.icon)
-            .load(products[position].image)
-            .into(holder.icon)*/
+
+        holder.day.text = "Mon"
+        holder.date.text = "Apr 18"
+        holder.max.text = forecast[position].temp.max.roundToInt().toString() + "°C"
+        holder.min.text = forecast[position].temp.min.roundToInt().toString() + "°C"
+
+        val icon: String = forecast[position].weather.get(0).icon
+        val iconUrl = "http://openweathermap.org/img/w/$icon.png"
+        Glide.with(context)
+            .load(iconUrl)
+            .into(holder.icon)
+
     }
 
 
@@ -45,12 +61,18 @@ class WeatherForecastAdapter(private var forecast: List<WeatherForecastItem>, va
         val max: TextView = itemView.tv_max_temp
         val min: TextView = itemView.tv_min_temp
 
-        /*init {
-            itemView.setOnClickListener {
-                val intent = Intent(context, ProductDetailActivity::class.java)
-                intent.putExtra("EXTRA_PRODUCT", products[layoutPosition] as Serializable)
-                context.startActivity(intent)
-            }
-        }*/
+        init { }
+    }
+
+    private fun getDate(time_stamp_server: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = (time_stamp_server * 1000).toLong()
+
+        val year = calendar[Calendar.YEAR].toString()
+        val month = calendar[Calendar.MONTH].toString()
+        val day = calendar[Calendar.DAY_OF_MONTH].toString()
+
+
+        return day
     }
 }
