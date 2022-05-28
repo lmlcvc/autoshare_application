@@ -1,12 +1,11 @@
 package com.riteh.autoshare.ui.home.info
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,24 +15,25 @@ import com.riteh.autoshare.data.api.APIRequest
 import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
 import kotlinx.android.synthetic.main.weather_fragment.*
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.sql.Time
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class WeatherFragment : Fragment() {
     private lateinit var viewModel: WeatherViewModel
     private var forecastList = mutableListOf<WeatherForecastItem>()
-    lateinit var WeatherCurrentItem: WeatherCurrentItem
+    private lateinit var WeatherCurrentItem: WeatherCurrentItem
     var apiKey = "72a2a76b30dd2c83d3e9ca25905faa9c"
     var latitude: String = ""
     var longitude: String = ""
+    var units: String = "metric"
 
 
     companion object {
@@ -54,29 +54,20 @@ class WeatherFragment : Fragment() {
     ): View? {
         Log.d("latitude ", latitude)
         Log.d("longitude ", longitude)
-        //Log.d("API  ", currentWather.toString())
         makeAPIRequest()
 
-        val view: View = inflater.inflate(R.layout.weather_fragment, container, false)
-        //WeatherCurrentItem.name = view.findViewById<>()
-        //Log.d("API  ", WeatherCurrentItem.name)
-        //WeatherCurrentItem.name = (WeatherCurrentItem) view.findViewById(R.id.address)
-        //val myTextView1 = (View)findViewById(R.id.address)
-        //myTextView1.setText(WeatherCurrentItem.name)
-        Log.d("name  ", WeatherCurrentItem.name)
-        return view
-
-
-       // return inflater.inflate(R.layout.weather_fragment, container, false)
+       return inflater.inflate(R.layout.weather_fragment, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("name1  ", WeatherCurrentItem.name)
 
         viewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
 
-        setUpRecyclerView() // this call should be inside api call once api funcionality is set up
+        //setUpRecyclerView() // this call should be inside api call once api funcionality is set up
+
+
 }
 
     private fun setUpRecyclerView() {
@@ -86,13 +77,8 @@ class WeatherFragment : Fragment() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun makeAPIRequest() {
-
-        //val BASE_URL = "https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid="+apiKey
         val BASE_URL = "https://api.openweathermap.org/data/2.5/"
         Log.d("BASE_URL ", BASE_URL)
-
-
-
 
         val api: APIRequest = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -103,22 +89,52 @@ class WeatherFragment : Fragment() {
 
 
      GlobalScope.launch(Dispatchers.IO) {
-         val call: Call<WeatherCurrentItem> = api.getCurrentWeather(latitude, longitude, apiKey)
+         val call: Call<WeatherCurrentItem> = api.getCurrentWeather(latitude, longitude, apiKey, units)
 
          val response: Response<WeatherCurrentItem> = call.execute()
          val current: WeatherCurrentItem? = response.body()
 
          try {
              if (current != null) {
-                 WeatherCurrentItem = current
 
+
+                 withContext(Dispatchers.Main) {
+                     writeResponseValues(current)
+                     setUpRecyclerView()
+                 }
              }
-             Log.d("currentWather ", WeatherCurrentItem.name)
+
          }catch (e: Exception) {
              println(e.toString())
          }
-
      }
    }
+
+    @SuppressLint("SetTextI18n")
+    private fun writeResponseValues(current: WeatherCurrentItem) {
+
+        Log.d("temp ", current.main.temp.toString())
+        address.text = current.name + ", " + (current.sys?.country ?: "None")
+        temp.text = current.main.temp.toString() + "°C"
+        temp_min.text = current.main.temp_min.toString() + " / "
+        temp_max.text = current.main.temp_max.toString()
+        status.text = current.weather[0].description
+
+        sunrise.text = convertTime(current.sys?.sunrise)
+        sunset.text = convertTime(current.sys?.sunset)
+
+        humidity.text = current.main.humidity.toString() + " % "
+        pressure.text = current.main.pressure.toString()
+        wind.text = current.wind.speed.toString()
+
+        return
+    }
+
+    private fun convertTime(totalSecs: Int?): String? {
+
+        val date = Date(totalSecs?.times(1000L) ?:0 )
+        val sdf = SimpleDateFormat("HH:mm")
+        return sdf.format(date)
+    }
 
 }

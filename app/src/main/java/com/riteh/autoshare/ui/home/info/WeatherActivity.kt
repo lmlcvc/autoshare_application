@@ -50,7 +50,7 @@ class WeatherActivity : AppCompatActivity() {
                                             place.latLng.longitude.toString())
                     val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
-                    //TODO: pass latlng info to api call
+
                     transaction.replace(R.id.fragment_container, fragment)
                     transaction.addToBackStack(null)
                     transaction.commit()
