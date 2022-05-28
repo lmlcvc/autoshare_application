@@ -12,18 +12,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.WeatherForecastAdapter
 import com.riteh.autoshare.data.api.APIRequest
+import com.riteh.autoshare.responses.User
 import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
+import com.riteh.autoshare.ui.home.MainActivity
 import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.coroutines.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class WeatherFragment : Fragment() {
@@ -54,9 +57,14 @@ class WeatherFragment : Fragment() {
     ): View? {
         Log.d("latitude ", latitude)
         Log.d("longitude ", longitude)
-        makeAPIRequest()
+        //makeAPIRequest()
 
        return inflater.inflate(R.layout.weather_fragment, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        makeAPIRequest()
     }
 
 
@@ -64,14 +72,11 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
-
         //setUpRecyclerView() // this call should be inside api call once api funcionality is set up
-
-
 }
 
     private fun setUpRecyclerView() {
-        rv_days.layoutManager = GridLayoutManager(requireContext(), 1)
+        rv_days.layoutManager = GridLayoutManager(context, 2)
         rv_days.adapter = WeatherForecastAdapter(forecastList, requireContext())
     }
 
@@ -83,7 +88,6 @@ class WeatherFragment : Fragment() {
         val api: APIRequest = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(APIRequest::class.java)
 
@@ -97,10 +101,8 @@ class WeatherFragment : Fragment() {
          try {
              if (current != null) {
 
-
                  withContext(Dispatchers.Main) {
                      writeResponseValues(current)
-                     setUpRecyclerView()
                  }
              }
 
@@ -110,28 +112,28 @@ class WeatherFragment : Fragment() {
      }
    }
 
+
     @SuppressLint("SetTextI18n")
     private fun writeResponseValues(current: WeatherCurrentItem) {
 
-        Log.d("temp ", current.main.temp.toString())
         address.text = current.name + ", " + (current.sys?.country ?: "None")
-        temp.text = current.main.temp.toString() + "°C"
-        temp_min.text = current.main.temp_min.toString() + " / "
-        temp_max.text = current.main.temp_max.toString()
+        temp.text = (current.main.temp).roundToInt().toString() + "°C"
+        temp_min.text = (current.main.temp_min).roundToInt().toString() + "°C" + " / "
+        temp_max.text = (current.main.temp_max).roundToInt().toString() + "°C"
         status.text = current.weather[0].description
 
         sunrise.text = convertTime(current.sys?.sunrise)
         sunset.text = convertTime(current.sys?.sunset)
 
         humidity.text = current.main.humidity.toString() + " % "
-        pressure.text = current.main.pressure.toString()
-        wind.text = current.wind.speed.toString()
+        pressure.text = current.main.pressure.toString()  + " hPa"
+        wind.text = current.wind.speed.toString() + " m/s"
 
         return
     }
 
-    private fun convertTime(totalSecs: Int?): String? {
 
+    private fun convertTime(totalSecs: Int?): String? {
         val date = Date(totalSecs?.times(1000L) ?:0 )
         val sdf = SimpleDateFormat("HH:mm")
         return sdf.format(date)
