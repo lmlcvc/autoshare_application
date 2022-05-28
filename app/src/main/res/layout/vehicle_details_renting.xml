@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:backgroundTint="@color/app_white">
+
+  <LinearLayout
+      android:id="@+id/tv_title_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:background="@color/basic_red">
+
+    <ImageView
+        android:id="@+id/arrow_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_baseline_arrow_back_24" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/HeadingsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="20dp"
+        android:text="Car name"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+  </LinearLayout>
+
+  <ScrollView
+      android:id="@+id/car_scroll_view"
+      android:layout_height="0dp"
+      android:layout_width="match_parent"
+      android:layout_weight="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <ImageView
+          android:id="@+id/car_photos"
+          android:layout_width="match_parent"
+          android:layout_height="220dp"
+          android:layout_gravity="center|center_horizontal"
+          android:src="@drawable/ic_car_driving" />
+
+
+      <TextView
+          android:id="@+id/name_car"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/car_photos"
+          android:layout_marginTop="0dp"
+          android:text="Car name"
+          android:textColor="@color/black"
+          android:textSize="30dp"
+          android:textStyle="bold"
+          android:translationX="30dp" />
+
+      <TextView
+          android:id="@+id/car_year"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_below="@id/car_photos"
+          android:layout_marginStart="40dp"
+          android:layout_marginTop="15dp"
+          android:layout_toEndOf="@id/name_car"
+          android:text="year" />
+
+      <TextView
+          android:id="@+id/car_rating"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/name_car"
+          android:layout_marginStart="30dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="10dp"
+          android:drawablePadding="5dp"
+          android:text="5.0"
+          android:textColor="@color/black"
+          android:textSize="20sp"
+          android:textStyle="bold"
+          app:drawableStartCompat="@drawable/ic_baseline_grade_24" />
+
+      <ImageView
+          android:id="@+id/renter_box"
+          android:layout_width="300dp"
+          android:layout_height="61dp"
+          android:layout_below="@id/car_rating"
+          android:layout_centerInParent="true"
+          android:layout_marginTop="10dp"
+          android:layout_marginBottom="10dp"
+          android:src="@drawable/rounded_corners_box_darker_white" />
+
+      <TextView
+          android:id="@+id/renter_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignStart="@id/renter_box"
+          android:layout_alignTop="@id/renter_box"
+          android:layout_marginStart="20dp"
+          android:layout_marginTop="7dp"
+          android:text="Renter name"
+          android:textColor="@color/light_grey"
+          android:textSize="16sp" />
+
+      <TextView
+          android:id="@+id/renter_rating"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/renter_name"
+          android:layout_alignStart="@id/renter_name"
+          android:layout_marginTop="2dp"
+          android:layout_marginBottom="20dp"
+          android:drawablePadding="5dp"
+          android:text="5.0"
+          android:textColor="@color/black"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:drawableStartCompat="@drawable/ic_baseline_grade_24" />
+
+      <ImageView
+          android:id="@+id/renter_photo"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_alignTop="@id/renter_box"
+          android:layout_marginStart="280dp"
+          android:layout_marginTop="6dp"
+          android:src="@drawable/ic_baseline_person_24" />
+
+      <TextView
+          android:id="@+id/trip_summary"
+          android:layout_width="150dp"
+          android:layout_height="24dp"
+          android:layout_below="@+id/renter_box"
+          android:layout_alignStart="@id/renter_box"
+          android:layout_marginTop="20dp"
+          android:text="TRIP SUMMARY"
+          android:textColor="@color/basic_red"
+          android:textSize="18sp"
+          android:textStyle="bold" />
+
+      <ImageView
+          android:id="@+id/trip_summary_box"
+          android:layout_width="300dp"
+          android:layout_height="310dp"
+          android:layout_below="@id/trip_summary"
+          android:layout_centerInParent="true"
+          android:layout_marginTop="5dp"
+          android:src="@drawable/rounded_corners_box_red" />
+
+      <TextView
+          android:id="@+id/availability"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/trip_summary"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="Availability"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24" />
+
+      <TextView
+          android:id="@+id/location"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/availability"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="Location"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+
+      <TextView
+          android:id="@+id/seats"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/location"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="Seats"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_car_seat_svgrepo_com" />
+
+
+      <TextView
+          android:id="@+id/doors"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/seats"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="Doors"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_car_door_svgrepo" />
+
+
+      <TextView
+          android:id="@+id/hatchback"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/doors"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="27dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="hatchback"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_car_svgrepo_com" />
+
+      <TextView
+          android:id="@+id/gas"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/hatchback"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginStart="31dp"
+          android:layout_marginTop="25dp"
+          android:drawablePadding="40dp"
+          android:text="diesel"
+          android:textColor="@color/white"
+          android:textSize="18dp"
+          app:drawableStartCompat="@drawable/ic_gas_station_svgrepo" />
+
+      <TextView
+          android:id="@+id/label_features"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/trip_summary_box"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginTop="20dp"
+          android:text="FEATURES" />
+
+      <ImageView
+          android:id="@+id/features_box"
+          android:layout_width="300dp"
+          android:layout_height="61dp"
+          android:layout_below="@id/label_features"
+          android:layout_centerInParent="true"
+          android:src="@drawable/rounded_corners_box_darker_white" />
+
+      <TextView
+          android:id="@+id/label_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/features_box"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginTop="20dp"
+          android:text="DESCRIPTION" />
+
+      <ImageView
+          android:id="@+id/description_box"
+          android:layout_width="300dp"
+          android:layout_height="61dp"
+          android:layout_below="@id/label_description"
+          android:layout_centerInParent="true"
+          android:src="@drawable/rounded_corners_box_darker_white" />
+
+      <TextView
+          android:id="@+id/label_reviews"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/description_box"
+          android:layout_alignStart="@id/trip_summary"
+          android:layout_marginTop="20dp"
+          android:text="REVIEWS" />
+
+      <ImageView
+          android:id="@+id/reviews_box"
+          android:layout_width="300dp"
+          android:layout_height="61dp"
+          android:layout_below="@id/label_reviews"
+          android:layout_centerInParent="true"
+          android:src="@drawable/rounded_corners_box_darker_white" />
+
+    </RelativeLayout>
+
+  </ScrollView>
+
+  <RelativeLayout
+      android:id="@+id/bottom_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/light_grey">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
+      <TextView
+          android:id="@+id/price"
+          style="@style/HeadingsStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="8dp"
+          android:layout_marginStart="20dp"
+          android:text="400"
+          android:textColor="@color/white"
+          android:textStyle="bold"
+          android:textSize="25sp"/>
+
+      <TextView
+          android:id="@+id/currency"
+          style="@style/HeadingsStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="8dp"
+          android:layout_marginStart="5dp"
+          android:text="HRK/day"
+          android:textColor="@color/white"
+          android:textStyle="bold"
+          android:textSize="25sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/light_grey"
+        android:drawableEnd="@drawable/ic_baseline_chevron_right_24"
+        android:text="Continue" />
+  </RelativeLayout>
+
+</LinearLayout>
