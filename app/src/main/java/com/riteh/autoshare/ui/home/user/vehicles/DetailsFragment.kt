@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -21,11 +22,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
+import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.databinding.FragmentDetailsBinding
+import com.riteh.autoshare.network.VehicleCreateApi
 import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.catch
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.util.regex.Pattern
+import kotlinx.coroutines.flow.collect
 
 
 class DetailsFragment : Fragment() {
@@ -57,6 +63,24 @@ class DetailsFragment : Fragment() {
     }
 
 
+    private suspend fun appendUserIdToVehicle(context: VehicleAddActivity) {
+        val userPreferences = UserPreferences(context)
+
+        GlobalScope.launch(
+            Dispatchers.IO
+        ) {
+            userPreferences.getUserFromDataStore().catch { e ->
+                e.printStackTrace()
+            }.collect {
+                withContext(Dispatchers.Main) {
+                    sharedViewModel.setOwnerID(it.id)
+                    sharedViewModel.createVehicle()
+                }
+            }
+        }
+    }
+
+
     private fun setOnClickListeners() {
         iv_back.setOnClickListener {
             // navigate back
@@ -67,7 +91,6 @@ class DetailsFragment : Fragment() {
         }
 
         button.setOnClickListener {
-            // TODO: reformatirati datum u yyyy-mm-dd
             sharedViewModel.setDetails(
                 et_seats.text.toString(),
                 et_doors.text.toString(),
@@ -77,6 +100,13 @@ class DetailsFragment : Fragment() {
                 selectedImageBase64,
                 et_description.text.toString()
             )
+
+            runBlocking {
+                async {
+                    appendUserIdToVehicle(requireActivity() as VehicleAddActivity)
+                    // sharedViewModel.createVehicle()
+                }
+            }
 
             findNavController().navigate(R.id.action_detailsFragment_to_vehicleAddingCompletedFragment)
         }
@@ -251,7 +281,7 @@ class DetailsFragment : Fragment() {
 
 
     /**
-     * Load image URI and perform necessary UI changes.
+     * Load image URI, apply default resolution and perform necessary UI changes.
      */
     private var selectedImageHandler =
         registerForActivityResult(StartActivityForResult()) { result: ActivityResult ->
@@ -261,8 +291,6 @@ class DetailsFragment : Fragment() {
                     val selectedImageUri: Uri? = data.data
 
                     try {
-                        // TODO: image resolution
-
                         val selectedImageBitmap = MediaStore.Images.Media.getBitmap(
                             requireActivity().contentResolver,
                             selectedImageUri
