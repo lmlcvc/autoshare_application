@@ -1,11 +1,21 @@
 package com.riteh.autoshare.ui.home.user.vehicles
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,6 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentDetailsBinding
 import kotlinx.android.synthetic.main.fragment_details.*
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.util.regex.Pattern
 
 
@@ -21,6 +33,9 @@ class DetailsFragment : Fragment() {
     private var binding: FragmentDetailsBinding? = null
 
     private val sharedViewModel: VehicleInfoViewModel by activityViewModels()
+
+    val SELECT_PICTURE = 200
+    private lateinit var selectedImageBase64: String
 
 
     override fun onCreateView(
@@ -42,9 +57,6 @@ class DetailsFragment : Fragment() {
     }
 
 
-    /**
-     * Set navigation click listeners.
-     */
     private fun setOnClickListeners() {
         iv_back.setOnClickListener {
             // navigate back
@@ -55,25 +67,25 @@ class DetailsFragment : Fragment() {
         }
 
         button.setOnClickListener {
-            // reformatirati datum u yyyy-mm-dd
+            // TODO: reformatirati datum u yyyy-mm-dd
+            sharedViewModel.setDetails(
+                et_seats.text.toString(),
+                et_doors.text.toString(),
+                et_year.text.toString(),
+                et_license.text.toString(),
+                et_expiration.text.toString(),
+                selectedImageBase64,
+                et_description.text.toString()
+            )
 
             findNavController().navigate(R.id.action_detailsFragment_to_vehicleAddingCompletedFragment)
         }
+
+        btn_add_image.setOnClickListener {
+            loadImageFromGallery()
+        }
     }
 
-
-    /**
-     * Validate if date matches DD-MM-YYYY pattern.
-     *
-     * @return True if yes
-     */
-    private fun dateIsValid(date: String): Boolean {
-        val pattern: Pattern = Pattern.compile(
-            "^\\d{2}-\\d{2}-\\d{4}$"
-        )
-
-        return pattern.matcher(date).matches()
-    }
 
     /**
      * Set listeners for editable items.
@@ -138,7 +150,7 @@ class DetailsFragment : Fragment() {
 
 
     /**
-     * Check if required text input fields have been filled and change button functionality accordingly.
+     * Check if required input fields have been filled and change button functionality accordingly.
      */
     private fun checkRequiredInputs() {
         if (et_seats.text.toString().isNotEmpty()
@@ -146,29 +158,13 @@ class DetailsFragment : Fragment() {
             && et_year.text.toString().isNotEmpty()
             && et_license.text.toString().isNotEmpty()
             && dateIsValid(et_expiration.text.toString())
+            && this::selectedImageBase64.isInitialized
         ) {
             button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.basic_red))
             button.isClickable = true
         } else {
             button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_grey))
             button.isClickable = false
-        }
-    }
-
-
-    /**
-     * Format license string to be uppercase and contain only alphanumeric characters.
-     * Handle moving the cursor to end of string when setText is applied.
-     */
-    private fun applyLicenseFormatting() {
-        val currentLicenseText = et_license.text.toString()
-        if (!currentLicenseText[currentLicenseText.lastIndex].isLetterOrDigit()
-            && currentLicenseText.lastIndex > -1
-        ) {
-            val tmpLicenseText = et_license.text.toString().dropLast(1)
-
-            et_license.setText(tmpLicenseText)
-            et_license.setSelection(et_license.length())
         }
     }
 
@@ -194,6 +190,134 @@ class DetailsFragment : Fragment() {
             else -> return
 
         }
+    }
+
+
+    /**
+     * Format license string to be uppercase and contain only alphanumeric characters.
+     * Handle moving the cursor to end of string when setText is applied.
+     */
+    private fun applyLicenseFormatting() {
+        val currentLicenseText = et_license.text.toString()
+        if (!currentLicenseText[currentLicenseText.lastIndex].isLetterOrDigit()
+            && currentLicenseText.lastIndex > -1
+        ) {
+            val tmpLicenseText = et_license.text.toString().dropLast(1)
+
+            et_license.setText(tmpLicenseText)
+            et_license.setSelection(et_license.length())
+        }
+    }
+
+
+    /**
+     * @return if date matches DD-MM-YYYY pattern
+     */
+    private fun dateIsValid(date: String): Boolean {
+        val pattern: Pattern = Pattern.compile(
+            "^\\d{2}-\\d{2}-\\d{4}$"
+        )
+
+        return pattern.matcher(date).matches()
+    }
+
+
+    /**
+     * Specify intent for loading image and launch handler.
+     */
+    private fun loadImageFromGallery() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        selectedImageHandler.launch(intent)
+    }
+
+
+    /**
+     * Triggered when the user selects an image from gallery.
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+                val selectedImageUri: Uri? = data?.data
+                if (null != selectedImageUri) {
+                    iv_add_image.setImageURI(selectedImageUri)
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Load image URI and perform necessary UI changes.
+     */
+    private var selectedImageHandler =
+        registerForActivityResult(StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                if (data != null && data.data != null) {
+                    val selectedImageUri: Uri? = data.data
+
+                    try {
+                        // TODO: image resolution
+
+                        val selectedImageBitmap = MediaStore.Images.Media.getBitmap(
+                            requireActivity().contentResolver,
+                            selectedImageUri
+                        )
+
+                        val maxSize = 720
+                        val outWidth: Int
+                        val outHeight: Int
+                        if (selectedImageBitmap.width > selectedImageBitmap.height) {
+                            outWidth = maxSize
+                            outHeight =
+                                selectedImageBitmap.height * maxSize / selectedImageBitmap.width
+                        } else {
+                            outHeight = maxSize
+                            outWidth =
+                                selectedImageBitmap.width * maxSize / selectedImageBitmap.height
+                        }
+
+                        val resizedBitmap =
+                            Bitmap.createScaledBitmap(
+                                selectedImageBitmap,
+                                outWidth,
+                                outHeight,
+                                false
+                            )
+
+                        selectedImageBase64 = encodeBitmapToBase64(resizedBitmap)
+
+                        iv_added_image.setImageBitmap(selectedImageBitmap)
+                        iv_added_image.visibility = VISIBLE
+                        iv_add_image.visibility = INVISIBLE
+                        tv_add_image.visibility = INVISIBLE
+
+                        btn_add_image.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.light_grey
+                            )
+                        )
+                        btn_add_image.text = getString(R.string.change)
+
+                        checkRequiredInputs()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+
+
+    private fun encodeBitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
 

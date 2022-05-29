@@ -214,7 +214,17 @@
                         android:layout_marginStart="3dp"
                         android:src="@drawable/ic_add_image" />
 
+                    <ImageView
+                        android:id="@+id/iv_added_image"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:src="@drawable/ic_add_image"
+                        android:visibility="invisible" />
+
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_add_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -231,9 +241,8 @@
                         android:text="Upload"
                         android:textAllCaps="false"
                         android:textSize="12sp"
-                        android:textStyle="bold"
                         app:background="@drawable/rounded_corners_box_white"
-                        app:backgroundTint="@color/light_grey" />
+                        app:backgroundTint="@color/light_red" />
                 </RelativeLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

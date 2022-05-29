@@ -82,7 +82,7 @@ class ModelFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val response = api.getModelsByBrand(sharedViewModel.brand.value.toString())
+                val response = api.getModelsByBrand(sharedViewModel.vehicle.value?.brand)
 
                 modelsList = response.Results
                 modelsList.forEach { model ->

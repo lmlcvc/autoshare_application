@@ -47,7 +47,6 @@ class ModelListAdapter(
         init {
             itemView.setOnClickListener { view ->
                 sharedViewModel.setModel(title.text.toString())
-                Log.v("VM value", sharedViewModel.model.value.toString())
 
                 view.findNavController().navigate(R.id.action_modelFragment_to_detailsFragment)
             }
