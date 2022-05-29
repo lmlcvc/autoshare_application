@@ -3,25 +3,20 @@ package com.riteh.autoshare.ui.home.info
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.WeatherForecastAdapter
 import com.riteh.autoshare.data.api.APIRequest
-import com.riteh.autoshare.responses.User
 import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.Daily
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
-import com.riteh.autoshare.ui.home.MainActivity
 import kotlinx.android.synthetic.main.weather_fragment.*
 import kotlinx.coroutines.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -33,7 +28,6 @@ import kotlin.math.roundToInt
 
 
 class WeatherFragment : Fragment() {
-    private lateinit var viewModel: WeatherViewModel
     private var forecastList = mutableListOf<Daily>()
     private lateinit var allForecast: WeatherForecastItem
     private lateinit var WeatherCurrentItem: WeatherCurrentItem
@@ -72,7 +66,6 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
     }
 
     private fun setUpRecyclerView() {
@@ -139,8 +132,9 @@ class WeatherFragment : Fragment() {
     }
 
 
-    private fun convertTime(totalSecs: Int?): String? {
-        val date = Date(totalSecs?.times(1000L) ?: 0)
+    @SuppressLint("SimpleDateFormat")
+    private fun convertTime(epochSeconds: Long?): String? {
+        val date = Date(epochSeconds?.times(1000) ?: 0)
         val sdf = SimpleDateFormat("HH:mm")
         return sdf.format(date)
     }

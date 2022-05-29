@@ -25,14 +25,11 @@ import java.io.InputStream
 
 
 class WeatherActivity : AppCompatActivity() {
-    private lateinit var viewModel: WeatherViewModel
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
-
-        viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
 
         initPlacesFragment()
         setUpListeners()
@@ -43,11 +40,12 @@ class WeatherActivity : AppCompatActivity() {
             override fun onPlaceSelected(place: Place) {
                 button.setOnClickListener {
                     Log.d("name: ", place.name!!).toString()
-                    Log.d("latitude: ", place.latLng.latitude.toString())
-                    Log.d("longitude: ", place.latLng.longitude.toString())
+                    Log.d("latitude: ", place.latLng?.latitude.toString())
+                    Log.d("longitude: ", place.latLng?.longitude.toString())
 
-                    val fragment: Fragment = WeatherFragment.newInstance(place.latLng.latitude.toString(),
-                                            place.latLng.longitude.toString())
+                    val fragment: Fragment = WeatherFragment.newInstance(
+                        place.latLng!!.latitude.toString(),
+                        place.latLng!!.longitude.toString())
                     val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
 
