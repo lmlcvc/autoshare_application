@@ -8,7 +8,7 @@ data class WeatherCurrentItem(
     @SerializedName("clouds") val clouds: Clouds,
     @SerializedName("cod") val cod: Int,
     @SerializedName("coord") val coord: Coord,
-    @SerializedName("dt") val dt: Int,
+    @SerializedName("dt") val dt: Long,
     @SerializedName("id") val id: Int,
     @SerializedName("main") val main: Main,
     @SerializedName("name") var name: String,

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Daily(
     @SerializedName("clouds") val clouds: Int,
     @SerializedName("dew_point") val dew_point: Double,
-    @SerializedName("dt") val dt: Int,
+    @SerializedName("dt") val dt: Long,
     @SerializedName("feels_like") val feels_like: FeelsLike,
     @SerializedName("humidity") val humidity: Int,
     @SerializedName("moon_phase") val moon_phase: Double,

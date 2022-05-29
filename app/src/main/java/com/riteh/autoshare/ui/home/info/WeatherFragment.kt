@@ -1,6 +1,7 @@
 package com.riteh.autoshare.ui.home.info
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
+import java.time.ZoneId
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -35,14 +37,13 @@ class WeatherFragment : Fragment() {
     private var forecastList = mutableListOf<Daily>()
     private lateinit var allForecast: WeatherForecastItem
     private lateinit var WeatherCurrentItem: WeatherCurrentItem
-    var apiKey = "72a2a76b30dd2c83d3e9ca25905faa9c"
     var latitude: String = ""
     var longitude: String = ""
     var units: String = "metric"
 
 
     companion object {
-        fun newInstance(latitude: String, longitude: String) : WeatherFragment {
+        fun newInstance(latitude: String, longitude: String): WeatherFragment {
             val fragment = WeatherFragment()
 
             fragment.latitude = latitude
@@ -57,17 +58,14 @@ class WeatherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("latitude ", latitude)
-        Log.d("longitude ", longitude)
-        //makeAPIRequest()
-
-       return inflater.inflate(R.layout.weather_fragment, container, false)
+        return inflater.inflate(R.layout.weather_fragment, container, false)
     }
+
 
     override fun onResume() {
         super.onResume()
         makeAPIRequest()
-        makeAPIRequest_week()
+        makeAPIRequestWeek()
     }
 
 
@@ -75,8 +73,7 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
-        //setUpRecyclerView() // this call should be inside api call once api funcionality is set up
-}
+    }
 
     private fun setUpRecyclerView() {
         rv_days.layoutManager = GridLayoutManager(context, 1)
@@ -86,8 +83,7 @@ class WeatherFragment : Fragment() {
     @OptIn(DelicateCoroutinesApi::class)
     private fun makeAPIRequest() {
         val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-        //val apiKey = getString(R.string.MAPS_API_KEY)
-        Log.d("BASE_URL ", BASE_URL)
+        val apiKey = getString(R.string.WEATHER_API_KEY)
 
         val api: APIRequest = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -95,30 +91,36 @@ class WeatherFragment : Fragment() {
             .build()
             .create(APIRequest::class.java)
 
+        GlobalScope.launch(Dispatchers.IO) {
+            val call: Call<WeatherCurrentItem> =
+                api.getCurrentWeather(latitude, longitude, apiKey, units)
 
-     GlobalScope.launch(Dispatchers.IO) {
-         val call: Call<WeatherCurrentItem> = api.getCurrentWeather(latitude, longitude, apiKey, units)
+            val response: Response<WeatherCurrentItem> = call.execute()
+            val current: WeatherCurrentItem? = response.body()
 
-         val response: Response<WeatherCurrentItem> = call.execute()
-         val current: WeatherCurrentItem? = response.body()
+            try {
+                if (current != null) {
 
-         try {
-             if (current != null) {
-
-                 withContext(Dispatchers.Main) {
-                     writeResponseValues(current)
-                 }
-             }
-
-         }catch (e: Exception) {
-             println(e.toString())
-         }
-     }
-   }
+                    withContext(Dispatchers.Main) {
+                        writeResponseValues(current)
+                    }
+                }
+            } catch (e: Exception) {
+                println(e.toString())
+            }
+        }
+    }
 
 
     @SuppressLint("SetTextI18n")
     private fun writeResponseValues(current: WeatherCurrentItem) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            updated_at.text = java.time.format.DateTimeFormatter.ofPattern("LLL d, KK:mm a")
+                .withLocale(Locale.UK)
+                .withZone(ZoneId.of("UTC"))
+                .format(java.time.Instant.ofEpochSecond(current.dt))
+        }
 
         address.text = current.name + ", " + (current.sys?.country ?: "None")
         temp.text = (current.main.temp).roundToInt().toString() + "°C"
@@ -130,7 +132,7 @@ class WeatherFragment : Fragment() {
         sunset.text = convertTime(current.sys?.sunset)
 
         humidity.text = current.main.humidity.toString() + " % "
-        pressure.text = current.main.pressure.toString()  + " hPa"
+        pressure.text = current.main.pressure.toString() + " hPa"
         wind.text = current.wind.speed.toString() + " m/s"
 
         return
@@ -138,16 +140,16 @@ class WeatherFragment : Fragment() {
 
 
     private fun convertTime(totalSecs: Int?): String? {
-        val date = Date(totalSecs?.times(1000L) ?:0 )
+        val date = Date(totalSecs?.times(1000L) ?: 0)
         val sdf = SimpleDateFormat("HH:mm")
         return sdf.format(date)
     }
 
 
     @OptIn(DelicateCoroutinesApi::class)
-    private fun makeAPIRequest_week() {
+    private fun makeAPIRequestWeek() {
         val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-        Log.d("BASE_URL ", BASE_URL)
+        val apiKey = getString(R.string.WEATHER_API_KEY)
 
         val api: APIRequest = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -158,25 +160,25 @@ class WeatherFragment : Fragment() {
 
 
         GlobalScope.launch(Dispatchers.IO) {
-            val call: Call<WeatherForecastItem> = api.getCurrentWeatherWeek(latitude, longitude, apiKey, units)
+            val call: Call<WeatherForecastItem> =
+                api.getCurrentWeatherWeek(latitude, longitude, apiKey, units)
 
             val response: Response<WeatherForecastItem> = call.execute()
             val allForecast: WeatherForecastItem? = response.body()
 
             try {
-
                 if (allForecast != null) {
                     for (item in allForecast.daily) {
                         forecastList.add(item)
-                        withContext(Dispatchers.Main) {
-                            setUpRecyclerView()
-                        }
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        setUpRecyclerView()
                     }
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 println(e.toString())
             }
         }
     }
-
 }

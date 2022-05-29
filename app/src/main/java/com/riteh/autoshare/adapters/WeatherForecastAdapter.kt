@@ -2,6 +2,7 @@ package com.riteh.autoshare.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +14,13 @@ import com.bumptech.glide.Glide
 import com.riteh.autoshare.R
 import com.riteh.autoshare.responses.weather.forecast.Daily
 import kotlinx.android.synthetic.main.weather_days_layout.view.*
-import java.time.ZonedDateTime
+import kotlinx.android.synthetic.main.weather_fragment.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.ZoneId
 import java.util.*
 import kotlin.math.roundToInt
+
 
 class WeatherForecastAdapter(private var forecast: List<Daily>, val context: Context) :
     RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
@@ -32,16 +37,21 @@ class WeatherForecastAdapter(private var forecast: List<Daily>, val context: Con
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        /*
-        holder.day.text = "Mon"
-        holder.date.text = "Apr 18"
-        holder.max.text = "20°C"
-        holder.min.text = "22°C"
-         */
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            holder.date.text= java.time.format.DateTimeFormatter.ofPattern("MMM d")
+                .withLocale(Locale.UK)
+                .withZone(ZoneId.of("UTC"))
+                .format(java.time.Instant.ofEpochSecond(forecast[position].dt))
+        }
 
-        holder.day.text = "Mon"
-        holder.date.text = "Apr 18"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            holder.day.text = java.time.format.DateTimeFormatter.ofPattern("EEE")
+                .withLocale(Locale.UK)
+                .withZone(ZoneId.of("UTC"))
+                .format(java.time.Instant.ofEpochSecond(forecast[position].dt))
+        }
+
         holder.max.text = forecast[position].temp.max.roundToInt().toString() + "°C"
         holder.min.text = forecast[position].temp.min.roundToInt().toString() + "°C"
 
@@ -62,17 +72,5 @@ class WeatherForecastAdapter(private var forecast: List<Daily>, val context: Con
         val min: TextView = itemView.tv_min_temp
 
         init { }
-    }
-
-    private fun getDate(time_stamp_server: Int): String {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = (time_stamp_server * 1000).toLong()
-
-        val year = calendar[Calendar.YEAR].toString()
-        val month = calendar[Calendar.MONTH].toString()
-        val day = calendar[Calendar.DAY_OF_MONTH].toString()
-
-
-        return day
     }
 }
