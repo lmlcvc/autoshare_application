@@ -1,7 +1,7 @@
 package com.riteh.autoshare.data.dataholders
 
-
-data class VehicleListItem(
+data class CarListItem(
     val name: String,
-    val year: Int
+    val price: String,
+    val star: String
 )

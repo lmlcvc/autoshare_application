@@ -65,13 +65,13 @@ class UserPreferences(context: Context) {
     }
 
 
-    fun getUserFromDataStore() : Flow<User> = dataStore.data.map { preferences ->
+    fun getUserFromDataStore(): Flow<User> = dataStore.data.map { preferences ->
         User(
             id = preferences[ID]?.toInt() ?: -1,
             email = preferences[EMAIL] ?: "",
             name = preferences[NAME] ?: "",
             surname = preferences[SURNAME] ?: "",
-            date_of_birth = Date(2000-1900, 0, 1), // TODO: fix when DOB & license fields added
+            date_of_birth = Date(2000 - 1900, 0, 1), // TODO: fix when DOB & license fields added
             license_id = "24543643",
             renter_avg_rating = preferences[RENTER_AVG_RATING]?.toDouble() ?: 0.0,
             rentee_avg_rating = preferences[RENTEE_AVG_RATING]?.toDouble() ?: 0.0,

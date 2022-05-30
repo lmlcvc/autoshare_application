@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_corners_box_gray">
+
+        <ImageView
+            android:id="@+id/picture_car"
+            android:layout_width="1000dp"
+            android:layout_height="100dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/picture_car"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/light_grey"
+            android:paddingTop="6dp"
+            android:src="@drawable/line_horizontal" />
+
+
+        <TextView
+            android:id="@+id/car_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/picture_car"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="5sp"
+            android:text="ime auta"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/car_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/car_name"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="ocijena"
+
+            android:textColor="@color/basic_grey"
+            app:drawableLeftCompat="@drawable/ic_baseline_star_rate_24" />
+
+        <TextView
+            android:id="@+id/car_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/car_name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="cijena/danu"
+            android:textColor="@color/basic_red" />
+    </RelativeLayout>
+
+</LinearLayout>

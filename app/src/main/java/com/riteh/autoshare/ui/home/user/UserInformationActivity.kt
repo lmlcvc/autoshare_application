@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.responses.User
-import com.riteh.autoshare.ui.user.UserUpdateActivity
 import kotlinx.android.synthetic.main.activity_user_information.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
