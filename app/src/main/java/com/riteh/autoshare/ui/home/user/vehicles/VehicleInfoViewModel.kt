@@ -20,7 +20,6 @@ import java.util.*
 class VehicleInfoViewModel : ViewModel() {
 
     private val api = RemoteDataSource().buildApi(VehicleCreateApi::class.java)
-    private val vehicleCreateResponse: MutableLiveData<Vehicle> = MutableLiveData()
 
     val vehicle: MutableLiveData<Vehicle> =
         MutableLiveData<Vehicle>(Vehicle())
@@ -60,7 +59,7 @@ class VehicleInfoViewModel : ViewModel() {
     }
 
     suspend fun createVehicle() {
-        vehicleCreateResponse.value = api.createVehicle(
+        api.createVehicle(
             vehicle.value?.ownerID!!,
             vehicle.value?.brand!!,
             vehicle.value?.model!!,
@@ -76,8 +75,6 @@ class VehicleInfoViewModel : ViewModel() {
             vehicle.value?.costPerKilometer!!,
             vehicle.value?.ratingAvg!!
         )
-
-        Log.d("tata vozila", vehicleCreateResponse.value.toString())
     }
 
 }
