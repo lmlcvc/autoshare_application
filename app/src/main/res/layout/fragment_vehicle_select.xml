@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.add.VehicleSelectFragment">
+
+    <data>
+
+        <variable
+            name="vehicleSelectFragment"
+            type="com.riteh.autoshare.ui.home.add.VehicleSelectFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_white">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_white">
+
+            <RelativeLayout
+                android:id="@+id/rl_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:tint="@color/basic_red" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_close"
+                    android:background="@color/app_white">
+
+                    <TextView
+                        android:id="@+id/tv_heading"
+                        style="@style/HeadingsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Select vehicle for rent"
+                        android:textStyle="normal" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_heading"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="15dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_vehicles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            tools:itemCount="6"
+                            tools:listitem="@layout/vehicle_rent_layout" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>
