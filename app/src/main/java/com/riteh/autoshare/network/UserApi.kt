@@ -8,7 +8,6 @@ import java.util.*
 
 
 interface UserApi {
-
     @FormUrlEncoded
     @POST("users/{user_id}")
     suspend fun userUpdate(

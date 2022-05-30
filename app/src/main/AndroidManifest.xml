@@ -14,13 +14,13 @@
         android:theme="@style/Theme.Autoshare"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.home.user.vehicles.VehicleExtraInfoActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.home.user.vehicles.VehicleAddActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.user.vehicles.VehicleListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.search.CarsListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.info.FuelPricesActivity"
