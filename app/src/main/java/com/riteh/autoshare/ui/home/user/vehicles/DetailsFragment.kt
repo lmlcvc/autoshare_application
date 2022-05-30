@@ -229,8 +229,8 @@ class DetailsFragment : Fragment() {
      */
     private fun applyLicenseFormatting() {
         val currentLicenseText = et_license.text.toString()
-        if (!currentLicenseText[currentLicenseText.lastIndex].isLetterOrDigit()
-            && currentLicenseText.lastIndex > -1
+        if (currentLicenseText.lastIndex >= 0
+            && !currentLicenseText[currentLicenseText.lastIndex].isLetterOrDigit()
         ) {
             val tmpLicenseText = et_license.text.toString().dropLast(1)
 
