@@ -76,8 +76,6 @@ class UserPreferences(context: Context) {
             renter_avg_rating = preferences[RENTER_AVG_RATING]?.toDouble() ?: 0.0,
             rentee_avg_rating = preferences[RENTEE_AVG_RATING]?.toDouble() ?: 0.0,
         )
-
-        // preferences[EMAIL]?.let { it1 -> Log.i("getuserfromdatastore", it1) }
     }
 }
 

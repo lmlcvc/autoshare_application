@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.user.vehicles.DetailsFragment">
+
+    <data>
+
+        <variable
+            name="detailsFragment"
+            type="com.riteh.autoshare.ui.home.user.vehicles.DetailsFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/basic_red" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/basic_red" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_back"
+            android:layout_marginBottom="100dp"
+            android:background="@color/app_white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tv_heading"
+                    style="@style/HeadingsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Add a few more details about your vehicle"
+                    android:textStyle="normal" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_seats_doors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_heading"
+                    android:layout_marginTop="20dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/app_white"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_seats"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Seats"
+                            app:startIconDrawable="@drawable/ic_seat_24"
+                            app:startIconTint="@color/basic_red">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_seats"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_weight="1"
+                        android:background="@color/app_white"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_doors"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Doors"
+                            app:startIconDrawable="@drawable/ic_door"
+                            app:startIconTint="@color/basic_red">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_doors"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_year"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_seats_doors"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Manufacture year"
+                    app:placeholderText="e.g. 2014"
+                    app:startIconDrawable="@drawable/ic_baseline_construction_24"
+                    app:startIconTint="@color/basic_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="4" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_license"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/til_year"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="License plate"
+                    app:placeholderText="e.g. ZG690PP"
+                    app:startIconDrawable="@drawable/ic_baseline_directions_car_24"
+                    app:startIconTint="@color/basic_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_license"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="12" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_expiration"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/til_license"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Registered until (DD-MM-YYYY)"
+                    app:placeholderText="e.g. 11-05-2023"
+                    app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+                    app:startIconTint="@color/basic_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_expiration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date"
+                        android:maxLength="10" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/til_expiration"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:id="@+id/iv_add_image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:src="@drawable/ic_add_image" />
+
+                    <ImageView
+                        android:id="@+id/iv_added_image"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:src="@drawable/ic_add_image"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_add_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@id/iv_add_image"
+                        android:text="Image"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_add_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="Upload"
+                        android:textAllCaps="false"
+                        android:textSize="12sp"
+                        app:background="@drawable/rounded_corners_box_white"
+                        app:backgroundTint="@color/light_red" />
+                </RelativeLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rl_image"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Description (optional)"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="500">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:gravity="top"
+                        android:inputType="textNoSuggestions|textMultiLine"
+                        android:maxLength="500" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/button"
+            style="@style/ButtonsStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/light_grey"
+            android:text="Save vehicle" />
+
+    </RelativeLayout>
+</layout>

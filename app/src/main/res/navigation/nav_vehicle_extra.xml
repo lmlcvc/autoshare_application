@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_vehicle_extra"
+    app:startDestination="@id/extraInfoSelectableFragment">
+
+    <fragment
+        android:id="@+id/extraInfoSelectableFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.ExtraInfoSelectableFragment"
+        android:label="fragment_extra_info_selectable"
+        tools:layout="@layout/fragment_extra_info_selectable" >
+        <action
+            android:id="@+id/action_extraInfoSelectableFragment_to_extraInfoFillInFragment"
+            app:destination="@id/extraInfoFillInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/extraInfoFillInFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.ExtraInfoFillInFragment"
+        android:label="fragment_extra_info_fill_in"
+        tools:layout="@layout/fragment_extra_info_fill_in" >
+        <action
+            android:id="@+id/action_extraInfoFillInFragment_to_extraInfoBooleansFragment"
+            app:destination="@id/extraInfoBooleansFragment" />
+        <action
+            android:id="@+id/action_extraInfoFillInFragment_to_extraInfoSelectableFragment"
+            app:destination="@id/extraInfoSelectableFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/extraInfoBooleansFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.ExtraInfoBooleansFragment"
+        android:label="fragment_extra_info_booleans"
+        tools:layout="@layout/fragment_extra_info_booleans" >
+        <action
+            android:id="@+id/action_extraInfoBooleansFragment_to_extraInfoFillInFragment"
+            app:destination="@id/extraInfoFillInFragment" />
+    </fragment>
+</navigation>
