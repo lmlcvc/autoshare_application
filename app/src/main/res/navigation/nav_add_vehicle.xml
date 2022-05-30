@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_add_vehicle"
+    app:startDestination="@id/brandFragment">
+
+    <fragment
+        android:id="@+id/brandFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.BrandFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_brand">
+        <action
+            android:id="@+id/action_brandFragment_to_modelFragment"
+            app:destination="@id/modelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modelFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.ModelFragment"
+        android:label="fragment_model"
+        tools:layout="@layout/fragment_model">
+        <action
+            android:id="@+id/action_modelFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <action
+            android:id="@+id/action_detailsFragment_to_vehicleAddingCompletedFragment"
+            app:destination="@id/vehicleAddingCompletedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleAddingCompletedFragment"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleAddingCompletedFragment"
+        android:label="fragment_vehicle_adding_completed"
+        tools:layout="@layout/fragment_vehicle_adding_completed" >
+        <action
+            android:id="@+id/action_vehicleAddingCompletedFragment_to_vehicleListActivity"
+            app:destination="@id/vehicleListActivity" />
+        <action
+            android:id="@+id/action_vehicleAddingCompletedFragment_to_vehicleExtraInfoActivity"
+            app:destination="@id/vehicleExtraInfoActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/vehicleListActivity"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleListActivity"
+        android:label="activity_vehicles_list"
+        tools:layout="@layout/activity_vehicle_list" />
+    <activity
+        android:id="@+id/vehicleExtraInfoActivity"
+        android:name="com.riteh.autoshare.ui.home.user.vehicles.VehicleExtraInfoActivity"
+        android:label="activity_vehicle_extra_info"
+        tools:layout="@layout/activity_vehicle_extra_info" />
+</navigation>

@@ -28,7 +28,6 @@ class CarsListActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         rv_cars.layoutManager = LinearLayoutManager(this)
         rv_cars.adapter = CarListAdapter(carsList, this)
-
     }
 
     private fun setOnClickListeners() {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/app_white"
-    tools:context=".ui.user.UserCardActivity">
+    tools:context=".ui.home.user.UserCardActivity">
 
     <LinearLayout
         android:id="@+id/tv_title_container"
@@ -52,7 +52,7 @@
                 android:text="First name" />
 
             <EditText
-                android:id="@+id/user_name"
+                android:id="@+id/update_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/label_name"
@@ -63,18 +63,18 @@
                 android:backgroundTint="@android:color/white"
                 android:hint="@string/first_name"
                 android:inputType="text"
-                android:singleLine="true"/>
+                android:singleLine="true" />
 
             <TextView
                 android:id="@+id/label_surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/update_user_name"
                 android:layout_marginStart="15dp"
-                android:layout_below="@+id/user_name"
                 android:text="Last name" />
 
             <EditText
-                android:id="@+id/user_surname"
+                android:id="@+id/update_user_surname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/label_surname"
@@ -91,58 +91,58 @@
                 android:id="@+id/label_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/update_user_surname"
                 android:layout_marginStart="15dp"
-                android:layout_below="@+id/user_surname"
                 android:text="E-mail" />
 
             <EditText
-                android:id="@+id/user_email"
+                android:id="@+id/update_user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/label_email"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
+                android:autofillHints="emailAddress"
                 android:backgroundTint="@android:color/white"
                 android:hint="E-mail"
-                android:autofillHints="emailAddress"
                 android:inputType="textEmailAddress"
-                android:singleLine="true"/>
+                android:singleLine="true" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/label_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/update_user_email"
                 android:layout_marginStart="15dp"
-                android:layout_below="@+id/user_email"
                 android:text="Date of birth" />
 
             <EditText
-                android:id="@+id/user_address"
+                android:id="@+id/update_user_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/address"
+                android:layout_below="@id/label_birthday"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:autofillHints=""
                 android:backgroundTint="@android:color/white"
                 android:hint="Date of birth"
-                android:inputType="textPostalAddress"/>
+                android:inputType="textPostalAddress" />
 
             <TextView
-                android:id="@+id/city"
+                android:id="@+id/label_license"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/update_user_birthday"
                 android:layout_marginStart="15dp"
-                android:layout_below="@+id/user_address"
                 android:text="License ID" />
 
             <EditText
-                android:id="@+id/user_city"
+                android:id="@+id/update_user_license"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/city"
+                android:layout_below="@id/label_license"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
@@ -150,13 +150,13 @@
                 android:backgroundTint="@android:color/white"
                 android:hint="License ID"
                 android:inputType="text"
-                android:singleLine="true"/>
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_city"
+                android:layout_below="@+id/update_user_license"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"

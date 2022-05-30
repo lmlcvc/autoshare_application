@@ -33,7 +33,9 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
-                        userPreferences.saveAuthToken(it.value.token)
+                        userPreferences.saveUserInfo(it.value.user)
+                        userPreferences.saveUserToken(it.value.token)
+
                         requireActivity().startNewActivity(MainActivity::class.java)
                     }
                 }
@@ -46,7 +48,6 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
         setOnCLickListeners()
 
-
     }
 
     override fun getViewModel() = AuthViewModel::class.java
@@ -57,16 +58,16 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository() =
-        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
+        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java))
 
 
     private fun setOnCLickListeners() {
         binding.loginFragmentButton.setOnClickListener {
             val email = binding.loginFragmentEmail.text.toString().trim()
-            val pasword = binding.loginFragmentPassword.text.toString().trim()
+            val password = binding.loginFragmentPassword.text.toString().trim()
             binding.progressbar.visible(true)
 
-            viewModel.login(email, pasword)
+            viewModel.login(email, password)
         }
 
         loginFragmentRegisterLink.setOnClickListener { view ->

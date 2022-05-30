@@ -1,4 +1,4 @@
-package com.riteh.autoshare.ui.user
+package com.riteh.autoshare.ui.home.user
 
 import android.text.Editable
 import android.text.InputFilter

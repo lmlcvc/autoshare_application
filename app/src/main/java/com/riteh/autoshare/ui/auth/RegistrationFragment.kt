@@ -19,17 +19,20 @@ import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.coroutines.launch
 
 
-class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBinding, AuthRepository>() {
+class RegistrationFragment :
+    BaseFragment<AuthViewModel, FragmentRegistrationBinding, AuthRepository>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
 
-            when(it){
+            when (it) {
                 is Resource.Success -> {
-                    lifecycleScope.launch{
-                         userPreferences.saveAuthToken(it.value.token)
+                    lifecycleScope.launch {
+                        userPreferences.saveUserInfo(it.value.user)
+                        userPreferences.saveUserToken(it.value.token)
+
                         requireActivity().startNewActivity(MainActivity::class.java)
                     }
                 }
@@ -47,7 +50,9 @@ class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBin
             val password = binding.registerFragmentPassword.text.toString().trim()
             val confirmPassword = binding.registerFragmentPasswordConfirm.text.toString().trim()
 
-            viewModel.validate(name,surname, email, password, confirmPassword)
+            viewModel.validate(name, surname, email, password, confirmPassword)
+
+            // TODO: intent to mainactivity if validated
         }
 
         tv_to_login.setOnClickListener { view ->
@@ -55,6 +60,7 @@ class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBin
         }
 
     }
+
     override fun getViewModel() = AuthViewModel::class.java
 
     override fun getFragmentBinding(
@@ -62,5 +68,6 @@ class RegistrationFragment : BaseFragment<AuthViewModel, FragmentRegistrationBin
         container: ViewGroup?
     ) = FragmentRegistrationBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
+    override fun getFragmentRepository() =
+        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java))
 }

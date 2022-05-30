@@ -14,13 +14,19 @@
         android:theme="@style/Theme.Autoshare"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.home.user.vehicles.VehicleAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.user.vehicles.VehicleListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.search.CarsListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.info.FuelPricesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserCardInfoActivity"
+            android:name=".ui.home.user.UserCardInfoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.AuthActivity"
@@ -29,16 +35,16 @@
             android:name=".ui.home.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserCardActivity"
+            android:name=".ui.home.user.UserCardActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.search.LocationInputActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserInformationActivity"
+            android:name=".ui.home.user.UserInformationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserUpdateActivity"
+            android:name=".ui.home.user.UserUpdateActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

@@ -26,7 +26,6 @@ class CarListAdapter(private var cars: List<CarListItem>, val context: Context) 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.carName.text = "new car"
         holder.carPrice.text = "1000"
         holder.carStar.text = "10"

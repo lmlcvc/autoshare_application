@@ -1,4 +1,4 @@
-package com.riteh.autoshare.ui.user
+package com.riteh.autoshare.ui.home.user
 
 class CardNumbersFormat {
     fun formatCardNumber(cardNumber: String): String {
