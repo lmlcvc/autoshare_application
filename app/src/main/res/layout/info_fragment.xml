@@ -45,7 +45,15 @@
         android:layout_below="@id/btn_fuel"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="15dp"
-        android:text="@string/roads_amp_traffic_info" />
+        android:text="@string/roads_traffic_info" />
 
+    <!--ImageView
+        android:id="@+id/iv_bulb"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="@string/illustration_of_a_lightbulb"
+        android:src="@drawable/ic_light_bulb" /-->
 
 </RelativeLayout>
