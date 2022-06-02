@@ -1,25 +1,17 @@
 package com.riteh.autoshare.ui.home.user.vehicles
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.data.dataholders.Vehicle
-import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.RemoteDataSource
-import com.riteh.autoshare.network.VehicleCreateApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.riteh.autoshare.network.VehicleApi
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 
 class VehicleInfoViewModel : ViewModel() {
 
-    private val api = RemoteDataSource().buildApi(VehicleCreateApi::class.java)
+    private val api = RemoteDataSource().buildApi(VehicleApi::class.java)
 
     val vehicle: MutableLiveData<Vehicle> =
         MutableLiveData<Vehicle>(Vehicle())
@@ -45,35 +37,35 @@ class VehicleInfoViewModel : ViewModel() {
         vehicle.value?.seats = seats.toInt()
         vehicle.value?.doors = doors.toInt()
         vehicle.value?.year = year.toInt()
-        vehicle.value?.licensePlate = licensePlate
+        vehicle.value?.licence_plate = licensePlate
 
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.UK)
-        vehicle.value?.registeredUntil = formatter.parse(registeredUntil)!!
+        vehicle.value?.registered_until = formatter.parse(registeredUntil).toString()
 
         vehicle.value?.image = image
         vehicle.value?.description = description
     }
 
     fun setOwnerID(id: Int) {
-        vehicle.value?.ownerID = id
+        vehicle.value?.owner_id = id
     }
 
     suspend fun createVehicle() {
         api.createVehicle(
-            vehicle.value?.ownerID!!,
+            vehicle.value?.owner_id!!,
             vehicle.value?.brand!!,
             vehicle.value?.model!!,
             vehicle.value?.year!!,
             vehicle.value?.seats!!,
             vehicle.value?.doors!!,
-            vehicle.value?.licensePlate!!,
-            vehicle.value?.registeredUntil!!,
+            vehicle.value?.licence_plate!!,
+            vehicle.value?.registered_until!!,
             vehicle.value?.image!!,
             vehicle.value?.description!!,
-            vehicle.value?.rentCost!!,
-            vehicle.value?.dailyDistanceLimit!!,
-            vehicle.value?.costPerKilometer!!,
-            vehicle.value?.ratingAvg!!
+            vehicle.value?.rent_cost!!,
+            vehicle.value?.daily_distance_limit!!,
+            vehicle.value?.cost_per_kilometer!!,
+            vehicle.value?.rating_avg!!
         )
     }
 

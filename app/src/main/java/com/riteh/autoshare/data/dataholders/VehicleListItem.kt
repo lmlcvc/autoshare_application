@@ -1,7 +1,8 @@
 package com.riteh.autoshare.data.dataholders
 
+import com.google.gson.annotations.SerializedName
+
 
 data class VehicleListItem(
-    val name: String,
-    val year: Int
+    @SerializedName("data") val data: List<Vehicle>
 )

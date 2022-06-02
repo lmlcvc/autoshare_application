@@ -204,4 +204,9 @@
     <string name="finish">Finish</string>
     <string name="change">Change image</string>
     <string name="profile_updated">User profile updated</string>
+    <string name="rent_your_vehicles">Rent your vehicles</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="continue_to_autoshare_no_underline">Continue to Autoshare</string>
+    <string name="vehicle_successfully_added_for_rent">Vehicle successfully added for rent</string>
 </resources>

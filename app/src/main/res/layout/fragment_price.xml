@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.home.user.vehicles.ExtraInfoFillInFragment">
+    tools:context=".ui.home.add.PriceFragment">
 
     <data>
 
         <variable
-            name="extraInfoFillInFragment"
-            type="com.riteh.autoshare.ui.home.user.vehicles.ExtraInfoFillInFragment" />
+            name="priceFragment"
+            type="com.riteh.autoshare.ui.home.add.PriceFragment" />
     </data>
 
     <RelativeLayout
@@ -51,105 +51,91 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginTop="0dp"
-                        android:text="@string/add_a_few_of_your_vehicle_s_metrics"
+                        android:text="Renting prices"
                         android:textStyle="normal" />
 
                     <RelativeLayout
-                        android:id="@+id/rl_horsepower_wrapper"
+                        android:id="@+id/rl_daily_price_wrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_heading">
 
                         <TextView
-                            android:id="@+id/tv_horsepower"
+                            android:id="@+id/tv_daily_price"
                             style="@style/CategoryTitleStyle"
                             android:layout_alignParentBottom="true"
                             android:layout_marginHorizontal="30dp"
                             android:layout_marginTop="40dp"
-                            android:text="@string/horsepower" />
+                            android:text="Daily price:" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_horsepower"
+                            android:id="@+id/et_daily_price"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
-                            android:layout_toEndOf="@id/tv_horsepower"
+                            android:layout_toEndOf="@id/tv_daily_price"
                             android:inputType="number"
                             android:theme="@style/CategoryEditTextTheme" />
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/rl_consumption_wrapper"
+                        android:id="@+id/rl_kilometer_wrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/rl_horsepower_wrapper">
+                        android:layout_below="@id/rl_daily_price_wrapper">
 
                         <TextView
-                            android:id="@+id/tv_consumption"
+                            android:id="@+id/tv_kilometer"
                             style="@style/CategoryTitleStyle"
                             android:layout_alignParentBottom="true"
                             android:layout_marginHorizontal="30dp"
-                            android:text="@string/average_consumption" />
-
+                            android:layout_marginTop="40dp"
+                            android:text="Distance limit (km):" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_consumption"
+                            android:id="@+id/et_kilometer"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
-                            android:layout_toEndOf="@id/tv_consumption"
+                            android:layout_toEndOf="@id/tv_kilometer"
                             android:inputType="number"
                             android:theme="@style/CategoryEditTextTheme" />
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/tv_consumption_explanation"
+                        android:id="@+id/tv_kilometer_explanation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/rl_consumption_wrapper"
+                        android:layout_below="@id/rl_kilometer_wrapper"
                         android:layout_marginHorizontal="30dp"
                         android:fontFamily="sans-serif-thin"
-                        android:text="@string/fuel_litres_per_100_km"
+                        android:text="travel distance included in the daily price"
                         android:textColor="@color/light_grey"
                         android:textSize="12sp" />
-
 
                     <RelativeLayout
-                        android:id="@+id/rl_capacity_wrapper"
+                        android:id="@+id/rl_extra_price_wrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_consumption_explanation">
-
+                        android:layout_below="@id/tv_kilometer_explanation">
 
                         <TextView
-                            android:id="@+id/tv_capactiy"
+                            android:id="@+id/tv_extra_price"
                             style="@style/CategoryTitleStyle"
                             android:layout_alignParentBottom="true"
                             android:layout_marginHorizontal="30dp"
-                            android:text="@string/fuel_capacity" />
+                            android:layout_marginTop="40dp"
+                            android:text="Extra price per km:" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_capacity"
+                            android:id="@+id/et_extra_price"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
-                            android:layout_toEndOf="@id/tv_capactiy"
+                            android:layout_toEndOf="@id/tv_extra_price"
                             android:inputType="number"
                             android:theme="@style/CategoryEditTextTheme" />
-
                     </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/tv_capacity_explanation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/rl_capacity_wrapper"
-                        android:layout_marginHorizontal="30dp"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="@string/in_litres"
-                        android:textColor="@color/light_grey"
-                        android:textSize="12sp" />
-
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -173,6 +159,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_baseline_chevron_left_24"
                 android:text="@string/prev"
+                android:visibility="invisible"
                 app:drawableTint="@color/basic_grey" />
 
 
@@ -182,10 +169,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
                 android:drawableEnd="@drawable/ic_baseline_chevron_right_24"
                 android:text="@string/next"
                 app:drawableTint="@color/app_white" />
 
         </LinearLayout>
     </RelativeLayout>
+
 </layout>
