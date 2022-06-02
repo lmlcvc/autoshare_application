@@ -1,5 +1,6 @@
 package com.riteh.autoshare.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.dataholders.CarListItem
+import com.riteh.autoshare.data.dataholders.Vehicle
 import kotlinx.android.synthetic.main.car_layout.view.*
 
-class CarListAdapter(private var cars: List<CarListItem>, val context: Context) :
+class CarListAdapter(private var cars: List<Vehicle>, val context: Context) :
     RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
 
@@ -22,13 +24,16 @@ class CarListAdapter(private var cars: List<CarListItem>, val context: Context) 
 
 
     override fun getItemCount(): Int {
-        return 10
+        return cars.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.carName.text = "new car"
-        holder.carPrice.text = "1000"
-        holder.carStar.text = "10"
+        holder.carName.text = cars[position].brand
+        holder.carPrice.text = cars[position].rent_cost + " / day"
+        holder.carStar.text = cars[position].rating_avg
+
+        //image
 
     }
 
@@ -38,6 +43,10 @@ class CarListAdapter(private var cars: List<CarListItem>, val context: Context) 
         val carStar: TextView = itemView.car_star
         val carPicture: ImageView = itemView.picture_car
 
-        init {}
+        init {
+            itemView.setOnClickListener {
+
+            }
+        }
     }
 }

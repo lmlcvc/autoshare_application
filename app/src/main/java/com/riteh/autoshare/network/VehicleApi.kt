@@ -1,7 +1,6 @@
 package com.riteh.autoshare.network
 
 import com.riteh.autoshare.data.dataholders.Availability
-import com.riteh.autoshare.data.dataholders.AvailabilityItem
 import com.riteh.autoshare.data.dataholders.Vehicle
 import com.riteh.autoshare.data.dataholders.VehicleListItem
 import retrofit2.http.*
