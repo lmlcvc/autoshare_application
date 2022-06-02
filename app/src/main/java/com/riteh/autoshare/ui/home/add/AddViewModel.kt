@@ -76,14 +76,16 @@ class AddViewModel : ViewModel() {
     }
 
     suspend fun createAvailability() {
-        val response = api.createAvailability(
+        api.createAvailability(
             vehicleID.value!!,
             startDate.value!!,
             endDate.value!!,
             locationLatLng.value!!.latitude,
             locationLatLng.value!!.longitude
         )
+    }
 
-        Log.d("response", response.toString())
+    suspend fun addVehicleRentInfo() {
+        api.addVehicleRentInfo(dailyPrice.value!!, distanceLimit.value!!, extraPrice.value!!)
     }
 }
