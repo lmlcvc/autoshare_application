@@ -1,5 +1,6 @@
 package com.riteh.autoshare.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -31,10 +32,11 @@ class VehiclesForRentListAdapter(
         return 7
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // dummy values
-        holder.name.text = "vehicle name"
+        // holder.name.text = vehicles[position].brand + " " + vehicles[position].model
 
+        holder.name.text = "tvoja stara"
         /*Glide.with(holder.icon)
             .load(products[position].image)
             .into(holder.icon)*/

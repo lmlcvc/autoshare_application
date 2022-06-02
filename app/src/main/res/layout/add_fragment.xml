@@ -19,20 +19,19 @@
     <ImageView
         android:id="@+id/iv_car"
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:layout_below="@id/tv_heading"
-        android:layout_marginLeft="-80dp"
-        android:layout_marginTop="-150dp"
+        android:layout_marginTop="-30dp"
         android:padding="50dp"
         android:src="@drawable/ic_rent" />
 
     <Button
         android:id="@+id/button"
+        style="@style/ButtonsStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/ButtonsStyle"
-        android:layout_marginTop="-80dp"
         android:layout_below="@id/iv_car"
-        android:text="Get started"/>
+        android:layout_marginTop="-50dp"
+        android:text="Get started" />
 
 </RelativeLayout>

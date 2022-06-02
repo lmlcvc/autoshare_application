@@ -9,7 +9,6 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -24,7 +23,6 @@ import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.databinding.FragmentDetailsBinding
-import com.riteh.autoshare.network.VehicleCreateApi
 import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch

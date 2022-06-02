@@ -69,7 +69,7 @@
                             android:text="Daily price:" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_daily_price"
+                            android:id="@+id/et_daily_price"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
@@ -93,7 +93,7 @@
                             android:text="Distance limit (km):" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_kilometer"
+                            android:id="@+id/et_kilometer"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
@@ -128,7 +128,7 @@
                             android:text="Extra price per km:" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/ev_extra_price"
+                            android:id="@+id/et_extra_price"
                             style="@style/CategoryEditTextStyle"
                             android:layout_marginTop="40dp"
                             android:layout_marginBottom="-8dp"
@@ -159,6 +159,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_baseline_chevron_left_24"
                 android:text="@string/prev"
+                android:visibility="invisible"
                 app:drawableTint="@color/basic_grey" />
 
 
@@ -168,6 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
                 android:drawableEnd="@drawable/ic_baseline_chevron_right_24"
                 android:text="@string/next"
                 app:drawableTint="@color/app_white" />

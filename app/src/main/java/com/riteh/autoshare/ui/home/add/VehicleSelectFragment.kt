@@ -1,16 +1,32 @@
 package com.riteh.autoshare.ui.home.add
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.gson.Gson
+import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.VehiclesForRentListAdapter
+import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.data.dataholders.Vehicle
 import com.riteh.autoshare.databinding.FragmentVehicleSelectBinding
+import com.riteh.autoshare.network.VehicleApi
 import kotlinx.android.synthetic.main.fragment_vehicle_select.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class VehicleSelectFragment : Fragment() {
@@ -18,7 +34,7 @@ class VehicleSelectFragment : Fragment() {
     private var binding: FragmentVehicleSelectBinding? = null
 
     private lateinit var adapter: VehiclesForRentListAdapter
-    private lateinit var vehiclesList: List<Vehicle>
+    private var vehiclesList = mutableListOf<Vehicle>()
 
     private val sharedViewModel: AddViewModel by activityViewModels()
 
@@ -37,15 +53,62 @@ class VehicleSelectFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.vehicleSelectFragment = this
 
-        setUpRecyclerView(listOf())
+        fetchOwnerId()
+        makeAPIRequest()
         setOnClickListeners()
     }
 
-    private fun setOnClickListeners() {
-        iv_close.setOnClickListener {
-            // TODO: cancel adding availability
+    private fun fetchOwnerId() {
+        val userPreferences = UserPreferences(requireContext())
+
+        GlobalScope.launch(
+            Dispatchers.IO
+        ) {
+            userPreferences.getUserFromDataStore().catch { e ->
+                e.printStackTrace()
+            }.collect {
+                withContext(Dispatchers.Main) {
+                    sharedViewModel.setOwnerID(it.id)
+                }
+            }
         }
     }
+
+
+    private fun makeAPIRequest() {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+        val api: VehicleApi = Retrofit.Builder()
+            .baseUrl(getString(R.string.AUTOSHARE_API))
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+            .create(VehicleApi::class.java)
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = api.getVehiclesByUserId(sharedViewModel.ownerID.value)
+
+                Log.d("response", response.toString())
+                Log.w("2.0 getFeed > Full json res wrapped in gson => ", Gson().toJson(response))
+
+                for (item in response.vehicles) {
+                    vehiclesList.add(item)
+                    Log.d("list item", item.toString())
+                }
+                Log.d("vehicles list", vehiclesList.toString())
+                withContext(Dispatchers.Main) {
+                    setUpRecyclerView(vehiclesList)
+                }
+            } catch (e: Exception) {
+                println(e.toString())
+            }
+        }
+    }
+
 
     /**
      * Set up recyclerview with list of user's vehicles.
@@ -55,5 +118,12 @@ class VehicleSelectFragment : Fragment() {
 
         adapter = VehiclesForRentListAdapter(vehicles, requireContext(), sharedViewModel)
         rv_vehicles.adapter = adapter
+    }
+
+
+    private fun setOnClickListeners() {
+        iv_close.setOnClickListener {
+            requireActivity().finish()
+        }
     }
 }

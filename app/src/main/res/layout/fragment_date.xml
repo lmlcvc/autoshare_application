@@ -55,11 +55,13 @@
 
 
                     <RelativeLayout
-                        android:id="@+id/rv_start"
+                        android:id="@+id/rl_start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_heading"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="20dp"
+                        android:clickable="true"
+                        android:focusable="true">
 
                         <TextView
                             android:id="@+id/tv_start"
@@ -74,7 +76,7 @@
                             android:paddingStart="30dp"
                             android:paddingEnd="14dp"
                             android:singleLine="true"
-                            android:text="Start date"
+                            android:text="@string/start_date"
                             android:textColor="@color/light_grey"
                             android:textSize="16sp" />
 
@@ -95,11 +97,13 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/rv_end"
+                        android:id="@+id/rl_end"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/rv_start"
-                        android:layout_marginTop="20dp">
+                        android:layout_below="@id/rl_start"
+                        android:layout_marginTop="20dp"
+                        android:clickable="true"
+                        android:focusable="true">
 
                         <TextView
                             android:id="@+id/tv_end"
@@ -114,7 +118,7 @@
                             android:paddingStart="30dp"
                             android:paddingEnd="14dp"
                             android:singleLine="true"
-                            android:text="End date"
+                            android:text="@string/end_date"
                             android:textColor="@color/light_grey"
                             android:textSize="16sp" />
 

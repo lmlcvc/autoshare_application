@@ -1,25 +1,17 @@
 package com.riteh.autoshare.ui.home.user.vehicles
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.data.dataholders.Vehicle
-import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.RemoteDataSource
-import com.riteh.autoshare.network.VehicleCreateApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.riteh.autoshare.network.VehicleApi
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 
 class VehicleInfoViewModel : ViewModel() {
 
-    private val api = RemoteDataSource().buildApi(VehicleCreateApi::class.java)
+    private val api = RemoteDataSource().buildApi(VehicleApi::class.java)
 
     val vehicle: MutableLiveData<Vehicle> =
         MutableLiveData<Vehicle>(Vehicle())

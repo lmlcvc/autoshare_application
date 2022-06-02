@@ -1,12 +1,11 @@
 package com.riteh.autoshare.network
 
 import com.riteh.autoshare.data.dataholders.Vehicle
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import com.riteh.autoshare.data.dataholders.VehicleListItem
+import retrofit2.http.*
 import java.util.*
 
-interface VehicleCreateApi {
+interface VehicleApi {
 
     @FormUrlEncoded
     @POST("vehicles/create")
@@ -26,5 +25,11 @@ interface VehicleCreateApi {
         @Field("cost_per_kilometer") costPerKilometer: Float,
         @Field("rating_avg") ratingAvg: Float
     ): Vehicle
+
+
+    @GET("vehicles/{id}")
+    suspend fun getVehiclesByUserId(
+        @Path("id") id: Int?
+    ): VehicleListItem
 
 }
