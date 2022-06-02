@@ -53,12 +53,12 @@ class VehicleSelectFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.vehicleSelectFragment = this
 
-        fetchOwnerId()
-        makeAPIRequest()
+        makeAPIRequestWithOwnerID()
+        // makeAPIRequest()
         setOnClickListeners()
     }
 
-    private fun fetchOwnerId() {
+    private fun makeAPIRequestWithOwnerID() {
         val userPreferences = UserPreferences(requireContext())
 
         GlobalScope.launch(
@@ -69,13 +69,14 @@ class VehicleSelectFragment : Fragment() {
             }.collect {
                 withContext(Dispatchers.Main) {
                     sharedViewModel.setOwnerID(it.id)
+                    makeAPIRequest(it.id)
                 }
             }
         }
     }
 
 
-    private fun makeAPIRequest() {
+    private fun makeAPIRequest(id: Int) {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
@@ -90,16 +91,11 @@ class VehicleSelectFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val response = api.getVehiclesByUserId(sharedViewModel.ownerID.value)
+                val response = api.getVehiclesByUserId(id)
 
-                Log.d("response", response.toString())
-                Log.w("2.0 getFeed > Full json res wrapped in gson => ", Gson().toJson(response))
-
-                for (item in response.vehicles) {
+                for (item in response.data) {
                     vehiclesList.add(item)
-                    Log.d("list item", item.toString())
                 }
-                Log.d("vehicles list", vehiclesList.toString())
                 withContext(Dispatchers.Main) {
                     setUpRecyclerView(vehiclesList)
                 }

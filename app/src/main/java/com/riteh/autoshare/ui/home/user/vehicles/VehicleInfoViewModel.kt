@@ -37,35 +37,35 @@ class VehicleInfoViewModel : ViewModel() {
         vehicle.value?.seats = seats.toInt()
         vehicle.value?.doors = doors.toInt()
         vehicle.value?.year = year.toInt()
-        vehicle.value?.licensePlate = licensePlate
+        vehicle.value?.licence_plate = licensePlate
 
         val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.UK)
-        vehicle.value?.registeredUntil = formatter.parse(registeredUntil)!!
+        vehicle.value?.registered_until = formatter.parse(registeredUntil).toString()
 
         vehicle.value?.image = image
         vehicle.value?.description = description
     }
 
     fun setOwnerID(id: Int) {
-        vehicle.value?.ownerID = id
+        vehicle.value?.owner_id = id
     }
 
     suspend fun createVehicle() {
         api.createVehicle(
-            vehicle.value?.ownerID!!,
+            vehicle.value?.owner_id!!,
             vehicle.value?.brand!!,
             vehicle.value?.model!!,
             vehicle.value?.year!!,
             vehicle.value?.seats!!,
             vehicle.value?.doors!!,
-            vehicle.value?.licensePlate!!,
-            vehicle.value?.registeredUntil!!,
+            vehicle.value?.licence_plate!!,
+            vehicle.value?.registered_until!!,
             vehicle.value?.image!!,
             vehicle.value?.description!!,
-            vehicle.value?.rentCost!!,
-            vehicle.value?.dailyDistanceLimit!!,
-            vehicle.value?.costPerKilometer!!,
-            vehicle.value?.ratingAvg!!
+            vehicle.value?.rent_cost!!,
+            vehicle.value?.daily_distance_limit!!,
+            vehicle.value?.cost_per_kilometer!!,
+            vehicle.value?.rating_avg!!
         )
     }
 

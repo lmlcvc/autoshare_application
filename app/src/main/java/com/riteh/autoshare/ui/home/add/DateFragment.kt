@@ -13,6 +13,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentDateBinding
 import kotlinx.android.synthetic.main.fragment_date.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class DateFragment : Fragment() {
 
@@ -64,6 +66,12 @@ class DateFragment : Fragment() {
         }
 
         btn_next.setOnClickListener {
+            runBlocking {
+                async {
+                    sharedViewModel.createAvailability()
+                }
+            }
+
             NavHostFragment.findNavController(this)
                 .navigate(R.id.action_dateFragment_to_addingCompletedFragment)
         }
