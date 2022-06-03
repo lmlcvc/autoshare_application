@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="city">City</string>
+    <string name="area">Area</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="billing_address">Billing address</string>
+    <string name="required_field">Required field</string>
+</resources>

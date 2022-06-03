@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/app_white"
     style="@style/CardFormCustom"
-    tools:context=".ui.user.UserCardActivity">
+    tools:context=".ui.home.user.UserCardActivity">
 
     <LinearLayout
         android:id="@+id/tv_title_container"

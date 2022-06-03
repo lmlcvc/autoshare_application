@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.user.vehicles.ModelFragment">
+
+    <data>
+
+        <variable
+            name="modelFragment"
+            type="com.riteh.autoshare.ui.home.user.vehicles.ModelFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/basic_red" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/basic_red" />
+
+        <TextView
+            android:id="@+id/tv_heading"
+            style="@style/HeadingsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_back"
+            android:layout_marginHorizontal="30dp"
+            android:text="@string/enter_your_vehicle_s"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_manufacturer"
+            style="@style/HeadingsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_heading"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/model_lowercase" />
+
+        <RelativeLayout
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_manufacturer"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/et_brand"
+                style="@style/InputTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:autofillHints="username"
+                android:background="@drawable/rounded_corners_box_outline_red"
+                android:hint="@string/model"
+                android:inputType="textCapCharacters|textFilter"
+                android:paddingStart="30dp"
+                android:paddingEnd="14dp"
+                android:textColor="@color/dark_grey"
+                android:textColorHint="@color/light_grey" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/rounded_corners_box_white" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="18dp"
+                android:src="@drawable/places_ic_search"
+                app:tint="@color/basic_red" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/sv_models"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_search"
+            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_models"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/brand_model_layout" />
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>

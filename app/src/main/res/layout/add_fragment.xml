@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_white"
     tools:context=".ui.home.add.AddFragment">
 
     <TextView
+        android:id="@+id/tv_heading"
+        style="@style/HeadingsStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="30dp"
+        android:text="@string/rent_your_vehicles" />
 
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_car"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_below="@id/tv_heading"
+        android:layout_marginTop="-30dp"
+        android:padding="50dp"
+        android:src="@drawable/ic_rent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/ButtonsStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_car"
+        android:layout_marginTop="-50dp"
+        android:text="Get started" />
+
+</RelativeLayout>

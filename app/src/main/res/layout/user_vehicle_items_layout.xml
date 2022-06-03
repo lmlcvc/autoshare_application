@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    android:background="@drawable/rounded_corners_box_white"
+    android:backgroundTint="@color/darker_app_white"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="10dp"
+    app:cardCornerRadius="10dp">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darker_app_white">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="Product image"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/iv_image">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="Vehicle name"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:text="420 kn"
+                android:textColor="@color/basic_red"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_toEndOf="@id/tv_price"
+                android:text="@string/per_day"
+                android:textColor="@color/light_grey"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+        <!--ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:tint="@color/basic_red" /-->
+
+        <ImageView
+            android:id="@+id/iv_details"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/iv_image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-38dp"
+            android:src="@drawable/ic_baseline_list_24"
+            app:tint="@color/light_grey" />
+
+    </RelativeLayout>
+
+    <!-- TODO: show "rented" status if rented, hide otherwise-->
+    <!-- TODO: da bude iznad slike -->
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@color/dark_red"
+        android:padding="5dp"
+        android:text="status"
+        android:textColor="@color/app_white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
+

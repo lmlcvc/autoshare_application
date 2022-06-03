@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/app_white"
-    tools:context=".ui.user.UserCardActivity">
+    tools:context=".ui.home.user.UserCardActivity">
 
     <LinearLayout
         android:id="@+id/tv_title_container"
@@ -69,8 +69,8 @@
                 android:id="@+id/label_surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_below="@+id/update_user_name"
+                android:layout_marginStart="15dp"
                 android:text="Last name" />
 
             <EditText
@@ -91,8 +91,8 @@
                 android:id="@+id/label_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_below="@+id/update_user_surname"
+                android:layout_marginStart="15dp"
                 android:text="E-mail" />
 
             <EditText
@@ -113,8 +113,8 @@
                 android:id="@+id/label_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_below="@+id/update_user_email"
+                android:layout_marginStart="15dp"
                 android:text="Date of birth" />
 
             <EditText

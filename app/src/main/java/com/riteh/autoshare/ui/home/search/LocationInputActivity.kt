@@ -3,6 +3,7 @@ package com.riteh.autoshare.ui.home.search
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidisland.vita.VitaOwner
@@ -81,6 +82,12 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
                 )
 
                 viewModel.setLocation(locality)
+                viewModel.setLatLng(
+                    LatLng(
+                        map.cameraPosition.target.latitude,
+                        map.cameraPosition.target.longitude
+                    )
+                )
             }
             this.finish()
         }
@@ -99,6 +106,7 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 button.setOnClickListener {
                     viewModel.setLocation(place.name!!)
+                    viewModel.setLatLng(place.latLng!!)
                     context.finish()
                 }
 
@@ -137,6 +145,12 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
             button.setOnClickListener {
                 if (locality != "") {
                     viewModel.setLocation(locality)
+                    viewModel.setLatLng(
+                        LatLng(
+                            map.cameraPosition.target.latitude,
+                            map.cameraPosition.target.longitude
+                        )
+                    )
                     context.finish()
                 } else {
                     Toast.makeText(this, "Location invalid", Toast.LENGTH_SHORT).show()

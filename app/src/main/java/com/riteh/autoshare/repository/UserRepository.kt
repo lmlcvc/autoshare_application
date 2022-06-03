@@ -14,7 +14,5 @@ class UserRepository(
         email: String,
         license_id: String,
         date_of_birth: Date
-    ) = safeApiCall {
-        api.userUpdate(id, name, surname, email, license_id, date_of_birth)
-    }
+    ) = safeApiCall { api.userUpdate(id, name, surname, email, license_id, date_of_birth) }
 }

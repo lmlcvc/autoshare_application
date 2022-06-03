@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_add_tab.xml"
+    app:startDestination="@id/vehicleSelectFragment">
+    <fragment
+        android:id="@+id/vehicleSelectFragment"
+        android:name="com.riteh.autoshare.ui.home.add.VehicleSelectFragment"
+        android:label="fragment_vehicle_select"
+        tools:layout="@layout/fragment_vehicle_select" >
+        <action
+            android:id="@+id/action_vehicleSelectFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/priceFragment"
+        android:name="com.riteh.autoshare.ui.home.add.PriceFragment"
+        android:label="fragment_price"
+        tools:layout="@layout/fragment_price" >
+        <action
+            android:id="@+id/action_priceFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.riteh.autoshare.ui.home.add.LocationFragment"
+        android:label="fragment_date_location"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+        <action
+            android:id="@+id/action_locationFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateFragment"
+        android:name="com.riteh.autoshare.ui.home.add.DateFragment"
+        android:label="DateFragment" >
+        <action
+            android:id="@+id/action_dateFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_dateFragment_to_addingCompletedFragment"
+            app:destination="@id/addingCompletedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addingCompletedFragment"
+        android:name="com.riteh.autoshare.ui.home.add.AddingCompletedFragment"
+        android:label="fragment_adding_completed"
+        tools:layout="@layout/fragment_adding_completed" />
+</navigation>
