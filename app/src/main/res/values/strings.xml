@@ -209,4 +209,10 @@
     <string name="end_date">End date</string>
     <string name="continue_to_autoshare_no_underline">Continue to Autoshare</string>
     <string name="vehicle_successfully_added_for_rent">Vehicle successfully added for rent</string>
+    <string name="update_profile">Update profile</string>
+    <string name="save_changes">Save changes</string>
+    <string name="e_mail">E-mail</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="license_id">License ID</string>
+    <string name="enter_location">Enter a location</string>
 </resources>

@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/iv_car"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="380dp"
         android:layout_below="@id/tv_heading"
         android:layout_marginTop="-30dp"
         android:padding="50dp"
@@ -27,11 +27,13 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/ButtonsStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_car"
+        style="@style/ActionButtonsStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="-50dp"
+        android:layout_marginBottom="30dp"
+        android:padding="12.5dp"
         android:text="Get started" />
 
 </RelativeLayout>

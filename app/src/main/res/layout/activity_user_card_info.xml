@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/app_white"
     tools:context=".ui.home.user.UserCardInfoActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/tv_title_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
         android:background="@color/basic_red">
+
+        <ImageView
+            android:id="@+id/arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -22,16 +29,22 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
             android:layout_marginStart="20dp"
+            android:singleLine="true"
             android:text="@string/my_cards"
             android:textColor="@color/white"
             android:textStyle="bold" />
-    </RelativeLayout>
+
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/sv_card_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        android:layout_above="@id/bt_add_card"
+        android:layout_below="@id/tv_title_container"
+        android:layout_marginVertical="15dp"
+        android:backgroundTint="@color/app_white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,14 +65,10 @@
 
     <Button
         android:id="@+id/bt_add_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ButtonsStyle"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corners_box_red"
-        android:text="@string/add_card"
-        android:textColor="@android:color/white" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/add_credit_card" />
+
 </RelativeLayout>

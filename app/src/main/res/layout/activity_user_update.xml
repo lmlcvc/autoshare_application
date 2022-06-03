@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/app_white"
+    android:background="@color/app_white"
     tools:context=".ui.home.user.UserCardActivity">
 
     <LinearLayout
@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
         android:background="@color/basic_red">
 
         <ImageView
@@ -19,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
@@ -29,143 +28,164 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
             android:layout_marginStart="20dp"
-            android:text="Update profile"
+            android:text="@string/update_profile"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title_container">
+        android:layout_below="@id/tv_title_container"
+        android:background="@color/app_white"
+        android:fillViewport="true">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/first_name"
+
+            android:textAllCaps="true"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/update_user_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_name"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
 
-            <TextView
-                android:id="@+id/label_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="First name" />
+            android:layout_marginBottom="15dp"
+            android:autofillHints="name"
+            android:background="@drawable/rounded_corners_box_outline_red"
+            android:hint="@string/first_name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/update_user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_name"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints="name"
-                android:backgroundTint="@android:color/white"
-                android:hint="@string/first_name"
-                android:inputType="text"
-                android:singleLine="true" />
+        <TextView
+            android:id="@+id/label_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/update_user_name"
+            android:layout_marginStart="30dp"
+            android:text="@string/last_name"
+            android:textAllCaps="true"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/label_surname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_user_name"
-                android:layout_marginStart="15dp"
-                android:text="Last name" />
+        <EditText
+            android:id="@+id/update_user_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_surname"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:autofillHints="surname"
+            android:background="@drawable/rounded_corners_box_outline_red"
+            android:hint="@string/last_name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/update_user_surname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_surname"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints="surname"
-                android:backgroundTint="@android:color/white"
-                android:hint="@string/last_name"
-                android:inputType="text"
-                android:singleLine="true" />
+        <TextView
+            android:id="@+id/label_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/update_user_surname"
+            android:layout_marginStart="30dp"
+            android:text="@string/e_mail"
+            android:textAllCaps="true"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/label_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_user_surname"
-                android:layout_marginStart="15dp"
-                android:text="E-mail" />
+        <EditText
+            android:id="@+id/update_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_email"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/rounded_corners_box_outline_red"
+            android:hint="@string/e_mail"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/update_user_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_email"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints="emailAddress"
-                android:backgroundTint="@android:color/white"
-                android:hint="E-mail"
-                android:inputType="textEmailAddress"
-                android:singleLine="true" />
+        <TextView
+            android:id="@+id/label_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/update_user_email"
+            android:layout_marginStart="30dp"
+            android:text="@string/date_of_birth"
+            android:textAllCaps="true"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/label_birthday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_user_email"
-                android:layout_marginStart="15dp"
-                android:text="Date of birth" />
+        <EditText
+            android:id="@+id/update_user_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_birthday"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:autofillHints=""
+            android:background="@drawable/rounded_corners_box_outline_red"
+            android:hint="@string/date_of_birth"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/update_user_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_birthday"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints=""
-                android:backgroundTint="@android:color/white"
-                android:hint="Date of birth"
-                android:inputType="textPostalAddress" />
+        <TextView
+            android:id="@+id/label_license"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/update_user_birthday"
+            android:layout_marginStart="30dp"
+            android:text="@string/license_id"
+            android:textAllCaps="true"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/label_license"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_user_birthday"
-                android:layout_marginStart="15dp"
-                android:text="License ID" />
+        <EditText
+            android:id="@+id/update_user_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_license"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:autofillHints=""
+            android:background="@drawable/rounded_corners_box_outline_red"
+            android:hint="@string/license_id"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+    </RelativeLayout>
 
-            <EditText
-                android:id="@+id/update_user_license"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_license"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints=""
-                android:backgroundTint="@android:color/white"
-                android:hint="License ID"
-                android:inputType="text"
-                android:singleLine="true" />
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_user_license"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_corners_box_red"
-                android:text="Save changes"
-                android:textColor="@android:color/white" />
-        </RelativeLayout>
-
-    </ScrollView>
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/ButtonsStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/save_changes" />
 
 </RelativeLayout>
