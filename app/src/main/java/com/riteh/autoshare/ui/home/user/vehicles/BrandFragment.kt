@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
 import com.riteh.autoshare.R
@@ -121,12 +122,8 @@ class BrandFragment : Fragment() {
      * Set navigation click listeners.
      */
     private fun setOnClickListeners() {
-        iv_back.setOnClickListener {
-            // TODO navigate back
-        }
-
         iv_close.setOnClickListener {
-            // TODO cancel vehicle adding
+            requireActivity().finish()
         }
     }
 
