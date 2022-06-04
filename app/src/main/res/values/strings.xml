@@ -215,4 +215,6 @@
     <string name="date_of_birth">Date of birth</string>
     <string name="license_id">License ID</string>
     <string name="enter_location">Enter a location</string>
+    <string name="vehicle_rent_successfully">Vehicle successfully rent</string>
+    <string name="under_construction">Under construction</string>
 </resources>

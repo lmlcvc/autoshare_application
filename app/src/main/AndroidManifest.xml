@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="LockedOrientationActivity">
         <activity
+            android:name=".ui.home.search.VehicleDetailsRentingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.add.AddActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
