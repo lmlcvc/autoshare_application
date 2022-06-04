@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:backgroundTint="@color/app_white">
+    android:background="@color/app_white">
 
   <LinearLayout
       android:id="@+id/tv_title_container"
@@ -341,7 +341,7 @@
         android:layout_marginEnd="10dp"
         android:backgroundTint="@color/light_grey"
         android:drawableEnd="@drawable/ic_baseline_chevron_right_24"
-        android:text="Continue" />
+        android:text="Rent" />
   </RelativeLayout>
 
 </LinearLayout>

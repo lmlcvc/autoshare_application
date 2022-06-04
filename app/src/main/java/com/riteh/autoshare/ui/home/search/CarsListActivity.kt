@@ -13,6 +13,7 @@ import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.CarListAdapter
 import com.riteh.autoshare.data.api.APIRequest
 import com.riteh.autoshare.data.dataholders.Vehicle
+import com.riteh.autoshare.ui.home.user.vehicles.VehicleInfoViewModel
 import kotlinx.android.synthetic.main.activity_cars_list.*
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
@@ -27,12 +28,15 @@ class CarsListActivity : AppCompatActivity() {
     var radius: Double = 20.00
 
     private lateinit var viewModel: SearchViewModel
+    private lateinit var viewModelVehicle: VehicleRentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cars_list)
 
         viewModel = vita.with(VitaOwner.Multiple(this)).getViewModel()
+
+        viewModelVehicle = vita.with(VitaOwner.Multiple(this)).getViewModel()
 
         setUpRecyclerView()
         setOnClickListeners()
@@ -46,7 +50,7 @@ class CarsListActivity : AppCompatActivity() {
 
     private fun setUpRecyclerView() {
         rv_cars.layoutManager = LinearLayoutManager(this)
-        rv_cars.adapter = CarListAdapter(carsList, this)
+        rv_cars.adapter = CarListAdapter(carsList, this, viewModelVehicle)
     }
 
     private fun setOnClickListeners() {
@@ -76,7 +80,6 @@ class CarsListActivity : AppCompatActivity() {
                     viewModel.locationLatLng.value!!.longitude,
                     radius
                 )
-                Log.d("response", response.toString())
 
                 for (item in response.data) {
                     carsList.add(item)
