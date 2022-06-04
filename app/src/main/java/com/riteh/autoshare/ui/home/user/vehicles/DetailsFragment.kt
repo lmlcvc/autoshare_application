@@ -23,7 +23,9 @@ import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.UserPreferences
 import com.riteh.autoshare.databinding.FragmentDetailsBinding
+import kotlinx.android.synthetic.main.fragment_brand.*
 import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.android.synthetic.main.fragment_details.iv_close
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import java.io.ByteArrayOutputStream
@@ -80,12 +82,8 @@ class DetailsFragment : Fragment() {
 
 
     private fun setOnClickListeners() {
-        iv_back.setOnClickListener {
-            // navigate back
-        }
-
         iv_close.setOnClickListener {
-            // cancel vehicle adding
+            requireActivity().finish()
         }
 
         button.setOnClickListener {

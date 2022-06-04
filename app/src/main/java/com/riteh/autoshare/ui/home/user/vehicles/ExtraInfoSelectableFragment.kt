@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentExtraInfoSelectableBinding
+import kotlinx.android.synthetic.main.fragment_brand.*
 import kotlinx.android.synthetic.main.fragment_extra_info_selectable.*
+import kotlinx.android.synthetic.main.fragment_extra_info_selectable.iv_close
 
 
 class ExtraInfoSelectableFragment : Fragment() {
@@ -32,6 +34,10 @@ class ExtraInfoSelectableFragment : Fragment() {
     private fun setOnClickListeners() {
         btn_next.setOnClickListener {
             findNavController().navigate(R.id.action_extraInfoSelectableFragment_to_extraInfoFillInFragment)
+        }
+
+        iv_close.setOnClickListener {
+            requireActivity().finish()
         }
     }
 }

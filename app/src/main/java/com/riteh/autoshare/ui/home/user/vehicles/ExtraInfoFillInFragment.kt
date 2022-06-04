@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.riteh.autoshare.R
 import com.riteh.autoshare.databinding.FragmentExtraInfoFillInBinding
+import kotlinx.android.synthetic.main.fragment_brand.*
 import kotlinx.android.synthetic.main.fragment_extra_info_fill_in.*
+import kotlinx.android.synthetic.main.fragment_extra_info_fill_in.iv_close
 
 class ExtraInfoFillInFragment : Fragment() {
 
@@ -37,6 +39,10 @@ class ExtraInfoFillInFragment : Fragment() {
 
         btn_next.setOnClickListener {
             findNavController().navigate(R.id.action_extraInfoFillInFragment_to_extraInfoBooleansFragment)
+        }
+
+        iv_close.setOnClickListener {
+            requireActivity().finish()
         }
     }
 

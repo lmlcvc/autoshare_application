@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.CardListAdapter
 import kotlinx.android.synthetic.main.activity_user_card_info.*
+import kotlinx.android.synthetic.main.activity_user_card_info.arrow_back
 
 class UserCardInfoActivity : AppCompatActivity() {
     lateinit var adapter: CardListAdapter
@@ -26,6 +27,11 @@ class UserCardInfoActivity : AppCompatActivity() {
             val intent = Intent(this, UserCardActivity::class.java)
             startActivity(intent)
         }
+
+        arrow_back.setOnClickListener {
+            this.finish()
+        }
+
         setUpRecyclerView()
     }
 
