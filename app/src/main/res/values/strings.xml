@@ -209,6 +209,7 @@
     <string name="end_date">End date</string>
     <string name="continue_to_autoshare_no_underline">Continue to Autoshare</string>
     <string name="vehicle_successfully_added_for_rent">Vehicle successfully added for rent</string>
+    <string name="vehicle_rent_successfully">Vehicle successfully rent</string>
 
     <string name="under_construction">Under construction</string>
 </resources>

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Autoshare"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.home.search.VehicleDetailsRentingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.add.AddActivity"
             android:exported="false" />
         <activity
