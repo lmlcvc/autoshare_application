@@ -2,10 +2,14 @@ package com.riteh.autoshare.ui.home.search
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import com.androidisland.vita.VitaOwner
 import com.androidisland.vita.vita
+import com.bumptech.glide.Glide
 import com.riteh.autoshare.R
 import com.riteh.autoshare.data.dataholders.Vehicle
 import com.riteh.autoshare.ui.home.MainActivity
@@ -45,5 +49,14 @@ class VehicleDetailsRentingActivity : AppCompatActivity() {
         seats.text = vehicle.seats.toString()
         doors.text = vehicle.doors.toString()
         price.text = vehicle.rent_cost
+
+        if(!vehicle.image.isNullOrEmpty()) {
+            car_photos.setImageBitmap(getBitmapFromBase64(vehicle.image))
+        }
+    }
+
+    private fun getBitmapFromBase64(encodedImage: String): Bitmap {
+        val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
     }
 }
