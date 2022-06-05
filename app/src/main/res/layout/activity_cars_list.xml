@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
         android:background="@color/basic_red">
 
         <TextView
@@ -30,13 +29,13 @@
         android:id="@+id/car_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        android:layout_below="@id/tv_title_container"
+        android:layout_marginVertical="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginHorizontal="25dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_cars"
@@ -51,14 +50,13 @@
 
     <Button
         android:id="@+id/bt_filter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="120dp"
-        android:layout_marginRight="120dp"
-        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corners_box_red"
         android:text="@string/filters"
-        app:drawableLeftCompat="@drawable/ic_baseline_filter_alt_24"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:drawableLeftCompat="@drawable/ic_baseline_filter_alt_24" />
 </RelativeLayout>

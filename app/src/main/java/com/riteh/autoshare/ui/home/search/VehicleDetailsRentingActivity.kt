@@ -49,6 +49,7 @@ class VehicleDetailsRentingActivity : AppCompatActivity() {
         seats.text = vehicle.seats.toString()
         doors.text = vehicle.doors.toString()
         price.text = vehicle.rent_cost
+        tv_description.text = vehicle.description
 
         if(!vehicle.image.isNullOrEmpty()) {
             car_photos.setImageBitmap(getBitmapFromBase64(vehicle.image))
