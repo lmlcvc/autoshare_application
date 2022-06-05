@@ -44,10 +44,22 @@
         <action
             android:id="@+id/action_dateFragment_to_addingCompletedFragment"
             app:destination="@id/addingCompletedFragment" />
+        <action
+            android:id="@+id/action_dateFragment_to_addingUnsuccessfulFragment"
+            app:destination="@id/addingUnsuccessfulFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingCompletedFragment"
         android:name="com.riteh.autoshare.ui.home.add.AddingCompletedFragment"
         android:label="fragment_adding_completed"
         tools:layout="@layout/fragment_adding_completed" />
+    <fragment
+        android:id="@+id/addingUnsuccessfulFragment"
+        android:name="com.riteh.autoshare.ui.home.add.AddingUnsuccessfulFragment"
+        android:label="fragment_adding_unsuccessful"
+        tools:layout="@layout/fragment_adding_unsuccessful" >
+        <action
+            android:id="@+id/action_addingUnsuccessfulFragment_to_vehicleSelectFragment"
+            app:destination="@id/vehicleSelectFragment" />
+    </fragment>
 </navigation>

@@ -209,6 +209,8 @@
     <string name="end_date">End date</string>
     <string name="continue_to_autoshare_no_underline">Continue to Autoshare</string>
     <string name="vehicle_successfully_added_for_rent">Vehicle successfully added for rent</string>
+    <string name="an_error_occurred">An error occurred</string>
+    <string name="try_again">Try again</string>
     <string name="update_profile">Update profile</string>
     <string name="save_changes">Save changes</string>
     <string name="e_mail">E-mail</string>

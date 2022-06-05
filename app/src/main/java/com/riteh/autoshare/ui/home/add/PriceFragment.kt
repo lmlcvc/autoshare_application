@@ -106,7 +106,6 @@ class PriceFragment : Fragment() {
             requireActivity().finish()
         }
 
-        // TODO: button functional only if all fields are filled and validated
         btn_next.setOnClickListener {
             findNavController(this).navigate(R.id.action_priceFragment_to_locationFragment)
             saveValuesToViewModel()

@@ -15,6 +15,7 @@ import com.riteh.autoshare.databinding.FragmentDateBinding
 import kotlinx.android.synthetic.main.fragment_date.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import retrofit2.HttpException
 
 class DateFragment : Fragment() {
 
@@ -66,14 +67,20 @@ class DateFragment : Fragment() {
         }
 
         btn_next.setOnClickListener {
-            runBlocking {
-                async {
-                    sharedViewModel.createAvailability()
+            try {
+                runBlocking {
+                    async {
+                        sharedViewModel.createAvailability()
+                        sharedViewModel.addVehicleRentInfo()
+                    }
                 }
-            }
 
-            NavHostFragment.findNavController(this)
-                .navigate(R.id.action_dateFragment_to_addingCompletedFragment)
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_dateFragment_to_addingCompletedFragment)
+            } catch (e: HttpException) {
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_dateFragment_to_addingUnsuccessfulFragment)
+            }
         }
     }
 
