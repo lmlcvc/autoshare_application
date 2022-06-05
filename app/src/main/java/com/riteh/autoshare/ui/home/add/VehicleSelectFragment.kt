@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.gson.Gson
 import com.riteh.autoshare.R
 import com.riteh.autoshare.adapters.VehiclesForRentListAdapter
 import com.riteh.autoshare.data.UserPreferences
@@ -22,8 +21,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -54,7 +51,6 @@ class VehicleSelectFragment : Fragment() {
         binding?.vehicleSelectFragment = this
 
         makeAPIRequestWithOwnerID()
-        // makeAPIRequest()
         setOnClickListeners()
     }
 
@@ -77,13 +73,9 @@ class VehicleSelectFragment : Fragment() {
 
 
     private fun makeAPIRequest(id: Int) {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         val api: VehicleApi = Retrofit.Builder()
             .baseUrl(getString(R.string.AUTOSHARE_API))
-            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -96,8 +88,11 @@ class VehicleSelectFragment : Fragment() {
                 for (item in response.data) {
                     vehiclesList.add(item)
                 }
-                withContext(Dispatchers.Main) {
-                    setUpRecyclerView(vehiclesList)
+
+                if (vehiclesList.isNotEmpty()) {
+                    withContext(Dispatchers.Main) {
+                        setUpRecyclerView(vehiclesList)
+                    }
                 }
             } catch (e: Exception) {
                 println(e.toString())
@@ -110,6 +105,10 @@ class VehicleSelectFragment : Fragment() {
      * Set up recyclerview with list of user's vehicles.
      */
     private fun setUpRecyclerView(vehicles: List<Vehicle>) {
+        iv_empty.visibility = View.INVISIBLE
+        tv_empty.visibility = View.INVISIBLE
+        rl_vehicle_list.visibility = View.VISIBLE
+
         rv_vehicles.layoutManager = GridLayoutManager(requireContext(), 1)
 
         adapter = VehiclesForRentListAdapter(vehicles, requireContext(), sharedViewModel)
