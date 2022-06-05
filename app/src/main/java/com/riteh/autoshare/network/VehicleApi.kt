@@ -41,7 +41,6 @@ interface VehicleApi {
     ): Availability
 
 
-    // TODO: I/okhttp.OkHttpClient: <-- 500 Internal Server Error
     @POST("vehicles/update/{vehicle_id}")
     suspend fun addVehicleRentInfo(
         @Path("vehicle_id") vehicle_id: Int,
