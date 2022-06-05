@@ -15,6 +15,7 @@ import com.riteh.autoshare.responses.weather.current.WeatherCurrentItem
 import com.riteh.autoshare.responses.weather.forecast.Daily
 import com.riteh.autoshare.responses.weather.forecast.WeatherForecastItem
 import kotlinx.android.synthetic.main.weather_fragment.*
+import kotlinx.android.synthetic.main.weather_fragment.iv_close
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Response
@@ -66,6 +67,18 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnClickListeners()
+
+    }
+
+    private fun setOnClickListeners() {
+        iv_back.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        iv_close.setOnClickListener {
+            requireActivity().finish()
+        }
     }
 
     private fun setUpRecyclerView() {

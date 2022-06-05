@@ -29,7 +29,6 @@ class VehicleListAdapter(private var vehicles: List<VehicleListItem>, val contex
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // dummy values
         holder.name.text = "vehicle name"
-        holder.year.text = "200 kn" // TODO: specifying currencies
 
         /*Glide.with(holder.icon)
             .load(products[position].image)
@@ -39,7 +38,6 @@ class VehicleListAdapter(private var vehicles: List<VehicleListItem>, val contex
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.tv_title
-        val year: TextView = itemView.tv_price
         val image: ImageView = itemView.iv_image
 
         /*init {

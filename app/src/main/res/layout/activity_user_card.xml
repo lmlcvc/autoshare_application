@@ -2,75 +2,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardFormCustom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/app_white"
-    style="@style/CardFormCustom"
+    android:background="@color/app_white"
     tools:context=".ui.home.user.UserCardActivity">
+
 
     <LinearLayout
         android:id="@+id/tv_title_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
         android:background="@color/basic_red">
 
         <ImageView
             android:id="@+id/arrow_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_width="@dimen/nav_buttons"
+            android:layout_height="@dimen/nav_buttons"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
             android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
             android:id="@+id/tv_title"
             style="@style/HeadingsStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
             android:layout_marginStart="20dp"
+            android:layout_weight="0.3"
+            android:singleLine="true"
             android:text="@string/add_credit_card"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/btn_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="70dp"
+            android:layout_width="@dimen/nav_buttons"
+            android:layout_height="@dimen/nav_buttons"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="15dp"
             android:src="@drawable/ic_baseline_close_24" />
+
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title_container">
+        android:layout_below="@id/tv_title_container"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/app_white">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/card_number"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
                 android:autofillHints=""
+                android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:paddingLeft="10dp"
                 android:hint="@string/card_number"
                 android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/basic_red"
                 android:textColorHint="@color/bt_light_gray"
-                android:background="@drawable/edit_text_border"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/card_due"
                 android:layout_width="170dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/card_number"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
@@ -78,54 +87,56 @@
                 android:autofillHints=""
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:paddingLeft="10dp"
                 android:hint="@string/due_mm_yy"
                 android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/card_cvv"
                 android:layout_width="155dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/card_number"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_toEndOf="@id/card_due"
                 android:autofillHints=""
+                android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:paddingLeft="10dp"
                 android:hint="@string/cvv"
                 android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/basic_red"
                 android:textColorHint="@color/bt_light_gray"
-                android:background="@drawable/edit_text_border"/>
+                android:textSize="14sp" />
 
             <View
+                android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/card_cvv"
-                android:layout_marginTop="12dp"
+                android:layout_marginVertical="20dp"
                 android:background="@color/bt_light_gray" />
 
             <TextView
                 android:id="@+id/tv_billing_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/card_due"
+                android:layout_below="@id/line"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/black"
                 android:text="@string/billing_address"
-                android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_billing_address"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
@@ -133,91 +144,97 @@
                 android:background="@drawable/edit_text_border"
                 android:hint="@string/first_name"
                 android:inputType="text"
-                android:paddingLeft="10dp"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/user_surname"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/user_name"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_border"
-                android:textColorHint="@color/bt_light_gray"
                 android:hint="@string/last_name"
-                android:textColor="@color/basic_red"
                 android:inputType="text"
-                android:singleLine="true" />
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/basic_red"
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/user_address"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/user_surname"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_border"
                 android:hint="@string/address"
                 android:inputType="textPostalAddress"
+                android:padding="10dp"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/user_city"
                 android:layout_width="150dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/user_address"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_border"
                 android:hint="@string/city"
                 android:inputType="text"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/user_area"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/user_address"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:layout_toEndOf="@id/user_city"
                 android:autofillHints=""
-                android:paddingLeft="10dp"
                 android:background="@drawable/edit_text_border"
                 android:hint="@string/area"
                 android:inputType="number"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/user_country"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/user_city"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_border"
                 android:hint="@string/country"
                 android:inputType="text"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/basic_red"
-                android:textColorHint="@color/bt_light_gray" />
+                android:textColorHint="@color/bt_light_gray"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
@@ -225,15 +242,10 @@
 
     <Button
         android:id="@+id/addCardBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ButtonsStyle"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corners_box_red"
-        android:text="@string/confirm"
-        android:textColor="@android:color/white" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/confirm" />
 
 </RelativeLayout>

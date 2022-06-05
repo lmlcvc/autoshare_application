@@ -14,7 +14,10 @@ import com.riteh.autoshare.adapters.ModelListAdapter
 import com.riteh.autoshare.data.dataholders.ModelInfo
 import com.riteh.autoshare.databinding.FragmentModelBinding
 import com.riteh.autoshare.network.BrandModelApi
+import kotlinx.android.synthetic.main.fragment_brand.*
 import kotlinx.android.synthetic.main.fragment_model.*
+import kotlinx.android.synthetic.main.fragment_model.et_brand
+import kotlinx.android.synthetic.main.fragment_model.iv_close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -159,12 +162,8 @@ class ModelFragment : Fragment() {
      * Set navigation click listeners.
      */
     private fun setOnClickListeners() {
-        iv_back.setOnClickListener {
-            // navigate back
-        }
-
         iv_close.setOnClickListener {
-            // cancel vehicle adding
+            requireActivity().finish()
         }
     }
 
