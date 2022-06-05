@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -15,13 +14,6 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.riteh.autoshare.R
 import kotlinx.android.synthetic.main.activity_weather.*
-import kotlinx.android.synthetic.main.activity_weather.button
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.InputStream
 
 
 class WeatherActivity : AppCompatActivity() {
@@ -36,6 +28,10 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun setUpListeners() {
+        iv_back.setOnClickListener {
+            this.finish()
+        }
+
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 button.setOnClickListener {

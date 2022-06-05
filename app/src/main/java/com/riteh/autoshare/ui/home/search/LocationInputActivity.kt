@@ -82,6 +82,12 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
                 )
 
                 viewModel.setLocation(locality)
+                viewModel.setLatLng(
+                    LatLng(
+                        map.cameraPosition.target.latitude,
+                        map.cameraPosition.target.longitude
+                    )
+                )
             }
             this.finish()
         }
@@ -99,8 +105,8 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 12F))
 
                 button.setOnClickListener {
-                    Log.d("Tu nisam", viewModel.setLocation(place.name!!).toString())
                     viewModel.setLocation(place.name!!)
+                    viewModel.setLatLng(place.latLng!!)
                     context.finish()
                 }
 
@@ -139,6 +145,12 @@ class LocationInputActivity : AppCompatActivity(), OnMapReadyCallback {
             button.setOnClickListener {
                 if (locality != "") {
                     viewModel.setLocation(locality)
+                    viewModel.setLatLng(
+                        LatLng(
+                            map.cameraPosition.target.latitude,
+                            map.cameraPosition.target.longitude
+                        )
+                    )
                     context.finish()
                 } else {
                     Toast.makeText(this, "Location invalid", Toast.LENGTH_SHORT).show()

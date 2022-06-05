@@ -31,14 +31,12 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.search_fragment, container, false)
-
-        setEventListeners(view)
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setEventListeners(view)
 
         viewModel = vita.with(VitaOwner.Multiple(this)).getViewModel()
 
@@ -82,7 +80,10 @@ class SearchFragment : Fragment() {
             dateRangePicker.show(parentFragmentManager, "a")
         }
 
-
+        btn_search.setOnClickListener{
+            val intent = Intent(requireActivity(), CarsListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

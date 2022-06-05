@@ -12,11 +12,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rounded_corners_box_gray">
+        android:background="@drawable/rounded_corners_box_darker_white">
 
         <ImageView
             android:id="@+id/picture_car"
-            android:layout_width="1000dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:paddingTop="10dp"
             android:src="@drawable/logo" />
