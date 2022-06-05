@@ -86,6 +86,17 @@ class AddViewModel : ViewModel() {
     }
 
     suspend fun addVehicleRentInfo() {
-        api.addVehicleRentInfo(dailyPrice.value!!, distanceLimit.value!!, extraPrice.value!!)
+        val pricesInfo = PricesInfo(dailyPrice.value!!, distanceLimit.value!!, extraPrice.value!!)
+
+        api.addVehicleRentInfo(
+            vehicleID.value!!,
+            pricesInfo
+        )
     }
 }
+
+data class PricesInfo(
+    val rent_cost: Double,
+    val daily_distance_limit: Double,
+    val cost_per_kilometer: Double
+)
