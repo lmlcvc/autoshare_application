@@ -219,4 +219,5 @@
     <string name="enter_location">Enter a location</string>
     <string name="vehicle_rent_successfully">Vehicle successfully rent</string>
     <string name="under_construction">Under construction</string>
+    <string name="you_haven_t_added_any_vehicles_yet">You haven\'t added any vehicles... Yet!</string>
 </resources>

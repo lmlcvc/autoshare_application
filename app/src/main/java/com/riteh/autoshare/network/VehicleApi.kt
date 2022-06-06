@@ -2,7 +2,9 @@ package com.riteh.autoshare.network
 
 import com.riteh.autoshare.data.dataholders.Availability
 import com.riteh.autoshare.data.dataholders.Vehicle
+import com.riteh.autoshare.data.dataholders.VehicleFullListItem
 import com.riteh.autoshare.data.dataholders.VehicleListItem
+import com.riteh.autoshare.ui.home.add.PricesInfo
 import retrofit2.http.*
 import java.util.*
 
@@ -39,14 +41,11 @@ interface VehicleApi {
     ): Availability
 
 
-    // TODO: I/okhttp.OkHttpClient: <-- 500 Internal Server Error http://46.101.208.185/api/vehicles/update/%7Bvehicle_id%7D (295ms)
-    @FormUrlEncoded
     @POST("vehicles/update/{vehicle_id}")
     suspend fun addVehicleRentInfo(
-        @Field("rent_cost") rent_cost: Double,
-        @Field("daily_distance_limit") daily_distance_limit: Double,
-        @Field("cost_per_kilometer") cost_per_kilometer: Double
-    ): VehicleListItem
+        @Path("vehicle_id") vehicle_id: Int,
+        @Body body: PricesInfo
+    ): VehicleFullListItem
 
 
     @GET("vehicles/user/{id}")

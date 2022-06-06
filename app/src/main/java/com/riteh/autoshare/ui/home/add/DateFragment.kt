@@ -66,12 +66,15 @@ class DateFragment : Fragment() {
                 .navigate(R.id.action_dateFragment_to_locationFragment)
         }
 
+        // TODO: API calls should function as one
+            // if one receives success and the other one fails,
+            // the availability should not exist
         btn_next.setOnClickListener {
             try {
                 runBlocking {
                     async {
-                        sharedViewModel.createAvailability()
                         sharedViewModel.addVehicleRentInfo()
+                        sharedViewModel.createAvailability()
                     }
                 }
 

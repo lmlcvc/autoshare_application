@@ -11,10 +11,32 @@
             type="com.riteh.autoshare.ui.home.add.VehicleSelectFragment" />
     </data>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/app_white">
+
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="30dp"
+            android:translationZ="1dp"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            android:id="@+id/tv_empty"
+            style="@style/HeadingsStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationZ="1dp"
+            android:layout_marginTop="-100dp"
+            android:layout_marginHorizontal="30dp"
+            android:textColor="@color/dark_red"
+            android:text="@string/you_haven_t_added_any_vehicles_yet"
+            android:layout_below="@id/iv_empty" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -40,10 +62,12 @@
                     app:tint="@color/basic_red" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_vehicle_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/iv_close"
-                    android:background="@color/app_white">
+                    android:background="@color/app_white"
+                    android:visibility="invisible">
 
                     <TextView
                         android:id="@+id/tv_heading"
