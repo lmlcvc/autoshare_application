@@ -1,0 +1,13 @@
+{
+  "user": {
+    "id": 1,
+    "email": "test@email.com",
+    "name": "Name",
+    "surname": "Surname",
+    "date_of_birth": null,
+    "license_id": null,
+    "renter_avg_rating": "0.00",
+    "rentee_avg_rating": "0.00"
+  },
+  "token": "1|gUsf8gbyM084V0UL4euiiw4RdExEEseHzQBZtpWM"
+}
