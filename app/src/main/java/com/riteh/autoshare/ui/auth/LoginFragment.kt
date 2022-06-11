@@ -28,7 +28,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         super.onActivityCreated(savedInstanceState)
         binding.progressbar.visible(false)
 
-        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+        viewModel.authResponse.observe(viewLifecycleOwner, Observer {
             binding.progressbar.visible(false)
             when (it) {
                 is Resource.Success -> {

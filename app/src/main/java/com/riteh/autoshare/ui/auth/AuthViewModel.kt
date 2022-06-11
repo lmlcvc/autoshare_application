@@ -6,21 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.riteh.autoshare.network.Resource
 import com.riteh.autoshare.repository.AuthRepository
-import com.riteh.autoshare.responses.LoginResponse
-import com.riteh.autoshare.responses.SignUpResponse
+import com.riteh.autoshare.responses.AuthResponse
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    private val _signUpResponse: MutableLiveData<Resource<SignUpResponse>> = MutableLiveData()
-    val signUpResponse: LiveData<Resource<SignUpResponse>>
-        get() = _signUpResponse
-
-    private val _loginResponse : MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
-    val loginResponse: LiveData<Resource<LoginResponse>>
-        get() = _loginResponse
+    private val _authResponse: MutableLiveData<Resource<AuthResponse>> = MutableLiveData()
+    val authResponse: LiveData<Resource<AuthResponse>>
+        get() = _authResponse
 
 
     fun validate(
@@ -44,7 +39,7 @@ class AuthViewModel(
         email: String,
         password: String
     ) = viewModelScope.launch {
-        _loginResponse.value = repository.login(email, password)
+        _authResponse.value = repository.login(email, password)
     }
 
 
@@ -54,7 +49,7 @@ class AuthViewModel(
         email: String,
         password: String
     ) = viewModelScope.launch {
-        _signUpResponse.value = repository.userSignUp(name, surname, email, password)
+        _authResponse.value = repository.userSignUp(name, surname, email, password)
     }
 
 }

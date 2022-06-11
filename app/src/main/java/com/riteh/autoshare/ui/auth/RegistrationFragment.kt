@@ -25,7 +25,7 @@ class RegistrationFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
+        viewModel.authResponse.observe(viewLifecycleOwner, Observer {
 
             when (it) {
                 is Resource.Success -> {
@@ -33,12 +33,14 @@ class RegistrationFragment :
                         userPreferences.saveUserInfo(it.value.user)
                         userPreferences.saveUserToken(it.value.token)
 
+                        Toast.makeText(requireContext(), "Signup successful!", Toast.LENGTH_SHORT).show()
+
                         requireActivity().startNewActivity(MainActivity::class.java)
                     }
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Signup failed", Toast.LENGTH_SHORT).show()
                 }
             }
         })

@@ -1,6 +1,6 @@
 package com.riteh.autoshare.responses
 
-data class LoginResponse(
+data class AuthResponse(
     val user: User,
     val token: String
     )
