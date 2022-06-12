@@ -52,15 +52,15 @@ class RegistrationFragment :
             val password = binding.registerFragmentPassword.text.toString().trim()
             val confirmPassword = binding.registerFragmentPasswordConfirm.text.toString().trim()
 
-            viewModel.validate(name, surname, email, password, confirmPassword)
-
-            // TODO: intent to mainactivity if validated
+            if (viewModel.validate(name, surname, email, password, confirmPassword)){
+                tv_to_login.setOnClickListener { view ->
+                    view.findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+                    Toast.makeText(requireContext(), "Registration Success!", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Registarion Fai!l", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        tv_to_login.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
-        }
-
     }
 
     override fun getViewModel() = AuthViewModel::class.java
