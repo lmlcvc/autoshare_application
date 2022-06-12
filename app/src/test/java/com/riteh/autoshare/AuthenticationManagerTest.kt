@@ -2,11 +2,11 @@ package com.riteh.autoshare
 
 import com.riteh.autoshare.data.LoginBody
 import com.riteh.autoshare.data.SignUpBody
-import com.riteh.autoshare.responses.LoginResponse
-import com.riteh.autoshare.responses.SignUpResponse
+import com.riteh.autoshare.responses.AuthResponse
 import com.riteh.autoshare.responses.User
 import com.riteh.autoshare.util.MockResponseFileReader
 import com.riteh.autoshare.util.managers.AuthenticationManager
+import junit.framework.Assert.assertNull
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -115,14 +115,15 @@ class AuthenticationManagerTest : KoinTest {
 
     /**
      * Tests login response saved to AuthenticationManager through API call.
+     * Assumes successful response.
      */
     @Test
-    fun `login receives proper response`() {
+    fun `login receives success response`() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("auth_success.json").content))
         }
 
-        var loginResponse: LoginResponse
+        var loginResponse: AuthResponse
         var user: User?
         var token: String?
 
@@ -146,29 +147,79 @@ class AuthenticationManagerTest : KoinTest {
 
     /**
      * Tests register response saved to AuthenticationManager through API call.
+     * Assumes successful response.
      */
     @Test
-    fun `register receives proper response`() {
+    fun `register receives success response`() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("auth_success.json").content))
         }
 
-        var signUpResponse: SignUpResponse
+        var signUpResponse: AuthResponse
+        var user: User?
+        var token: String?
 
         get<AuthenticationManager>().apply {
             runBlocking { signUpResponse = signUpBlocking() }
         }
 
-        println("SIGNUP RESPONSE: $signUpResponse")
+        server.takeRequest()
+
+        get<AuthenticationManager>().apply {
+            user = getUserFromManager()
+            token = getTokenFromManager()
+        }
+
+        assertNotNull(user)
+        assertNotNull(token)
+        assertEquals(signUpResponse.user, user)
+        assertEquals(signUpResponse.token, token)
+    }
+
+
+    /**
+     * Tests login response saved to AuthenticationManager through API call.
+     * Assumes failed response.
+     */
+    @Test
+    fun `login receives fail response`() {
+        server.apply {
+            enqueue(MockResponse().setBody(MockResponseFileReader("auth_fail.json").content))
+        }
+
+        var loginResponse: AuthResponse
+
+        get<AuthenticationManager>().apply {
+            runBlocking { loginResponse = loginBlocking() }
+        }
 
         server.takeRequest()
 
-        println("SIGNUP RESPONSE: $signUpResponse")
+        assertNull(loginResponse.user)
+        assertNull(loginResponse.token)
+    }
 
-        assertEquals(signUpResponse.name, AuthenticationManager.name)
-        assertEquals(signUpResponse.surname, AuthenticationManager.surname)
-        assertEquals(signUpResponse.email, AuthenticationManager.email)
-        assertEquals(signUpResponse.password, AuthenticationManager.password)
+
+    /**
+     * Tests register response saved to AuthenticationManager through API call.
+     * Assumes failed response.
+     */
+    @Test
+    fun `register receives fail response`() {
+        server.apply {
+            enqueue(MockResponse().setBody(MockResponseFileReader("auth_fail.json").content))
+        }
+
+        var signUpResponse: AuthResponse
+
+        get<AuthenticationManager>().apply {
+            runBlocking { signUpResponse = signUpBlocking() }
+        }
+
+        server.takeRequest()
+
+        assertNull(signUpResponse.user)
+        assertNull(signUpResponse.token)
     }
 
 

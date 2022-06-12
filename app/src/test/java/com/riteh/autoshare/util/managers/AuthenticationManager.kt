@@ -1,8 +1,7 @@
 package com.riteh.autoshare.util.managers
 
 import com.riteh.autoshare.network.AuthApi
-import com.riteh.autoshare.responses.LoginResponse
-import com.riteh.autoshare.responses.SignUpResponse
+import com.riteh.autoshare.responses.AuthResponse
 import com.riteh.autoshare.responses.User
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -12,11 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class AuthenticationManager(endpoint: String) {
     private var user: User? = null
     private var token: String? = null
-
-    var signUpName: String? = null
-    var signUpSurname: String? = null
-    var signUpEmail: String? = null
-    var signUpPassword: String? = null
 
     private val okHttpClient = OkHttpClient.Builder().build()
 
@@ -29,7 +23,7 @@ class AuthenticationManager(endpoint: String) {
 
     private val api = retrofit.create(AuthApi::class.java)
 
-    suspend fun loginBlocking(): LoginResponse {
+    suspend fun loginBlocking(): AuthResponse {
         val loginResponse = api.login(email, password)
 
         user = loginResponse.user
@@ -37,13 +31,11 @@ class AuthenticationManager(endpoint: String) {
         return loginResponse
     }
 
-    suspend fun signUpBlocking(): SignUpResponse {
+    suspend fun signUpBlocking(): AuthResponse {
         val signUpResponse = api.userSignUp(name, surname, email, password)
 
-        signUpName = signUpResponse.name
-        signUpSurname = signUpResponse.surname
-        signUpEmail = signUpResponse.email
-        signUpPassword = signUpResponse.password
+        user = signUpResponse.user
+        token = signUpResponse.token
         return signUpResponse
     }
 
