@@ -1,5 +1,4 @@
 package com.riteh.autoshare.ui.auth
-import androidx.lifecycle.ViewModel
 import com.riteh.autoshare.network.AuthApi
 import com.riteh.autoshare.network.RemoteDataSource
 import com.riteh.autoshare.repository.AuthRepository
@@ -22,7 +21,6 @@ class AuthViewModelTest {
 
     @Test
     fun validateConfirmPassword() {
-
         val name  = "test"
         val surname = "test"
         val email = "test@gmail.com"
@@ -35,7 +33,6 @@ class AuthViewModelTest {
 
     @Test
     fun validateLengthPassword() {
-
         val name  = "test"
         val surname = "test"
         val email = "test@gmail.com"
@@ -48,7 +45,6 @@ class AuthViewModelTest {
 
     @Test
     fun validateName() {
-
         val name  = ""
         val surname = "test"
         val email = "test@gmail.com"
@@ -61,7 +57,6 @@ class AuthViewModelTest {
 
     @Test
     fun validateSurname() {
-
         val name  = "test"
         val surname = ""
         val email = "test@gmail.com"
@@ -72,10 +67,8 @@ class AuthViewModelTest {
         assertEquals(false, response);
     }
 
-
     @Test
     fun validateEmail() {
-
         val name  = "test"
         val surname = "test"
         val email = ""
@@ -88,7 +81,6 @@ class AuthViewModelTest {
 
     @Test
     fun validateFail() {
-
         val name  = ""
         val surname = ""
         val email = ""
