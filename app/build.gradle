@@ -33,6 +33,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue("string", "MAPS_API_KEY", localProperties['MAPS_API_KEY'])
+            resValue("string", "WEATHER_API_KEY", localProperties['WEATHER_API_KEY'])
+            resValue("string", "AUTOSHARE_API", localProperties['AUTOSHARE_API'])
         }
 
         debug {
