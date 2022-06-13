@@ -24,14 +24,15 @@ class AuthViewModel(
         email: String,
         password: String,
         confirmPassword: String
-    ) {
+    ): Boolean {
         if (name.isEmpty() || surname.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty()) {
-            return
+            return false
         }
         if ((password != confirmPassword) || password.length < 6) {
-            return
+            return false
         }
         signUp(name, surname, email, password)
+        return true
     }
 
 
@@ -43,7 +44,7 @@ class AuthViewModel(
     }
 
 
-    private fun signUp(
+    fun signUp(
         name: String,
         surname: String,
         email: String,
