@@ -44,7 +44,7 @@ class AuthViewModel(
     }
 
 
-    private fun signUp(
+    fun signUp(
         name: String,
         surname: String,
         email: String,
