@@ -1,29 +1,21 @@
 package com.riteh.autoshare.ui.auth
-import com.riteh.autoshare.network.RemoteDataSource
-import com.riteh.autoshare.repository.AuthRepository
-import org.junit.Assert.*
+
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 
 internal class AuthViewModelTest {
-    private lateinit var remoteDataSource: RemoteDataSource
-    private lateinit var repository: AuthRepository
     private lateinit var authViewModel: AuthViewModel
 
     @Before
-    fun setup(){
-        @Mock
-        remoteDataSource = mock(RemoteDataSource::class.java)
-        @Mock
-        repository = mock(AuthRepository::class.java)
-        @InjectMocks
+    fun setup() {
         authViewModel = mock(AuthViewModel::class.java)
+
         whenever(authViewModel.validate(any(), any(), any(), any(), any())).thenCallRealMethod()
         whenever(authViewModel.signUp(any(), any(), any(), any())).thenReturn(null)
     }
